@@ -26,13 +26,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     var submarino = SKSpriteNode()
     let submarinoAtlas = SKTextureAtlas(named: "UBoat.atlas")
-    var estelaSubmarino = SKEmitterNode()
     
     var prisma = SKSpriteNode()
     var enemigo = SKSpriteNode()
     var misil = SKSpriteNode()
     var menuLabel = SKLabelNode()
-    
+    var botonMoverArriba = SKSpriteNode()
+    var botonMoverAbajo = SKSpriteNode()
+    var botonDisparoMisil = SKSpriteNode()
+    var botonDisparoAmetralladora = SKSpriteNode()
     
     var moverArriba = SKAction()
     var moverAbajo = SKAction()
@@ -51,7 +53,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     let categoriaSubmarino : UInt32 = 1<<0
     let categoriaEnemigo : UInt32 = 1<<1
     let categoriaMisil : UInt32 = 1<<2
-    let categoriaAcorazado : UInt32 = 1<<3
+    
     
     var escena = SKNode()
     
@@ -73,7 +75,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         crearOceano ()
         mostrarColisiones()
         mostrarPuntuacion()
-        
+        motrarBotonMoverArriba()
+        motrarBotonMoverAbajo()
+        motrarBotonDisparoMisil()
+        motrarBotonDisparoAmetralladoral()
         
         
         
@@ -83,6 +88,55 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         
     }
+    
+    func motrarBotonMoverArriba() {
+    
+        botonMoverArriba = SKSpriteNode(imageNamed: "arriba")
+        botonMoverArriba.setScale(0.1)
+        botonMoverArriba.zPosition = 10
+        botonMoverArriba.position = CGPointMake(self.frame.width / 25, self.frame.height / 7)
+        botonMoverArriba.name = "arriba"
+        escena.addChild(botonMoverArriba)
+
+    
+    }
+    
+    func motrarBotonMoverAbajo() {
+        
+        botonMoverAbajo = SKSpriteNode(imageNamed: "abajo")
+        botonMoverAbajo.setScale(0.1)
+        botonMoverAbajo.zPosition = 10
+        botonMoverAbajo.position = CGPointMake(self.frame.width / 25, self.frame.height / 15)
+        botonMoverAbajo.name = "abajo"
+        escena.addChild(botonMoverAbajo)
+        
+        
+    }
+
+    func motrarBotonDisparoMisil() {
+        
+        botonDisparoMisil = SKSpriteNode(imageNamed: "botonMisil")
+        botonDisparoMisil.setScale(0.1)
+        botonDisparoMisil.zPosition = 10
+        botonDisparoMisil.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 6)
+        botonDisparoMisil.name = "botonDisparoMisil"
+        escena.addChild(botonDisparoMisil)
+        
+        
+    }
+    
+    func motrarBotonDisparoAmetralladoral() {
+        
+        botonDisparoAmetralladora = SKSpriteNode(imageNamed: "botonAmetralladora")
+        botonDisparoAmetralladora.setScale(0.1)
+        botonDisparoAmetralladora.zPosition = 10
+        botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 15)
+        botonDisparoAmetralladora.name = "botonDisparoMisil"
+        escena.addChild(botonDisparoAmetralladora)
+        
+        
+    }
+
     
     
     func volverMenu(){
@@ -147,24 +201,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         estelaSubmarino2.position = CGPointMake(87, -7)
         submarino.addChild(estelaSubmarino2)
         
-        
-        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 15))
-        submarino.physicsBody?.dynamic = true
-        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
-        submarino.physicsBody?.collisionBitMask = categoriaEnemigo
-        submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
-        escena.addChild(submarino)
-        
-        submarinoNavega()
-        
-        moverArriba = SKAction.moveByX(0, y: 10, duration: 0.1)
-        moverAbajo = SKAction.moveByX(0, y: -10, duration: 0.1)
-
-        }
-   
-    
-    func submarinoNavega (){
-        
+        /* he pensado que en lugar de una función a parte, es mejor incluir el efecto de navegar en el mismo submarino para cuando saquemos este código  al bundle*/
         var u1 = submarinoAtlas.textureNamed("Uboat06")
         var u2 = submarinoAtlas.textureNamed("Uboat07")
         var u3 = submarinoAtlas.textureNamed("Uboat08")
@@ -172,7 +209,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var u5 = submarinoAtlas.textureNamed("Uboat10")
         var u6 = submarinoAtlas.textureNamed("Uboat11")
         var u7 = submarinoAtlas.textureNamed("Uboat12")
-
+        
         
         // Combinación de arrays del Atlas por Adrían
         // let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15]
@@ -185,18 +222,27 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         submarinoNavega = SKAction.repeatActionForever(submarinoNavega)
         
         submarino.runAction(submarinoNavega)
-        
-    }
 
-    
-    
-    
-    
-    
-    
+        
+        
+        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 15))
+        submarino.physicsBody?.dynamic = true
+        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
+        submarino.physicsBody?.collisionBitMask = categoriaEnemigo
+        submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
+        escena.addChild(submarino)
+        
+        //submarinoNavega()
+        
+        moverArriba = SKAction.moveByX(0, y: 5, duration: 0.1)
+        moverAbajo = SKAction.moveByX(0, y: -5, duration: 0.1)
+
+        }
+   
+   
     
     func aparecerEnemigo(){
-        var altura = UInt (self.frame.size.height - 50 )
+        var altura = UInt (self.frame.size.height - 100 )
         var alturaRandom = UInt (arc4random()) % altura
         
         enemigo = SKSpriteNode(imageNamed: "enemigo")
@@ -283,51 +329,90 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         
         
-        let tocarSubmarino: AnyObject = touches.anyObject()!
+        let tocarBotonLanzarMisil: AnyObject = touches.anyObject()!
         
-        let posicionTocar = tocarSubmarino.locationInNode(self)
+        let posicionTocarBotonLanzarMisil = tocarBotonLanzarMisil.locationInNode(self)
         
-        let loQueTocamos = self.nodeAtPoint(posicionTocar)
+        let loQueTocamosBotonLanzarMisil = self.nodeAtPoint(posicionTocarBotonLanzarMisil)
         
-        if loQueTocamos == submarino {
+        if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
             
            lanzarMisil()
         }
         
+        let tocarBotonArriba: AnyObject = touches.anyObject()!
         
-        if escena.speed > 0 {
-            for toke: AnyObject in touches {
+        let posicionTocarBotonArriba = tocarBotonArriba.locationInNode(self)
         
-        let dondeTocamos = toke.locationInNode(self)
+        let loQueTocamosBotonArriba = self.nodeAtPoint(posicionTocarBotonArriba)
         
-        if dondeTocamos.y > submarino.position.y {
+        if loQueTocamosBotonArriba == botonMoverArriba && submarino.position.y < 290  {
             
-            if submarino.position.y < 290  {
-                //submarino.position.x = (submarino.size.width / 2)+10
-                contadorEscala = contadorEscala - 0.01
+            contadorEscala = contadorEscala - 0.01
                 if contadorEscala < 0.4 {
                     contadorEscala = 0.4
                 }
-                submarino.setScale(contadorEscala)
-                submarino.runAction(moverArriba)
-
-            }
-            
-            
-        } else {
-            
-            if submarino.position.y > 65 {
-                //submarino.position.x = (submarino.size.width / 2)+10
-                contadorEscala = contadorEscala + 0.03
-                if contadorEscala > 0.9 {
-                    contadorEscala = 0.9
-                }
-                submarino.setScale(contadorEscala)
-                submarino.runAction(moverAbajo)
-            }
+            submarino.setScale(contadorEscala)
+            submarino.runAction(moverArriba)
         }
         
-    }}
+        
+        let tocarBotonAbajo: AnyObject = touches.anyObject()!
+        
+        let posicionTocarBotonAbajo = tocarBotonAbajo.locationInNode(self)
+        
+        let loQueTocamosBotonAbajo = self.nodeAtPoint(posicionTocarBotonAbajo)
+        
+        if loQueTocamosBotonAbajo == botonMoverAbajo && submarino.position.y > 65  {
+            
+            contadorEscala = contadorEscala + 0.03
+                if contadorEscala > 0.9 {
+                contadorEscala = 0.9
+                }
+            submarino.setScale(contadorEscala)
+            submarino.runAction(moverAbajo)
+        }
+
+
+       
+        
+ // Antiguo mover submarino arriba y abajo por toques en la pantalla
+        
+//        if escena.speed > 0 {
+//            
+//        for toke: AnyObject in touches {
+//        
+//        let dondeTocamos = toke.locationInNode(self)
+//        
+//        if dondeTocamos.y > submarino.position.y {
+//            
+//            if submarino.position.y < 290  {
+//                //submarino.position.x = (submarino.size.width / 2)+10
+//                contadorEscala = contadorEscala - 0.01
+//                if contadorEscala < 0.4 {
+//                    contadorEscala = 0.4
+//                }
+//                submarino.setScale(contadorEscala)
+//                submarino.runAction(moverArriba)
+//
+//            }
+//            
+//            
+//        } else {
+//            
+//            if submarino.position.y > 65 {
+//                //submarino.position.x = (submarino.size.width / 2)+10
+//                contadorEscala = contadorEscala + 0.03
+//                if contadorEscala > 0.9 {
+//                    contadorEscala = 0.9
+//                }
+//                submarino.setScale(contadorEscala)
+//                submarino.runAction(moverAbajo)
+//            }
+//       }
+//        
+//}
+//}
 
        
       }
