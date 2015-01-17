@@ -14,8 +14,6 @@ import SpriteKit
 
 class Juego: SKScene, SKPhysicsContactDelegate {
     
-    var pausedButon = SKSpriteNode()
-    var playButon = SKSpriteNode()
     let constraint = SKConstraint.zRotation(SKRange(constantValue: 0))
     var fondo = SKSpriteNode()
     var fdcielo = SKSpriteNode()
@@ -33,7 +31,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var prisma = SKSpriteNode()
     var enemigo = SKSpriteNode()
     var misil = SKSpriteNode()
-    var gameOverLabel = SKLabelNode()
     var menuLabel = SKLabelNode()
     
     
@@ -76,8 +73,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         crearOceano ()
         mostrarColisiones()
         mostrarPuntuacion()
-        playEscena()
-        pauseEscena()
         
         
         
@@ -89,22 +84,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func playEscena(){
-        playButon = SKSpriteNode(imageNamed: "playButon")
-        playButon.setScale(0.5)
-        playButon.zPosition = 6
-        playButon.position = CGPointMake(55, 20)
-        escena.addChild(playButon)
-    }
-    
-    func pauseEscena(){
-        pausedButon = SKSpriteNode(imageNamed: "pausedButon")
-        pausedButon.setScale(0.5)
-        pausedButon.zPosition = 6
-        pausedButon.position = CGPointMake(20, 20)
-        escena.addChild(pausedButon)
-    }
-
     
     func volverMenu(){
         menuLabel.fontName = "Avenir"
@@ -117,18 +96,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         escena.addChild(menuLabel)
     }
     
-    func gameOver(){
-        gameOverLabel.fontName = "Avenir"
-        gameOverLabel.fontSize  = 50
-        gameOverLabel.fontColor = UIColor.redColor()
-        gameOverLabel.alpha = 1
-        gameOverLabel.zPosition = 6
-        gameOverLabel.position = CGPointMake(self.frame.width / 2, self.frame.height / 2 + 50)
-        gameOverLabel.text = "GAME OVER"
-        escena.addChild(gameOverLabel)
-    }
-
-
     
     func mostrarPuntuacion(){
         puntuacion = 0
@@ -160,9 +127,11 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Uboat12"))
         submarino.setScale(0.5)
         submarino.zPosition = 4
-        submarino.position = CGPointMake((submarino.size.width ), self.frame.height / 2)
+        submarino.position = CGPointMake((submarino.size.width - 50), self.frame.height / 2)
         submarino.constraints = [constraint]
         submarino.name = "heroe"
+        
+        
         
         let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
         estelaSubmarino1.zPosition = 0
@@ -194,9 +163,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         }
    
     
-    
-    // Sprite Submarino navegando no funciona
-    
     func submarinoNavega (){
         
         var u1 = submarinoAtlas.textureNamed("Uboat06")
@@ -206,18 +172,12 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var u5 = submarinoAtlas.textureNamed("Uboat10")
         var u6 = submarinoAtlas.textureNamed("Uboat11")
         var u7 = submarinoAtlas.textureNamed("Uboat12")
-//        var u8 = submarinoAtlas.textureNamed("Uboat12")
-//        var u9 = submarinoAtlas.textureNamed("Uboat11")
-//        var u10 = submarinoAtlas.textureNamed("Uboat10")
-//        var u11 = submarinoAtlas.textureNamed("Uboat09")
-//        var u12 = submarinoAtlas.textureNamed("Uboat08")
-//        var u13 = submarinoAtlas.textureNamed("Uboat07")
-//        var u14 = submarinoAtlas.textureNamed("Uboat06")
-//        var u15 = submarinoAtlas.textureNamed("Uboat06")
 
         
-        //let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15]
+        // Combinación de arrays del Atlas por Adrían
+        // let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15]
         
+        // Combinación de arrays del Atlas por Nicanor
         let arraySubmarino = [u7,u7,u7,u7,u7,u6,u5,u4,u3,u2,u1,u2,u3,u4,u5,u6,u7]
         
         var submarinoNavega = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.2)
@@ -295,7 +255,17 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         misil.runAction(lanzarMisil)
     }
 
-    
+    func prismaticos() {
+        
+        prisma = SKSpriteNode(imageNamed: "prismatic")
+        prisma.setScale(0.66)
+        prisma.zPosition = 4
+        prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        
+        addChild(prisma)
+        
+    }
+
     
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -310,24 +280,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
             self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
         }
-        
-        let tocarPausedButon: AnyObject = touches.anyObject()!
-        let posicionTocarPaused = tocarPausedButon.locationInNode(self)
-        let tocamosPausedButon = self.nodeAtPoint(posicionTocarPaused)
-        
-        if tocamosPausedButon == pausedButon  {
-        escena.speed = 0
-        }
-        
-        
-        let tocarPlayButon: AnyObject = touches.anyObject()!
-        let posicionTocarPlay = tocarPlayButon.locationInNode(self)
-        let tocamosPlayButon = self.nodeAtPoint(posicionTocarPlay)
-        
-        if tocamosPlayButon == playButon  {
-            escena.speed = 1
-        }
-
         
         
         
@@ -350,9 +302,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if dondeTocamos.y > submarino.position.y {
             
-            if submarino.position.y < 290 {
+            if submarino.position.y < 290  {
                 //submarino.position.x = (submarino.size.width / 2)+10
-                contadorEscala = contadorEscala - 0.05
+                contadorEscala = contadorEscala - 0.01
                 if contadorEscala < 0.4 {
                     contadorEscala = 0.4
                 }
@@ -366,9 +318,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             
             if submarino.position.y > 65 {
                 //submarino.position.x = (submarino.size.width / 2)+10
-                contadorEscala = contadorEscala + 0.05
-                if contadorEscala > 1 {
-                    contadorEscala = 1
+                contadorEscala = contadorEscala + 0.03
+                if contadorEscala > 0.9 {
+                    contadorEscala = 0.9
                 }
                 submarino.setScale(contadorEscala)
                 submarino.runAction(moverAbajo)
@@ -380,25 +332,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
        
       }
 
-    
-
-
-    func prismaticos() {
-        
-        prisma = SKSpriteNode(imageNamed: "prismatic")
-        prisma.setScale(0.66)
-        prisma.zPosition = 4
-        prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        
-        addChild(prisma)
-        
-    }
-    
-    
-    
-    
-    
-    
     
     
     func crearCielo() {
@@ -539,7 +472,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             runAction(controlSubmarino)
             submarino.runAction(explotarSubmarino)
             
-            gameOver()
             volverMenu()
         }
         
@@ -584,22 +516,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
                 SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
                 ])
             ))
-        
-//        var atlasExplosionSubmarino = SKTextureAtlas(named: "submarinoExplota")
-//        
-//        var s1 = atlasExplosionSubmarino.textureNamed("UBoatDamage1")
-//        var s2 = atlasExplosionSubmarino.textureNamed("UBoatDamage2")
-//        var s3 = atlasExplosionSubmarino.textureNamed("UBoatDamage3")
-//        var s4 = atlasExplosionSubmarino.textureNamed("UBoatDamage4")
-//        var s5 = atlasExplosionSubmarino.textureNamed("UBoat")
-//        
-//        
-//        var arraySubmarino = [s1,s2,s3,s4,s3,s4,s5]
-//        
-//        var submarinoExplota = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.2)
-//        submarinoExplota = SKAction.repeatAction(submarinoExplota, count: 1)
-//        submarino.runAction(submarinoExplota)
-        
     }
     
     
@@ -610,24 +526,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         explosionSubmarino.setScale(0.9)
         explosionSubmarino.position = CGPointMake(-50, -10)
         submarino.addChild(explosionSubmarino)
-        
-        
-        
-        // var atlasExplosionSubmarino = SKTextureAtlas(named: "submarinoExplota")
-        
-        // var s1 = atlasExplosionSubmarino.textureNamed("UBoatDamage1")
-        // var s2 = atlasExplosionSubmarino.textureNamed("UBoatDamage2")
-        // var s3 = atlasExplosionSubmarino.textureNamed("UBoatDamage3")
-        // var s4 = atlasExplosionSubmarino.textureNamed("UBoatDamage4")
-        // var s5 = atlasExplosionSubmarino.textureNamed("UBoatTotalDamage")
-        
-        // var arraySubmarino = [s1,s2,s3,s4,s5,s3]
-        
-        // var submarinoExplota = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.5)
-        // submarinoExplota = SKAction.repeatAction(submarinoExplota, count: 1)
-        // submarino.runAction(submarinoExplota)
-        
-        
+   
         submarino.physicsBody?.dynamic = false
         var desplazarSubmarino = SKAction.moveTo(CGPointMake( self.frame.width / 2, self.frame.height / 2), duration:2.0)
         submarino.runAction(desplazarSubmarino)
