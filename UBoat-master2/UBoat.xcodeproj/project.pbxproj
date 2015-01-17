@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88130D581A52A2C300802E87 /* UBoatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D571A52A2C300802E87 /* UBoatTests.swift */; };
+		88130D621A52A37300802E87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D611A52A37300802E87 /* AppDelegate.swift */; };
+		88130D641A52A38100802E87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D631A52A38100802E87 /* ViewController.swift */; };
+		88130D6C1A52A39300802E87 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D651A52A39300802E87 /* Menu.swift */; };
+		88130D6D1A52A39300802E87 /* Juego.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D661A52A39300802E87 /* Juego.swift */; };
+		88130D6E1A52A39300802E87 /* estelaMisil.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D671A52A39300802E87 /* estelaMisil.sks */; };
+		88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D681A52A39300802E87 /* explosionSubmarino.sks */; };
+		88130D701A52A39300802E87 /* estelaSubmarino.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D691A52A39300802E87 /* estelaSubmarino.sks */; };
+		88130D711A52A39300802E87 /* estelaEnemigo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D6A1A52A39300802E87 /* estelaEnemigo.sks */; };
+		88130D721A52A39300802E87 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 88130D6B1A52A39300802E87 /* spark.png */; };
+		88130D741A52A3A700802E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88130D731A52A3A700802E87 /* Main.storyboard */; };
+		88130D761A52A3B700802E87 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88130D751A52A3B700802E87 /* Images.xcassets */; };
+		88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88130D771A52A3CE00802E87 /* LaunchScreen.xib */; };
+		889A0B821A5D2D55000BF2C3 /* submarinoExplota.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */; };
+		889A0B831A5D2D55000BF2C3 /* enemigoExplota.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */; };
+		9A6873611A6565BF00CC4BF7 /* estelaSubDer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */; };
+		9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */; };
+		9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873681A65902A00CC4BF7 /* humoExplosion.sks */; };
+		9A68736B1A6600E500CC4BF7 /* UBoat.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9A68736A1A6600E500CC4BF7 /* UBoat.atlas */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88130D521A52A2C300802E87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88130D341A52A2C300802E87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88130D3B1A52A2C300802E87;
+			remoteInfo = UBoat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88130D3C1A52A2C300802E87 /* UBoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88130D401A52A2C300802E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88130D511A52A2C300802E87 /* UBoatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UBoatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88130D561A52A2C300802E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88130D571A52A2C300802E87 /* UBoatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBoatTests.swift; sourceTree = "<group>"; };
+		88130D611A52A37300802E87 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88130D631A52A38100802E87 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88130D651A52A39300802E87 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		88130D661A52A39300802E87 /* Juego.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Juego.swift; sourceTree = "<group>"; };
+		88130D671A52A39300802E87 /* estelaMisil.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaMisil.sks; sourceTree = "<group>"; };
+		88130D681A52A39300802E87 /* explosionSubmarino.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosionSubmarino.sks; sourceTree = "<group>"; };
+		88130D691A52A39300802E87 /* estelaSubmarino.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubmarino.sks; sourceTree = "<group>"; };
+		88130D6A1A52A39300802E87 /* estelaEnemigo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaEnemigo.sks; sourceTree = "<group>"; };
+		88130D6B1A52A39300802E87 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		88130D731A52A3A700802E87 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		88130D751A52A3B700802E87 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88130D771A52A3CE00802E87 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = submarinoExplota.atlas; sourceTree = "<group>"; };
+		889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemigoExplota.atlas; sourceTree = "<group>"; };
+		9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubDer.sks; sourceTree = "<group>"; };
+		9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubIzq.sks; sourceTree = "<group>"; };
+		9A6873681A65902A00CC4BF7 /* humoExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = humoExplosion.sks; sourceTree = "<group>"; };
+		9A68736A1A6600E500CC4BF7 /* UBoat.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = UBoat.atlas; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88130D391A52A2C300802E87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88130D4E1A52A2C300802E87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88130D331A52A2C300802E87 = {
+			isa = PBXGroup;
+			children = (
+				889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */,
+				889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */,
+				9A68736A1A6600E500CC4BF7 /* UBoat.atlas */,
+				88130D3E1A52A2C300802E87 /* UBoat */,
+				88130D541A52A2C300802E87 /* UBoatTests */,
+				88130D3D1A52A2C300802E87 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88130D3D1A52A2C300802E87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88130D3C1A52A2C300802E87 /* UBoat.app */,
+				88130D511A52A2C300802E87 /* UBoatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88130D3E1A52A2C300802E87 /* UBoat */ = {
+			isa = PBXGroup;
+			children = (
+				88130D611A52A37300802E87 /* AppDelegate.swift */,
+				88130D631A52A38100802E87 /* ViewController.swift */,
+				88130D651A52A39300802E87 /* Menu.swift */,
+				88130D661A52A39300802E87 /* Juego.swift */,
+				88130D671A52A39300802E87 /* estelaMisil.sks */,
+				88130D681A52A39300802E87 /* explosionSubmarino.sks */,
+				9A6873681A65902A00CC4BF7 /* humoExplosion.sks */,
+				88130D691A52A39300802E87 /* estelaSubmarino.sks */,
+				88130D6A1A52A39300802E87 /* estelaEnemigo.sks */,
+				9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */,
+				9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */,
+				88130D6B1A52A39300802E87 /* spark.png */,
+				88130D731A52A3A700802E87 /* Main.storyboard */,
+				88130D751A52A3B700802E87 /* Images.xcassets */,
+				88130D771A52A3CE00802E87 /* LaunchScreen.xib */,
+				88130D3F1A52A2C300802E87 /* Supporting Files */,
+			);
+			path = UBoat;
+			sourceTree = "<group>";
+		};
+		88130D3F1A52A2C300802E87 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88130D401A52A2C300802E87 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88130D541A52A2C300802E87 /* UBoatTests */ = {
+			isa = PBXGroup;
+			children = (
+				88130D571A52A2C300802E87 /* UBoatTests.swift */,
+				88130D551A52A2C300802E87 /* Supporting Files */,
+			);
+			path = UBoatTests;
+			sourceTree = "<group>";
+		};
+		88130D551A52A2C300802E87 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88130D561A52A2C300802E87 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88130D3B1A52A2C300802E87 /* UBoat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88130D5B1A52A2C300802E87 /* Build configuration list for PBXNativeTarget "UBoat" */;
+			buildPhases = (
+				88130D381A52A2C300802E87 /* Sources */,
+				88130D391A52A2C300802E87 /* Frameworks */,
+				88130D3A1A52A2C300802E87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UBoat;
+			productName = UBoat;
+			productReference = 88130D3C1A52A2C300802E87 /* UBoat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88130D501A52A2C300802E87 /* UBoatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88130D5E1A52A2C300802E87 /* Build configuration list for PBXNativeTarget "UBoatTests" */;
+			buildPhases = (
+				88130D4D1A52A2C300802E87 /* Sources */,
+				88130D4E1A52A2C300802E87 /* Frameworks */,
+				88130D4F1A52A2C300802E87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88130D531A52A2C300802E87 /* PBXTargetDependency */,
+			);
+			name = UBoatTests;
+			productName = UBoatTests;
+			productReference = 88130D511A52A2C300802E87 /* UBoatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88130D341A52A2C300802E87 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Nicanor Burcio Vecino";
+				TargetAttributes = {
+					88130D3B1A52A2C300802E87 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					88130D501A52A2C300802E87 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 88130D3B1A52A2C300802E87;
+					};
+				};
+			};
+			buildConfigurationList = 88130D371A52A2C300802E87 /* Build configuration list for PBXProject "UBoat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88130D331A52A2C300802E87;
+			productRefGroup = 88130D3D1A52A2C300802E87 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88130D3B1A52A2C300802E87 /* UBoat */,
+				88130D501A52A2C300802E87 /* UBoatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88130D3A1A52A2C300802E87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88130D701A52A39300802E87 /* estelaSubmarino.sks in Resources */,
+				88130D761A52A3B700802E87 /* Images.xcassets in Resources */,
+				88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */,
+				9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */,
+				9A6873611A6565BF00CC4BF7 /* estelaSubDer.sks in Resources */,
+				889A0B821A5D2D55000BF2C3 /* submarinoExplota.atlas in Resources */,
+				889A0B831A5D2D55000BF2C3 /* enemigoExplota.atlas in Resources */,
+				88130D741A52A3A700802E87 /* Main.storyboard in Resources */,
+				88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */,
+				9A68736B1A6600E500CC4BF7 /* UBoat.atlas in Resources */,
+				9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */,
+				88130D6E1A52A39300802E87 /* estelaMisil.sks in Resources */,
+				88130D721A52A39300802E87 /* spark.png in Resources */,
+				88130D711A52A39300802E87 /* estelaEnemigo.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88130D4F1A52A2C300802E87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88130D381A52A2C300802E87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88130D6D1A52A39300802E87 /* Juego.swift in Sources */,
+				88130D6C1A52A39300802E87 /* Menu.swift in Sources */,
+				88130D641A52A38100802E87 /* ViewController.swift in Sources */,
+				88130D621A52A37300802E87 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88130D4D1A52A2C300802E87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88130D581A52A2C300802E87 /* UBoatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88130D531A52A2C300802E87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88130D3B1A52A2C300802E87 /* UBoat */;
+			targetProxy = 88130D521A52A2C300802E87 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		88130D591A52A2C300802E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88130D5A1A52A2C300802E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88130D5C1A52A2C300802E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = UBoat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		88130D5D1A52A2C300802E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = UBoat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		88130D5F1A52A2C300802E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UBoatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UBoat.app/UBoat";
+			};
+			name = Debug;
+		};
+		88130D601A52A2C300802E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UBoatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UBoat.app/UBoat";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88130D371A52A2C300802E87 /* Build configuration list for PBXProject "UBoat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88130D591A52A2C300802E87 /* Debug */,
+				88130D5A1A52A2C300802E87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88130D5B1A52A2C300802E87 /* Build configuration list for PBXNativeTarget "UBoat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88130D5C1A52A2C300802E87 /* Debug */,
+				88130D5D1A52A2C300802E87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88130D5E1A52A2C300802E87 /* Build configuration list for PBXNativeTarget "UBoatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88130D5F1A52A2C300802E87 /* Debug */,
+				88130D601A52A2C300802E87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88130D341A52A2C300802E87 /* Project object */;
+}
