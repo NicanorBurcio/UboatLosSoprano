@@ -36,6 +36,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var botonMoverAbajo = SKSpriteNode()
     var botonDisparoMisil = SKSpriteNode()
     var botonDisparoAmetralladora = SKSpriteNode()
+    var mina = SKSpriteNode()
     
     var moverArriba = SKAction()
     var moverAbajo = SKAction()
@@ -55,7 +56,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     let categoriaEnemigo : UInt32 = 1<<1
     let categoriaMisil : UInt32 = 1<<2
     let categoriaDisparo : UInt32 = 1<<3
-    
+    let categoriaMina : UInt32 = 1<<4
     
     var escena = SKNode()
     
@@ -82,11 +83,13 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
         
-        
-        
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
                 SKAction.waitForDuration(velocidadJuego)])))
+        
+        runAction(SKAction.repeatActionForever(
+            SKAction.sequence([SKAction.runBlock(aparecerMina),
+                SKAction.waitForDuration(10)])))
         
         
     }
@@ -269,10 +272,41 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
-        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(50 + alturaEnemigoRandom)), duration: velocidadBarcoEnemigo)
+        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: velocidadBarcoEnemigo)
        enemigo.runAction(desplazarEnemigo)
         }
     
+    
+    func aparecerMina(){
+        var altura = UInt (self.frame.size.height - 100 )
+        var alturaRandom = UInt (arc4random()) % altura
+        
+        mina = SKSpriteNode(imageNamed: "Mina")
+        mina.setScale(0.11)
+        mina.zPosition = 4
+        mina.position = CGPointMake(self.frame.size.width - enemigo.size.width + enemigo.size.width * 2, CGFloat(25 + alturaRandom))
+        mina.name = "enemigo"
+        
+        let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
+        estelaEnemigo.zPosition = 0
+        estelaEnemigo.setScale(0.5)
+        estelaEnemigo.position = CGPointMake(20, -45)
+        enemigo.addChild(estelaEnemigo)
+        
+        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
+        mina.physicsBody?.dynamic = true
+        mina.physicsBody?.categoryBitMask = categoriaMina
+        mina.physicsBody?.collisionBitMask = categoriaSubmarino
+        mina.physicsBody?.contactTestBitMask  = categoriaSubmarino
+        escena.addChild(mina)
+        
+        
+        var alturaMina = UInt (self.frame.size.height - 100 )
+        var alturaMinaRandom = UInt (arc4random()) % altura
+        var desplazarMina = SKAction.moveTo(CGPointMake( -mina.size.width * 2 , CGFloat(mina.position.y)), duration: 40)
+        mina.runAction(desplazarMina)
+    }
+
     
     
     
