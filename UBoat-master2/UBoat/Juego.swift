@@ -30,6 +30,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var prisma = SKSpriteNode()
     var enemigo = SKSpriteNode()
     var misil = SKSpriteNode()
+    var disparo = SKSpriteNode()
     var menuLabel = SKLabelNode()
     var botonMoverArriba = SKSpriteNode()
     var botonMoverAbajo = SKSpriteNode()
@@ -53,6 +54,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     let categoriaSubmarino : UInt32 = 1<<0
     let categoriaEnemigo : UInt32 = 1<<1
     let categoriaMisil : UInt32 = 1<<2
+    let categoriaDisparo : UInt32 = 1<<3
     
     
     var escena = SKNode()
@@ -234,8 +236,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         //submarinoNavega()
         
-        moverArriba = SKAction.moveByX(0, y: 5, duration: 0.1)
-        moverAbajo = SKAction.moveByX(0, y: -5, duration: 0.1)
+        moverArriba = SKAction.moveByX(0, y: 10, duration: 0.1)
+        moverAbajo = SKAction.moveByX(0, y: -10, duration: 0.1)
 
         }
    
@@ -257,7 +259,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         estelaEnemigo.position = CGPointMake(20, -45)
         enemigo.addChild(estelaEnemigo)
         
-        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 5))
+        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
         enemigo.physicsBody?.dynamic = true
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
         enemigo.physicsBody?.collisionBitMask = categoriaSubmarino
@@ -277,7 +279,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     func lanzarMisil(){
         misil = SKSpriteNode(imageNamed: "misil")
         misil.setScale(0.5)
-        misil.zPosition = 10
+        misil.zPosition = 3
         misil.position = CGPointMake(submarino.position.x + 50 , submarino.position.y - 30)
         misil.alpha = 1
         misil.constraints = [constraint]
@@ -297,9 +299,32 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         misil.physicsBody?.contactTestBitMask  = categoriaEnemigo
         escena.addChild(misil)
 
-        var lanzarMisil = SKAction.moveTo(CGPointMake( self.frame.width + misil.size.width * 2, submarino.position.y - 30), duration:2.0)
+        var lanzarMisil = SKAction.moveTo(CGPointMake( self.frame.size.width + misil.size.width * 2 , submarino.position.y - 30), duration:2.0)
         misil.runAction(lanzarMisil)
+        
     }
+    
+    func disparar(){
+        disparo = SKSpriteNode(imageNamed: "Disparo")
+        disparo.setScale(0.3)
+        disparo.zPosition = 3
+        disparo.position = CGPointMake(submarino.position.x + 150, submarino.position.y + 10)
+        disparo.alpha = 0.8
+        disparo.constraints = [constraint]
+        disparo.name = "disparo"
+        
+        
+        disparo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(disparo.size.width, disparo.size.height))
+        disparo.physicsBody?.dynamic = true
+        disparo.physicsBody?.categoryBitMask = categoriaDisparo
+        disparo.physicsBody?.collisionBitMask = categoriaEnemigo
+        disparo.physicsBody?.contactTestBitMask  = categoriaEnemigo
+        escena.addChild(disparo)
+        
+        var lanzarDisparo = SKAction.moveTo(CGPointMake( self.frame.width + disparo.size.width * 2, submarino.position.y + 7), duration:1.0)
+        disparo.runAction(lanzarDisparo)
+    }
+
 
     func prismaticos() {
         
@@ -338,7 +363,21 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
             
            lanzarMisil()
+        
         }
+        
+        let tocarBotonDisparar: AnyObject = touches.anyObject()!
+        
+        let posicionTocarBotonDisparar = tocarBotonDisparar.locationInNode(self)
+        
+        let loQueTocamosBotonDisparar = self.nodeAtPoint(posicionTocarBotonDisparar)
+        
+        if loQueTocamosBotonDisparar == botonDisparoAmetralladora {
+            
+                     disparar()
+
+         }
+        
         
         let tocarBotonArriba: AnyObject = touches.anyObject()!
         
@@ -352,8 +391,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
                 if contadorEscala < 0.4 {
                     contadorEscala = 0.4
                 }
+            
             submarino.setScale(contadorEscala)
             submarino.runAction(moverArriba)
+            
         }
         
         
@@ -369,9 +410,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
                 if contadorEscala > 0.9 {
                 contadorEscala = 0.9
                 }
+            
             submarino.setScale(contadorEscala)
             submarino.runAction(moverAbajo)
-        }
+                    }
 
 
        
@@ -510,8 +552,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino && enemigo.physicsBody?.dynamic == true {
             
+        
             misil.physicsBody?.dynamic = false
             enemigo.physicsBody?.dynamic = false
+            submarino.physicsBody?.dynamic = false
             
             var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
             var retardo = SKAction.waitForDuration(0.5)
@@ -527,7 +571,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
             puntuacion++
             contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
-
+        
+            
+           
         }
         
         if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
@@ -545,7 +591,24 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
         }
 
-        
+        if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
+            
+            enemigo.physicsBody?.dynamic = false
+            
+            disparo.removeFromParent()
+            var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
+            var retardo = SKAction.waitForDuration(0.5)
+            var enemigoDesaparece = SKAction.removeFromParent()
+            var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+            enemigo.runAction(controlEnemigo)
+            
+            puntuacion++
+            contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+            
+            
+            
+        }
+
         
         
         if contadorImpactos == 0{
