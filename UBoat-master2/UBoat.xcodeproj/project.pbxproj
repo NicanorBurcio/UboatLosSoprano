@@ -20,6 +20,9 @@
 		88130D741A52A3A700802E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88130D731A52A3A700802E87 /* Main.storyboard */; };
 		88130D761A52A3B700802E87 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88130D751A52A3B700802E87 /* Images.xcassets */; };
 		88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88130D771A52A3CE00802E87 /* LaunchScreen.xib */; };
+		884BFE101A710B8B00B8C94A /* salidaTorpedo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */; };
+		884BFE121A710C9200B8C94A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884BFE111A710C9200B8C94A /* AVFoundation.framework */; };
+		884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE161A7118A800B8C94A /* explosionImpacto.wav */; };
 		889A0B821A5D2D55000BF2C3 /* submarinoExplota.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */; };
 		889A0B831A5D2D55000BF2C3 /* enemigoExplota.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */; };
 		9A6873611A6565BF00CC4BF7 /* estelaSubDer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */; };
@@ -56,6 +59,9 @@
 		88130D731A52A3A700802E87 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		88130D751A52A3B700802E87 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88130D771A52A3CE00802E87 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = salidaTorpedo.wav; sourceTree = "<group>"; };
+		884BFE111A710C9200B8C94A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		884BFE161A7118A800B8C94A /* explosionImpacto.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosionImpacto.wav; sourceTree = "<group>"; };
 		889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = submarinoExplota.atlas; sourceTree = "<group>"; };
 		889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemigoExplota.atlas; sourceTree = "<group>"; };
 		9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubDer.sks; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884BFE121A710C9200B8C94A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +92,7 @@
 		88130D331A52A2C300802E87 = {
 			isa = PBXGroup;
 			children = (
+				884BFE111A710C9200B8C94A /* AVFoundation.framework */,
 				889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */,
 				889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */,
 				9A68736A1A6600E500CC4BF7 /* UBoat.atlas */,
@@ -120,6 +128,7 @@
 				88130D6B1A52A39300802E87 /* spark.png */,
 				88130D731A52A3A700802E87 /* Main.storyboard */,
 				88130D751A52A3B700802E87 /* Images.xcassets */,
+				884BFE131A71167300B8C94A /* Audio */,
 				88130D771A52A3CE00802E87 /* LaunchScreen.xib */,
 				88130D3F1A52A2C300802E87 /* Supporting Files */,
 			);
@@ -149,6 +158,15 @@
 				88130D561A52A2C300802E87 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		884BFE131A71167300B8C94A /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				884BFE161A7118A800B8C94A /* explosionImpacto.wav */,
+				884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884BFE101A710B8B00B8C94A /* salidaTorpedo.wav in Resources */,
 				88130D701A52A39300802E87 /* estelaSubmarino.sks in Resources */,
 				88130D761A52A3B700802E87 /* Images.xcassets in Resources */,
 				88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */,
@@ -244,6 +263,7 @@
 				9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */,
 				88130D6E1A52A39300802E87 /* estelaMisil.sks in Resources */,
 				88130D721A52A39300802E87 /* spark.png in Resources */,
+				884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */,
 				88130D711A52A39300802E87 /* estelaEnemigo.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

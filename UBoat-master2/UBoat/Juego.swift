@@ -7,7 +7,9 @@
 //
 
 
+import UIKit
 import SpriteKit
+import AVFoundation
 
 
 
@@ -19,6 +21,12 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var fdcielo = SKSpriteNode()
     
     
+    //AUDIO
+    
+    var sonidoSalidaTorpedo  = AVAudioPlayer()
+    var sonidoExploxionImpacto = AVAudioPlayer()
+    
+    //OBJETOS
     var contadorImpactos = NSInteger()
     var contadorImpactosLabel = SKLabelNode()
     var puntuacion = NSInteger()
@@ -38,6 +46,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var botonDisparoAmetralladora = SKSpriteNode()
     var mina = SKSpriteNode()
     
+    //MOVIMIENTOS
+    
     var moverArriba = SKAction()
     var moverAbajo = SKAction()
     var contadorEscala: CGFloat = 0.5
@@ -52,11 +62,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var velocidadJuego = 9.0
     var velocidadBarcoEnemigo = 10.0
     
+    //CATEGORIAS
+    
     let categoriaSubmarino : UInt32 = 1<<0
     let categoriaEnemigo : UInt32 = 1<<1
     let categoriaMisil : UInt32 = 1<<2
     let categoriaDisparo : UInt32 = 1<<3
     let categoriaMina : UInt32 = 1<<4
+    
+    
     
     var escena = SKNode()
     
@@ -92,6 +106,23 @@ class Juego: SKScene, SKPhysicsContactDelegate {
                 SKAction.waitForDuration(10)])))
         
         
+    }
+    
+    func reproducirEfectoAudioExplosionImpacto(){
+        let ubicacionAudioExplosionImpacto = NSBundle.mainBundle().pathForResource("explosionImpacto", ofType: "wav")
+        var efectoExplosionImpacto = NSURL(fileURLWithPath: ubicacionAudioExplosionImpacto!)
+        sonidoExploxionImpacto = AVAudioPlayer(contentsOfURL: efectoExplosionImpacto, error: nil)
+        sonidoExploxionImpacto .prepareToPlay()
+        sonidoExploxionImpacto .play()
+    }
+
+    
+    func reproducirEfectoAudioSalidaTorpedo(){
+        let ubicacionAudioSalidaTorpedo = NSBundle.mainBundle().pathForResource("salidaTorpedo", ofType: "wav")
+        var efectoSalidaTorpedo = NSURL(fileURLWithPath: ubicacionAudioSalidaTorpedo!)
+        sonidoSalidaTorpedo = AVAudioPlayer(contentsOfURL: efectoSalidaTorpedo, error: nil)
+        sonidoSalidaTorpedo.prepareToPlay()
+        sonidoSalidaTorpedo.play()
     }
     
     func motrarBotonMoverArriba() {
@@ -335,8 +366,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
 
         var lanzarMisil = SKAction.moveTo(CGPointMake( self.frame.size.width + misil.size.width * 2 , submarino.position.y - 30), duration:2.0)
         misil.runAction(lanzarMisil)
-        
-    }
+            }
     
     func disparar(){
         disparo = SKSpriteNode(imageNamed: "Disparo")
@@ -397,8 +427,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
             
            lanzarMisil()
-        
-        }
+           reproducirEfectoAudioSalidaTorpedo()
+                    }
         
         let tocarBotonDisparar: AnyObject = touches.anyObject()!
         
@@ -620,6 +650,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             var enemigoDesaparece = SKAction.removeFromParent()
             var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
             enemigo.runAction(controlEnemigo)
+            reproducirEfectoAudioExplosionImpacto()
             
             puntuacion++
             contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
