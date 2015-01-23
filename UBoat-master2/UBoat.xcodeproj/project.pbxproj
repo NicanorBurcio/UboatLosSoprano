@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880FB6D31A726A360043E53B /* oceano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 880FB6D21A726A360043E53B /* oceano.mp3 */; };
 		88130D581A52A2C300802E87 /* UBoatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D571A52A2C300802E87 /* UBoatTests.swift */; };
 		88130D621A52A37300802E87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D611A52A37300802E87 /* AppDelegate.swift */; };
 		88130D641A52A38100802E87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88130D631A52A38100802E87 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		880FB6D21A726A360043E53B /* oceano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oceano.mp3; sourceTree = "<group>"; };
 		88130D3C1A52A2C300802E87 /* UBoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UBoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88130D401A52A2C300802E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88130D511A52A2C300802E87 /* UBoatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UBoatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				884BFE161A7118A800B8C94A /* explosionImpacto.wav */,
+				880FB6D21A726A360043E53B /* oceano.mp3 */,
 				884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */,
 			);
 			name = Audio;
@@ -264,6 +267,7 @@
 				88130D741A52A3A700802E87 /* Main.storyboard in Resources */,
 				88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */,
 				9A68736B1A6600E500CC4BF7 /* UBoat.atlas in Resources */,
+				880FB6D31A726A360043E53B /* oceano.mp3 in Resources */,
 				9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */,
 				88130D6E1A52A39300802E87 /* estelaMisil.sks in Resources */,
 				88130D721A52A39300802E87 /* spark.png in Resources */,

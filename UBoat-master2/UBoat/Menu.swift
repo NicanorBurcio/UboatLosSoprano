@@ -62,7 +62,7 @@ import SpriteKit
         
             if loQueTocamos.name == "Cambiar"  {
             
-            let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 2)
+            let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.5)
             
             let  aparecerEscena = Juego(size: self.size)
             

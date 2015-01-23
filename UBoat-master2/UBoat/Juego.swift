@@ -25,6 +25,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     var sonidoSalidaTorpedo  = AVAudioPlayer()
     var sonidoExploxionImpacto = AVAudioPlayer()
+    var sonidoOceano = AVAudioPlayer()
     
     //OBJETOS
     var contadorImpactos = NSInteger()
@@ -60,7 +61,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     
     var velocidadJuego = 9.0
-    var velocidadBarcoEnemigo = 10.0
+    
     
     //CATEGORIAS
     
@@ -96,24 +97,35 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         motrarBotonMoverAbajo()
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
+        reproducirEfectoAudioOceano()
+        
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
-                SKAction.waitForDuration(velocidadJuego)])))
+                SKAction.waitForDuration(12)])))
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerMina),
-                SKAction.waitForDuration(10)])))
+                SKAction.waitForDuration(35)])))
         
         
     }
-    
+    func reproducirEfectoAudioOceano(){
+        let ubicacionAudioOceano = NSBundle.mainBundle().pathForResource("oceano", ofType: "mp3")
+        var efectoOceano = NSURL(fileURLWithPath: ubicacionAudioOceano!)
+        sonidoOceano = AVAudioPlayer(contentsOfURL: efectoOceano, error: nil)
+        sonidoOceano.prepareToPlay()
+        sonidoOceano.play()
+        sonidoOceano.volume = 0.1
+    }
+   
     func reproducirEfectoAudioExplosionImpacto(){
         let ubicacionAudioExplosionImpacto = NSBundle.mainBundle().pathForResource("explosionImpacto", ofType: "wav")
         var efectoExplosionImpacto = NSURL(fileURLWithPath: ubicacionAudioExplosionImpacto!)
         sonidoExploxionImpacto = AVAudioPlayer(contentsOfURL: efectoExplosionImpacto, error: nil)
-        sonidoExploxionImpacto .prepareToPlay()
-        sonidoExploxionImpacto .play()
+        sonidoExploxionImpacto.prepareToPlay()
+        sonidoExploxionImpacto.play()
+        sonidoExploxionImpacto.volume = 3
     }
 
     
@@ -123,14 +135,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         sonidoSalidaTorpedo = AVAudioPlayer(contentsOfURL: efectoSalidaTorpedo, error: nil)
         sonidoSalidaTorpedo.prepareToPlay()
         sonidoSalidaTorpedo.play()
+        sonidoSalidaTorpedo.volume = 0.1
     }
     
     func motrarBotonMoverArriba() {
     
         botonMoverArriba = SKSpriteNode(imageNamed: "arriba")
         botonMoverArriba.setScale(0.1)
-        botonMoverArriba.zPosition = 10
-        botonMoverArriba.position = CGPointMake(self.frame.width / 25, self.frame.height / 7)
+        botonMoverArriba.zPosition = 7
+        botonMoverArriba.position = CGPointMake(self.frame.width / 28, self.frame.height / 7)
         botonMoverArriba.name = "arriba"
         escena.addChild(botonMoverArriba)
 
@@ -141,8 +154,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         botonMoverAbajo = SKSpriteNode(imageNamed: "abajo")
         botonMoverAbajo.setScale(0.1)
-        botonMoverAbajo.zPosition = 10
-        botonMoverAbajo.position = CGPointMake(self.frame.width / 25, self.frame.height / 15)
+        botonMoverAbajo.zPosition = 7
+        botonMoverAbajo.position = CGPointMake(self.frame.width / 28, self.frame.height / 15)
         botonMoverAbajo.name = "abajo"
         escena.addChild(botonMoverAbajo)
         
@@ -153,7 +166,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         botonDisparoMisil = SKSpriteNode(imageNamed: "botonMisil")
         botonDisparoMisil.setScale(0.1)
-        botonDisparoMisil.zPosition = 10
+        botonDisparoMisil.zPosition = 6
         botonDisparoMisil.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 6)
         botonDisparoMisil.name = "botonDisparoMisil"
         escena.addChild(botonDisparoMisil)
@@ -165,7 +178,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         botonDisparoAmetralladora = SKSpriteNode(imageNamed: "botonAmetralladora")
         botonDisparoAmetralladora.setScale(0.1)
-        botonDisparoAmetralladora.zPosition = 10
+        botonDisparoAmetralladora.zPosition = 6
         botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 15)
         botonDisparoAmetralladora.name = "botonDisparoMisil"
         escena.addChild(botonDisparoAmetralladora)
@@ -193,7 +206,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         contadorPuntuacionLabel.fontSize  = 20
         contadorPuntuacionLabel.fontColor = UIColor.greenColor()
         contadorPuntuacionLabel.alpha = 1
-        contadorPuntuacionLabel.zPosition = 5
+        contadorPuntuacionLabel.zPosition = 6
         contadorPuntuacionLabel.position = CGPointMake(120, self.frame.height - 25)
         contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
         escena.addChild(contadorPuntuacionLabel)
@@ -206,7 +219,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         contadorImpactosLabel.fontSize  = 20
         contadorImpactosLabel.fontColor = UIColor.redColor()
         contadorImpactosLabel.alpha = 1
-        contadorImpactosLabel.zPosition = 5
+        contadorImpactosLabel.zPosition = 6
         contadorImpactosLabel.position = CGPointMake(self.frame.width - 120, self.frame.height - 25)
         contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
         escena.addChild(contadorImpactosLabel)
@@ -276,6 +289,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
         submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
+        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
+        submarino.physicsBody?.collisionBitMask = categoriaMina
+        submarino.physicsBody?.contactTestBitMask  = categoriaMina
+
         escena.addChild(submarino)
         
         //submarinoNavega()
@@ -293,8 +310,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         enemigo = SKSpriteNode(imageNamed: "enemigo")
         enemigo.setScale(0.3)
-        enemigo.zPosition = 4
         enemigo.position = CGPointMake(self.frame.size.width - enemigo.size.width + enemigo.size.width * 2, CGFloat(25 + alturaRandom))
+        //enemigo.zPosition = CGFloat()
+        if submarino.position.y > enemigo.position.y {
+            enemigo.zPosition = submarino.zPosition + 1
+        }
+        else if submarino.position.y < enemigo.position.y {
+            enemigo.zPosition = submarino.zPosition - 1
+        }
+
         enemigo.name = "enemigo"
         
         let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
@@ -313,7 +337,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
-        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: velocidadBarcoEnemigo)
+        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 15)
        enemigo.runAction(desplazarEnemigo)
         }
     
@@ -324,15 +348,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         mina = SKSpriteNode(imageNamed: "Mina")
         mina.setScale(0.11)
-        mina.zPosition = 4
-        mina.position = CGPointMake(self.frame.size.width - enemigo.size.width + enemigo.size.width * 2, CGFloat(25 + alturaRandom))
-        mina.name = "enemigo"
-        
-        let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
-        estelaEnemigo.zPosition = 0
-        estelaEnemigo.setScale(0.5)
-        estelaEnemigo.position = CGPointMake(20, -45)
-        enemigo.addChild(estelaEnemigo)
+        mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
+            if mina.position.y > submarino.position.y {
+                mina.zPosition = submarino.zPosition - 1
+            }
+            else if mina.position.y < submarino.position.y {
+                mina.zPosition = submarino.zPosition + 1
+            }
+        mina.constraints = [constraint]
+        mina.name = "mina"
         
         mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
         mina.physicsBody?.dynamic = true
@@ -404,7 +428,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         prisma = SKSpriteNode(imageNamed: "prismatic")
         prisma.setScale(0.66)
-        prisma.zPosition = 4
+        prisma.zPosition = 5
         prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         
         addChild(prisma)
@@ -461,12 +485,12 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if loQueTocamosBotonArriba == botonMoverArriba && submarino.position.y < 290  {
             
-            contadorEscala = contadorEscala - 0.01
-                if contadorEscala < 0.4 {
-                    contadorEscala = 0.4
-                }
-            
-            submarino.setScale(contadorEscala)
+//            contadorEscala = contadorEscala - 0.01
+//                if contadorEscala < 0.4 {
+//                    contadorEscala = 0.4
+//                }
+//            
+//            submarino.setScale(contadorEscala)
             submarino.runAction(moverArriba)
             
         }
@@ -480,12 +504,12 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if loQueTocamosBotonAbajo == botonMoverAbajo && submarino.position.y > 65  {
             
-            contadorEscala = contadorEscala + 0.03
-                if contadorEscala > 0.9 {
-                contadorEscala = 0.9
-                }
-            
-            submarino.setScale(contadorEscala)
+//            contadorEscala = contadorEscala + 0.03
+//                if contadorEscala > 0.9 {
+//                contadorEscala = 0.9
+//                }
+//            
+//            submarino.setScale(contadorEscala)
             submarino.runAction(moverAbajo)
                     }
 
@@ -542,7 +566,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             let fdcielo = SKSpriteNode(imageNamed: "Cielo")
             fdcielo.position = CGPoint(x: (indice * Int(fdcielo.size.width)) + Int(fdcielo.size.width)/2, y: Int(fdcielo.size.height)/2)
             fdcielo.name = "fdcielo"
-            fdcielo.zPosition = -1
+            fdcielo.zPosition = 1
             
             addChild(fdcielo)
         }
@@ -582,7 +606,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             fondo.position = CGPoint(x: (indice * Int(fondo.size.width)) + Int(fondo.size.width)/2, y: Int(fondo.size.height)/2)
             
             fondo.name = "fondo"
-            fondo.zPosition = 0
+            fondo.zPosition = 2
             
             addChild(fondo)
 
@@ -650,7 +674,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
            
         }
         
-        if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
+        if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
             
             enemigo.physicsBody?.dynamic = false
             
@@ -694,6 +718,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             var controlSubmarino = SKAction.sequence([retardo,  controlEscena])
             runAction(controlSubmarino)
             submarino.runAction(explotarSubmarino)
+            sonidoOceano.stop()
             
             volverMenu()
         }
