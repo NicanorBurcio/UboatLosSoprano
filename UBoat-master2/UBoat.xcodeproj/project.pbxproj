@@ -29,6 +29,7 @@
 		9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */; };
 		9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873681A65902A00CC4BF7 /* humoExplosion.sks */; };
 		9A68736B1A6600E500CC4BF7 /* UBoat.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9A68736A1A6600E500CC4BF7 /* UBoat.atlas */; };
+		9AFA73011A72ABDA007AFB51 /* SubNavegando.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9AFA73001A72ABDA007AFB51 /* SubNavegando.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubIzq.sks; sourceTree = "<group>"; };
 		9A6873681A65902A00CC4BF7 /* humoExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = humoExplosion.sks; sourceTree = "<group>"; };
 		9A68736A1A6600E500CC4BF7 /* UBoat.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = UBoat.atlas; sourceTree = "<group>"; };
+		9AFA73001A72ABDA007AFB51 /* SubNavegando.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = SubNavegando.atlas; path = UBoat/SubNavegando.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				889A0B801A5D2D55000BF2C3 /* submarinoExplota.atlas */,
 				889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */,
 				9A68736A1A6600E500CC4BF7 /* UBoat.atlas */,
+				9AFA73001A72ABDA007AFB51 /* SubNavegando.atlas */,
 				88130D3E1A52A2C300802E87 /* UBoat */,
 				88130D541A52A2C300802E87 /* UBoatTests */,
 				88130D3D1A52A2C300802E87 /* Products */,
@@ -253,6 +256,7 @@
 				88130D701A52A39300802E87 /* estelaSubmarino.sks in Resources */,
 				88130D761A52A3B700802E87 /* Images.xcassets in Resources */,
 				88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */,
+				9AFA73011A72ABDA007AFB51 /* SubNavegando.atlas in Resources */,
 				9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */,
 				9A6873611A6565BF00CC4BF7 /* estelaSubDer.sks in Resources */,
 				889A0B821A5D2D55000BF2C3 /* submarinoExplota.atlas in Resources */,

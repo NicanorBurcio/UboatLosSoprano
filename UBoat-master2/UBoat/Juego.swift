@@ -33,7 +33,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var contadorPuntuacionLabel = SKLabelNode()
     
     var submarino = SKSpriteNode()
-    let submarinoAtlas = SKTextureAtlas(named: "UBoat.atlas")
+    let submarinoAtlas = SKTextureAtlas(named: "SubNavegando.atlas")
     
     var prisma = SKSpriteNode()
     var enemigo = SKSpriteNode()
@@ -214,10 +214,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     func heroe(){
         
-        submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Uboat12"))
-        submarino.setScale(0.5)
+        submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Navegando0024"))
+        submarino.setScale(1)
         submarino.zPosition = 4
-        submarino.position = CGPointMake((submarino.size.width - 50), self.frame.height / 2)
+        submarino.position = CGPointMake((submarino.size.width - 100), self.frame.height / 2)
         submarino.constraints = [constraint]
         submarino.name = "heroe"
         
@@ -226,34 +226,44 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
         estelaSubmarino1.zPosition = 0
         estelaSubmarino1.alpha = 1
-        estelaSubmarino1.setScale(0.36)
-        estelaSubmarino1.position = CGPointMake(87, -22)
+        estelaSubmarino1.setScale(0.24)
+        estelaSubmarino1.position = CGPointMake(23, -16)
         submarino.addChild(estelaSubmarino1)
         
         let estelaSubmarino2 = SKEmitterNode(fileNamed: "estelaSubIzq.sks")
         estelaSubmarino2.zPosition = -1
         estelaSubmarino2.alpha = 1
-        estelaSubmarino2.setScale(0.34)
-        estelaSubmarino2.position = CGPointMake(87, -7)
+        estelaSubmarino2.setScale(0.22)
+        estelaSubmarino2.position = CGPointMake(23, -7)
         submarino.addChild(estelaSubmarino2)
         
         /* he pensado que en lugar de una función a parte, es mejor incluir el efecto de navegar en el mismo submarino para cuando saquemos este código  al bundle*/
-        var u1 = submarinoAtlas.textureNamed("Uboat06")
-        var u2 = submarinoAtlas.textureNamed("Uboat07")
-        var u3 = submarinoAtlas.textureNamed("Uboat08")
-        var u4 = submarinoAtlas.textureNamed("Uboat09")
-        var u5 = submarinoAtlas.textureNamed("Uboat10")
-        var u6 = submarinoAtlas.textureNamed("Uboat11")
-        var u7 = submarinoAtlas.textureNamed("Uboat12")
+        var u1 = submarinoAtlas.textureNamed("Navegando0024")
+        var u2 = submarinoAtlas.textureNamed("Navegando0025")
+        var u3 = submarinoAtlas.textureNamed("Navegando0026")
+        var u4 = submarinoAtlas.textureNamed("Navegando0027")
+        var u5 = submarinoAtlas.textureNamed("Navegando0028")
+        var u6 = submarinoAtlas.textureNamed("Navegando0029")
+        var u7 = submarinoAtlas.textureNamed("Navegando0030")
+        var u8 = submarinoAtlas.textureNamed("Navegando0031")
+        var u9 = submarinoAtlas.textureNamed("Navegando0032")
+        var u10 = submarinoAtlas.textureNamed("Navegando0033")
+        var u11 = submarinoAtlas.textureNamed("Navegando0034")
+        var u12 = submarinoAtlas.textureNamed("Navegando0035")
+        var u13 = submarinoAtlas.textureNamed("Navegando0036")
+        var u14 = submarinoAtlas.textureNamed("Navegando0037")
+        var u15 = submarinoAtlas.textureNamed("Navegando0038")
+        var u16 = submarinoAtlas.textureNamed("Navegando0039")
+        var u17 = submarinoAtlas.textureNamed("Navegando0040")
         
         
         // Combinación de arrays del Atlas por Adrían
-        // let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15]
+        let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15,u16,u17]
         
         // Combinación de arrays del Atlas por Nicanor
-        let arraySubmarino = [u7,u7,u7,u7,u7,u6,u5,u4,u3,u2,u1,u2,u3,u4,u5,u6,u7]
+//        let arraySubmarino = [u7,u7,u7,u7,u7,u6,u5,u4,u3,u2,u1,u2,u3,u4,u5,u6,u7]
         
-        var submarinoNavega = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.2)
+        var submarinoNavega = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.08)
         
         submarinoNavega = SKAction.repeatActionForever(submarinoNavega)
         
@@ -343,9 +353,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     func lanzarMisil(){
         misil = SKSpriteNode(imageNamed: "misil")
-        misil.setScale(0.5)
+        misil.setScale(0.45)
         misil.zPosition = 3
-        misil.position = CGPointMake(submarino.position.x + 50 , submarino.position.y - 30)
+        misil.position = CGPointMake(submarino.position.x + 20 , submarino.position.y - 5)
         misil.alpha = 1
         misil.constraints = [constraint]
         misil.name = "misil"
