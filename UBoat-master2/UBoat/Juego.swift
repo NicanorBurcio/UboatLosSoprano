@@ -34,6 +34,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var contadorPuntuacionLabel = SKLabelNode()
     
     var submarino = SKSpriteNode()
+    let submarinoEmergeAtlas = SKTextureAtlas(named:"SubEmerge.atlas")
     let submarinoAtlas = SKTextureAtlas(named: "SubNavegando.atlas")
     
     var prisma = SKSpriteNode()
@@ -227,7 +228,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     func heroe(){
         
-        submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Navegando0024"))
+        submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Navegando0032"))
         submarino.setScale(1)
         submarino.zPosition = 4
         submarino.position = CGPointMake((submarino.size.width - 100), self.frame.height / 2)
@@ -250,7 +251,39 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         estelaSubmarino2.position = CGPointMake(23, -7)
         submarino.addChild(estelaSubmarino2)
         
-        /* he pensado que en lugar de una función a parte, es mejor incluir el efecto de navegar en el mismo submarino para cuando saquemos este código  al bundle*/
+        //Submarino emergiendo del agua
+        
+        var ue1 = submarinoEmergeAtlas.textureNamed("Emerge0000")
+        var ue2 = submarinoEmergeAtlas.textureNamed("Emerge0001")
+        var ue3 = submarinoEmergeAtlas.textureNamed("Emerge0002")
+        var ue4 = submarinoEmergeAtlas.textureNamed("Emerge0003")
+        var ue5 = submarinoEmergeAtlas.textureNamed("Emerge0004")
+        var ue6 = submarinoEmergeAtlas.textureNamed("Emerge0005")
+        var ue7 = submarinoEmergeAtlas.textureNamed("Emerge0006")
+        var ue8 = submarinoEmergeAtlas.textureNamed("Emerge0007")
+        var ue9 = submarinoEmergeAtlas.textureNamed("Emerge0008")
+        var ue10 = submarinoEmergeAtlas.textureNamed("Emerge0009")
+        var ue11 = submarinoEmergeAtlas.textureNamed("Emerge0010")
+        var ue12 = submarinoEmergeAtlas.textureNamed("Emerge0011")
+        var ue13 = submarinoEmergeAtlas.textureNamed("Emerge0012")
+        var ue14 = submarinoEmergeAtlas.textureNamed("Emerge0013")
+        var ue15 = submarinoEmergeAtlas.textureNamed("Emerge0014")
+        var ue16 = submarinoEmergeAtlas.textureNamed("Emerge0015")
+        var ue17 = submarinoEmergeAtlas.textureNamed("Emerge0016")
+        var ue18 = submarinoEmergeAtlas.textureNamed("Emerge0017")
+        var ue19 = submarinoEmergeAtlas.textureNamed("Emerge0018")
+        var ue20 = submarinoEmergeAtlas.textureNamed("Emerge0019")
+        var ue21 = submarinoEmergeAtlas.textureNamed("Emerge0020")
+        var ue22 = submarinoEmergeAtlas.textureNamed("Emerge0021")
+        var ue23 = submarinoEmergeAtlas.textureNamed("Emerge0022")
+        var ue24 = submarinoEmergeAtlas.textureNamed("Emerge0023")
+        
+        let arraySubmarinoEmerge = [ue1,ue2,ue3,ue4,ue5,ue6,ue7,ue8,ue9,ue10,ue11,ue12,ue13,ue14,ue15,ue16,ue17,ue18,ue19,ue20,ue21,ue22,ue23,ue24]
+        var submarinoEmerge = SKAction.animateWithTextures(arraySubmarinoEmerge, timePerFrame: 0.3)
+        submarinoEmerge = SKAction.repeatAction(submarinoEmerge, count: 1)
+        
+        //Submarino navegando
+        
         var u1 = submarinoAtlas.textureNamed("Navegando0024")
         var u2 = submarinoAtlas.textureNamed("Navegando0025")
         var u3 = submarinoAtlas.textureNamed("Navegando0026")
@@ -270,17 +303,20 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var u17 = submarinoAtlas.textureNamed("Navegando0040")
         
         
-        // Combinación de arrays del Atlas por Adrían
-        let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15,u16,u17]
         
-        // Combinación de arrays del Atlas por Nicanor
-//        let arraySubmarino = [u7,u7,u7,u7,u7,u6,u5,u4,u3,u2,u1,u2,u3,u4,u5,u6,u7]
+        let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15,u16,u17]
         
         var submarinoNavega = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.08)
         
         submarinoNavega = SKAction.repeatActionForever(submarinoNavega)
         
-        submarino.runAction(submarinoNavega)
+        //Agrupación de acciones submarino emergiendo y navegando
+        
+        
+        var controlSubmarinoNavegando = SKAction.sequence([submarinoEmerge, submarinoNavega])
+        submarino.runAction(controlSubmarinoNavegando)
+        
+        //submarino.runAction(submarinoNavega)
 
         
         
