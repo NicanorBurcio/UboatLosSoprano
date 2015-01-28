@@ -6,20 +6,19 @@
 //  Copyright (c) 2014 Berganza. All rights reserved.
 //
 
-
-import UIKit
 import SpriteKit
+import UIKit
 import AVFoundation
 
-
-
-
-class Juego: SKScene, SKPhysicsContactDelegate {
+class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
+    //Movimiento del Joistick
+    let moveAnalogStick: AnalogStick = AnalogStick()
+    
+    //Para evitar la rotación en la colisión de elementos
     let constraint = SKConstraint.zRotation(SKRange(constantValue: 0))
     var fondo = SKSpriteNode()
     var fdcielo = SKSpriteNode()
-    
     
     //AUDIO
     
@@ -30,12 +29,11 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     //OBJETOS
     var contadorImpactos = NSInteger()
     var contadorImpactosLabel = SKLabelNode()
+    
     var puntuacion = NSInteger()
     var contadorPuntuacionLabel = SKLabelNode()
     
     var submarino = SKSpriteNode()
-    let submarinoEmergeAtlas = SKTextureAtlas(named:"SubEmerge.atlas")
-    let submarinoAtlas = SKTextureAtlas(named: "SubNavegando.atlas")
     
     var prisma = SKSpriteNode()
     var enemigo = SKSpriteNode()
@@ -54,15 +52,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var moverAbajo = SKAction()
     var contadorEscala: CGFloat = 0.5
     
-    
-    
     let velocidadMar: CGFloat = 2
     let velocidadCielo: CGFloat = 1
-    
-    
-    
-    var velocidadJuego = 9.0
-    
     
     //CATEGORIAS
     
@@ -77,16 +68,29 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var escena = SKNode()
     
     
-
-    
     override func didMoveToView(view: SKView) {
         
-        
         self.addChild(escena)
+        
+        // propiedades físicas
+        
         self.physicsWorld.gravity = CGVectorMake(0.0, 0.0)
         self.physicsWorld.contactDelegate  = self
         backgroundColor = UIColor.cyanColor()
+       
+        //Joistick
+        let bgDiametr: CGFloat = 40
+        let thumbDiametr: CGFloat = 20
+        let joysticksRadius = bgDiametr / 2
+        moveAnalogStick.bgNodeDiametr = bgDiametr
+        moveAnalogStick.thumbNodeDiametr = thumbDiametr
+        moveAnalogStick.position = CGPointMake(joysticksRadius + 10, joysticksRadius + 10)
+        moveAnalogStick.zPosition = 100
+        moveAnalogStick.alpha = 1
+        moveAnalogStick.delagate = self
+        self.addChild(moveAnalogStick)
         
+        //OBJETOS
         
         heroe()
         prismaticos()
@@ -94,12 +98,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         crearOceano ()
         mostrarColisiones()
         mostrarPuntuacion()
-        motrarBotonMoverArriba()
-        motrarBotonMoverAbajo()
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
         reproducirEfectoAudioOceano()
-        
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
@@ -109,26 +110,27 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             SKAction.sequence([SKAction.runBlock(aparecerMina),
                 SKAction.waitForDuration(35)])))
         
-        
-    }
+}
+  
+    
     func reproducirEfectoAudioOceano(){
         let ubicacionAudioOceano = NSBundle.mainBundle().pathForResource("oceano", ofType: "mp3")
         var efectoOceano = NSURL(fileURLWithPath: ubicacionAudioOceano!)
         sonidoOceano = AVAudioPlayer(contentsOfURL: efectoOceano, error: nil)
         sonidoOceano.prepareToPlay()
         sonidoOceano.play()
-        sonidoOceano.volume = 0.1
+        sonidoOceano.volume = 0.2
     }
-   
+    
     func reproducirEfectoAudioExplosionImpacto(){
         let ubicacionAudioExplosionImpacto = NSBundle.mainBundle().pathForResource("explosionImpacto", ofType: "wav")
         var efectoExplosionImpacto = NSURL(fileURLWithPath: ubicacionAudioExplosionImpacto!)
         sonidoExploxionImpacto = AVAudioPlayer(contentsOfURL: efectoExplosionImpacto, error: nil)
         sonidoExploxionImpacto.prepareToPlay()
         sonidoExploxionImpacto.play()
-        sonidoExploxionImpacto.volume = 3
+        sonidoExploxionImpacto.volume = 1
     }
-
+    
     
     func reproducirEfectoAudioSalidaTorpedo(){
         let ubicacionAudioSalidaTorpedo = NSBundle.mainBundle().pathForResource("salidaTorpedo", ofType: "wav")
@@ -139,30 +141,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         sonidoSalidaTorpedo.volume = 0.1
     }
     
-    func motrarBotonMoverArriba() {
     
-        botonMoverArriba = SKSpriteNode(imageNamed: "arriba")
-        botonMoverArriba.setScale(0.1)
-        botonMoverArriba.zPosition = 7
-        botonMoverArriba.position = CGPointMake(self.frame.width / 28, self.frame.height / 7)
-        botonMoverArriba.name = "arriba"
-        escena.addChild(botonMoverArriba)
-
+ 
     
-    }
-    
-    func motrarBotonMoverAbajo() {
-        
-        botonMoverAbajo = SKSpriteNode(imageNamed: "abajo")
-        botonMoverAbajo.setScale(0.1)
-        botonMoverAbajo.zPosition = 7
-        botonMoverAbajo.position = CGPointMake(self.frame.width / 28, self.frame.height / 15)
-        botonMoverAbajo.name = "abajo"
-        escena.addChild(botonMoverAbajo)
-        
-        
-    }
-
     func motrarBotonDisparoMisil() {
         
         botonDisparoMisil = SKSpriteNode(imageNamed: "botonMisil")
@@ -186,7 +167,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         
     }
-
+    
     
     
     func volverMenu(){
@@ -228,20 +209,114 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     func heroe(){
         
-        submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Navegando0032"))
-        submarino.setScale(1)
+        //SubmarinoEmergiendo
+        
+        var texturaSubmarinoEmerge1 = SKTexture(imageNamed: "Emerge0000")
+        texturaSubmarinoEmerge1.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge2 = SKTexture(imageNamed: "Emerge0001")
+        texturaSubmarinoEmerge2.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge3 = SKTexture(imageNamed: "Emerge0002")
+        texturaSubmarinoEmerge3.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge4 = SKTexture(imageNamed: "Emerge0003")
+        texturaSubmarinoEmerge4.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge5 = SKTexture(imageNamed: "Emerge0004")
+        texturaSubmarinoEmerge5.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge6 = SKTexture(imageNamed: "Emerge0005")
+        texturaSubmarinoEmerge6.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge7 = SKTexture(imageNamed: "Emerge0006")
+        texturaSubmarinoEmerge7.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge8 = SKTexture(imageNamed: "Emerge0007")
+        texturaSubmarinoEmerge8.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge9 = SKTexture(imageNamed: "Emerge0008")
+        texturaSubmarinoEmerge9.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge10 = SKTexture(imageNamed: "Emerge0009")
+        texturaSubmarinoEmerge10.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge11 = SKTexture(imageNamed: "Emerge0010")
+        texturaSubmarinoEmerge11.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge12 = SKTexture(imageNamed: "Emerge0011")
+        texturaSubmarinoEmerge12.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge13 = SKTexture(imageNamed: "Emerge0012")
+        texturaSubmarinoEmerge13.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge14 = SKTexture(imageNamed: "Emerge0013")
+        texturaSubmarinoEmerge14.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge15 = SKTexture(imageNamed: "Emerge0014")
+        texturaSubmarinoEmerge15.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge16 = SKTexture(imageNamed: "Emerge0015")
+        texturaSubmarinoEmerge16.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge17 = SKTexture(imageNamed: "Emerge0016")
+        texturaSubmarinoEmerge17.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge18 = SKTexture(imageNamed: "Emerge0017")
+        texturaSubmarinoEmerge18.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge19 = SKTexture(imageNamed: "Emerge0018")
+        texturaSubmarinoEmerge19.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge20 = SKTexture(imageNamed: "Emerge0019")
+        texturaSubmarinoEmerge20.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge21 = SKTexture(imageNamed: "Emerge0020")
+        texturaSubmarinoEmerge21.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge22 = SKTexture(imageNamed: "Emerge0021")
+        texturaSubmarinoEmerge22.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge23 = SKTexture(imageNamed: "Emerge0022")
+        texturaSubmarinoEmerge23.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge24 = SKTexture(imageNamed: "Emerge0023")
+        texturaSubmarinoEmerge24.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var animacionSubmarinoEmerge = SKAction.animateWithTextures([texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9, texturaSubmarinoEmerge10, texturaSubmarinoEmerge11, texturaSubmarinoEmerge12, texturaSubmarinoEmerge13, texturaSubmarinoEmerge14, texturaSubmarinoEmerge15, texturaSubmarinoEmerge16, texturaSubmarinoEmerge17, texturaSubmarinoEmerge18, texturaSubmarinoEmerge19, texturaSubmarinoEmerge20, texturaSubmarinoEmerge21, texturaSubmarinoEmerge22, texturaSubmarinoEmerge23, texturaSubmarinoEmerge24], timePerFrame: 0.3)
+        var accionSubmarinoEmerge = SKAction.repeatAction(animacionSubmarinoEmerge, count: 1)
+        
+        //SubmarinoNavegando
+        
+        var texturaSubmarinoNavegando1 = SKTexture(imageNamed: "Navegando0024")
+        texturaSubmarinoEmerge1.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando2 = SKTexture(imageNamed: "Navegando0025")
+        texturaSubmarinoEmerge2.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando3 = SKTexture(imageNamed: "Navegando0026")
+        texturaSubmarinoEmerge3.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando4 = SKTexture(imageNamed: "Navegando0027")
+        texturaSubmarinoEmerge4.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando5 = SKTexture(imageNamed: "Navegando0028")
+        texturaSubmarinoEmerge5.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando6 = SKTexture(imageNamed: "Navegando0029")
+        texturaSubmarinoEmerge6.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando7 = SKTexture(imageNamed: "Navegando0030")
+        texturaSubmarinoEmerge7.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando8 = SKTexture(imageNamed: "Navegando0031")
+        texturaSubmarinoEmerge8.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando9 = SKTexture(imageNamed: "Navegando0032")
+        texturaSubmarinoEmerge9.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando10 = SKTexture(imageNamed: "Navegando0033")
+        texturaSubmarinoEmerge10.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando11 = SKTexture(imageNamed: "Navegando0034")
+        texturaSubmarinoEmerge11.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando12 = SKTexture(imageNamed: "Navegando0035")
+        texturaSubmarinoEmerge12.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando13 = SKTexture(imageNamed: "Navegando0036")
+        texturaSubmarinoEmerge13.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando14 = SKTexture(imageNamed: "Navegando0037")
+        texturaSubmarinoEmerge14.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando15 = SKTexture(imageNamed: "Navegando0038")
+        texturaSubmarinoEmerge15.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando16 = SKTexture(imageNamed: "Navegando0039")
+        texturaSubmarinoEmerge16.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoNavegando17 = SKTexture(imageNamed: "Navegando0040")
+        texturaSubmarinoEmerge17.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var animacionSubmarinoNavega = SKAction.animateWithTextures([texturaSubmarinoNavegando1, texturaSubmarinoNavegando2, texturaSubmarinoNavegando3, texturaSubmarinoNavegando4, texturaSubmarinoNavegando5, texturaSubmarinoNavegando6, texturaSubmarinoNavegando7, texturaSubmarinoNavegando8, texturaSubmarinoNavegando9, texturaSubmarinoNavegando10, texturaSubmarinoNavegando11, texturaSubmarinoNavegando12, texturaSubmarinoNavegando13, texturaSubmarinoNavegando14, texturaSubmarinoNavegando15, texturaSubmarinoNavegando16, texturaSubmarinoNavegando17], timePerFrame: 0.3)
+        var accionSubmarinoNavega = SKAction.repeatActionForever(animacionSubmarinoNavega)
+        
+        
+        submarino = SKSpriteNode(texture: texturaSubmarinoEmerge1)
+        submarino.setScale(0.7)
         submarino.zPosition = 4
-        submarino.position = CGPointMake((submarino.size.width - 100), self.frame.height / 2)
+        submarino.position = CGPointMake((submarino.size.width - 80), self.frame.height / 2)
         submarino.constraints = [constraint]
         submarino.name = "heroe"
-        
         
         
         let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
         estelaSubmarino1.zPosition = 0
         estelaSubmarino1.alpha = 1
         estelaSubmarino1.setScale(0.24)
-        estelaSubmarino1.position = CGPointMake(23, -16)
+        estelaSubmarino1.position = CGPointMake(23, -21)
         submarino.addChild(estelaSubmarino1)
         
         let estelaSubmarino2 = SKEmitterNode(fileNamed: "estelaSubIzq.sks")
@@ -251,73 +326,15 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         estelaSubmarino2.position = CGPointMake(23, -7)
         submarino.addChild(estelaSubmarino2)
         
-        //Submarino emergiendo del agua
-        
-        var ue1 = submarinoEmergeAtlas.textureNamed("Emerge0000")
-        var ue2 = submarinoEmergeAtlas.textureNamed("Emerge0001")
-        var ue3 = submarinoEmergeAtlas.textureNamed("Emerge0002")
-        var ue4 = submarinoEmergeAtlas.textureNamed("Emerge0003")
-        var ue5 = submarinoEmergeAtlas.textureNamed("Emerge0004")
-        var ue6 = submarinoEmergeAtlas.textureNamed("Emerge0005")
-        var ue7 = submarinoEmergeAtlas.textureNamed("Emerge0006")
-        var ue8 = submarinoEmergeAtlas.textureNamed("Emerge0007")
-        var ue9 = submarinoEmergeAtlas.textureNamed("Emerge0008")
-        var ue10 = submarinoEmergeAtlas.textureNamed("Emerge0009")
-        var ue11 = submarinoEmergeAtlas.textureNamed("Emerge0010")
-        var ue12 = submarinoEmergeAtlas.textureNamed("Emerge0011")
-        var ue13 = submarinoEmergeAtlas.textureNamed("Emerge0012")
-        var ue14 = submarinoEmergeAtlas.textureNamed("Emerge0013")
-        var ue15 = submarinoEmergeAtlas.textureNamed("Emerge0014")
-        var ue16 = submarinoEmergeAtlas.textureNamed("Emerge0015")
-        var ue17 = submarinoEmergeAtlas.textureNamed("Emerge0016")
-        var ue18 = submarinoEmergeAtlas.textureNamed("Emerge0017")
-        var ue19 = submarinoEmergeAtlas.textureNamed("Emerge0018")
-        var ue20 = submarinoEmergeAtlas.textureNamed("Emerge0019")
-        var ue21 = submarinoEmergeAtlas.textureNamed("Emerge0020")
-        var ue22 = submarinoEmergeAtlas.textureNamed("Emerge0021")
-        var ue23 = submarinoEmergeAtlas.textureNamed("Emerge0022")
-        var ue24 = submarinoEmergeAtlas.textureNamed("Emerge0023")
-        
-        let arraySubmarinoEmerge = [ue1,ue2,ue3,ue4,ue5,ue6,ue7,ue8,ue9,ue10,ue11,ue12,ue13,ue14,ue15,ue16,ue17,ue18,ue19,ue20,ue21,ue22,ue23,ue24]
-        var submarinoEmerge = SKAction.animateWithTextures(arraySubmarinoEmerge, timePerFrame: 0.3)
-        submarinoEmerge = SKAction.repeatAction(submarinoEmerge, count: 1)
-        
-        //Submarino navegando
-        
-        var u1 = submarinoAtlas.textureNamed("Navegando0024")
-        var u2 = submarinoAtlas.textureNamed("Navegando0025")
-        var u3 = submarinoAtlas.textureNamed("Navegando0026")
-        var u4 = submarinoAtlas.textureNamed("Navegando0027")
-        var u5 = submarinoAtlas.textureNamed("Navegando0028")
-        var u6 = submarinoAtlas.textureNamed("Navegando0029")
-        var u7 = submarinoAtlas.textureNamed("Navegando0030")
-        var u8 = submarinoAtlas.textureNamed("Navegando0031")
-        var u9 = submarinoAtlas.textureNamed("Navegando0032")
-        var u10 = submarinoAtlas.textureNamed("Navegando0033")
-        var u11 = submarinoAtlas.textureNamed("Navegando0034")
-        var u12 = submarinoAtlas.textureNamed("Navegando0035")
-        var u13 = submarinoAtlas.textureNamed("Navegando0036")
-        var u14 = submarinoAtlas.textureNamed("Navegando0037")
-        var u15 = submarinoAtlas.textureNamed("Navegando0038")
-        var u16 = submarinoAtlas.textureNamed("Navegando0039")
-        var u17 = submarinoAtlas.textureNamed("Navegando0040")
-        
-        
-        
-        let arraySubmarino = [u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11,u12,u13,u14,u15,u16,u17]
-        
-        var submarinoNavega = SKAction.animateWithTextures(arraySubmarino, timePerFrame: 0.08)
-        
-        submarinoNavega = SKAction.repeatActionForever(submarinoNavega)
         
         //Agrupación de acciones submarino emergiendo y navegando
         
         
-        var controlSubmarinoNavegando = SKAction.sequence([submarinoEmerge, submarinoNavega])
-        submarino.runAction(controlSubmarinoNavegando)
+        var controlSubmarinoEmergiendoNavegando = SKAction.sequence([accionSubmarinoEmerge, accionSubmarinoNavega])
+        submarino.runAction(controlSubmarinoEmergiendoNavegando)
         
         //submarino.runAction(submarinoNavega)
-
+        
         
         
         submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 15))
@@ -328,17 +345,17 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaMina
         submarino.physicsBody?.contactTestBitMask  = categoriaMina
-
+        
         escena.addChild(submarino)
         
         //submarinoNavega()
         
         moverArriba = SKAction.moveByX(0, y: 10, duration: 0.1)
         moverAbajo = SKAction.moveByX(0, y: -10, duration: 0.1)
-
-        }
-   
-   
+        
+    }
+    
+    
     
     func aparecerEnemigo(){
         var altura = UInt (self.frame.size.height - 100 )
@@ -354,7 +371,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         else if submarino.position.y < enemigo.position.y {
             enemigo.zPosition = submarino.zPosition - 1
         }
-
+        
         enemigo.name = "enemigo"
         
         let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
@@ -374,8 +391,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
         var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 15)
-       enemigo.runAction(desplazarEnemigo)
-        }
+        enemigo.runAction(desplazarEnemigo)
+    }
     
     
     func aparecerMina(){
@@ -385,12 +402,12 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         mina = SKSpriteNode(imageNamed: "Mina")
         mina.setScale(0.11)
         mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
-            if mina.position.y > submarino.position.y {
-                mina.zPosition = submarino.zPosition - 1
-            }
-            else if mina.position.y < submarino.position.y {
-                mina.zPosition = submarino.zPosition + 1
-            }
+        if mina.position.y > submarino.position.y {
+            mina.zPosition = submarino.zPosition - 1
+        }
+        else if mina.position.y < submarino.position.y {
+            mina.zPosition = submarino.zPosition + 1
+        }
         mina.constraints = [constraint]
         mina.name = "mina"
         
@@ -407,7 +424,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var desplazarMina = SKAction.moveTo(CGPointMake( -mina.size.width * 2 , CGFloat(mina.position.y)), duration: 40)
         mina.runAction(desplazarMina)
     }
-
+    
     
     
     
@@ -433,10 +450,10 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         misil.physicsBody?.collisionBitMask = categoriaEnemigo
         misil.physicsBody?.contactTestBitMask  = categoriaEnemigo
         escena.addChild(misil)
-
+        
         var lanzarMisil = SKAction.moveTo(CGPointMake( self.frame.size.width + misil.size.width * 2 , submarino.position.y - 30), duration:2.0)
         misil.runAction(lanzarMisil)
-            }
+    }
     
     func disparar(){
         disparo = SKSpriteNode(imageNamed: "Disparo")
@@ -458,8 +475,8 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         var lanzarDisparo = SKAction.moveTo(CGPointMake( self.frame.width + disparo.size.width * 2, submarino.position.y + 7), duration:1.0)
         disparo.runAction(lanzarDisparo)
     }
-
-
+    
+    
     func prismaticos() {
         
         prisma = SKSpriteNode(imageNamed: "prismatic")
@@ -474,7 +491,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        
         let tocarMenuLabel: AnyObject = touches.anyObject()!
         let posicionTocarMenuLabel = tocarMenuLabel.locationInNode(self)
         let tocamosMenuLabel = self.nodeAtPoint(posicionTocarMenuLabel)
@@ -496,10 +512,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
             
-           lanzarMisil()
-           reproducirEfectoAudioSalidaTorpedo()
-                    }
-        
+            lanzarMisil()
+            reproducirEfectoAudioSalidaTorpedo()
+        }
         let tocarBotonDisparar: AnyObject = touches.anyObject()!
         
         let posicionTocarBotonDisparar = tocarBotonDisparar.locationInNode(self)
@@ -508,92 +523,11 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         if loQueTocamosBotonDisparar == botonDisparoAmetralladora {
             
-                     disparar()
-
-         }
-        
-        
-        let tocarBotonArriba: AnyObject = touches.anyObject()!
-        
-        let posicionTocarBotonArriba = tocarBotonArriba.locationInNode(self)
-        
-        let loQueTocamosBotonArriba = self.nodeAtPoint(posicionTocarBotonArriba)
-        
-        if loQueTocamosBotonArriba == botonMoverArriba && submarino.position.y < 290  {
-            
-//            contadorEscala = contadorEscala - 0.01
-//                if contadorEscala < 0.4 {
-//                    contadorEscala = 0.4
-//                }
-//            
-//            submarino.setScale(contadorEscala)
-            submarino.runAction(moverArriba)
+            disparar()
             
         }
-        
-        
-        let tocarBotonAbajo: AnyObject = touches.anyObject()!
-        
-        let posicionTocarBotonAbajo = tocarBotonAbajo.locationInNode(self)
-        
-        let loQueTocamosBotonAbajo = self.nodeAtPoint(posicionTocarBotonAbajo)
-        
-        if loQueTocamosBotonAbajo == botonMoverAbajo && submarino.position.y > 65  {
-            
-//            contadorEscala = contadorEscala + 0.03
-//                if contadorEscala > 0.9 {
-//                contadorEscala = 0.9
-//                }
-//            
-//            submarino.setScale(contadorEscala)
-            submarino.runAction(moverAbajo)
-                    }
 
-
-       
-        
- // Antiguo mover submarino arriba y abajo por toques en la pantalla
-        
-//        if escena.speed > 0 {
-//            
-//        for toke: AnyObject in touches {
-//        
-//        let dondeTocamos = toke.locationInNode(self)
-//        
-//        if dondeTocamos.y > submarino.position.y {
-//            
-//            if submarino.position.y < 290  {
-//                //submarino.position.x = (submarino.size.width / 2)+10
-//                contadorEscala = contadorEscala - 0.01
-//                if contadorEscala < 0.4 {
-//                    contadorEscala = 0.4
-//                }
-//                submarino.setScale(contadorEscala)
-//                submarino.runAction(moverArriba)
-//
-//            }
-//            
-//            
-//        } else {
-//            
-//            if submarino.position.y > 65 {
-//                //submarino.position.x = (submarino.size.width / 2)+10
-//                contadorEscala = contadorEscala + 0.03
-//                if contadorEscala > 0.9 {
-//                    contadorEscala = 0.9
-//                }
-//                submarino.setScale(contadorEscala)
-//                submarino.runAction(moverAbajo)
-//            }
-//       }
-//        
-//}
-//}
-
-       
-      }
-
-    
+    }
     
     func crearCielo() {
         
@@ -629,7 +563,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         })
         
     }
-
+    
     
     
     
@@ -645,9 +579,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             fondo.zPosition = 2
             
             addChild(fondo)
-
+            
         }
-
+        
     }
     
     
@@ -669,154 +603,172 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             }
         })
         
-        }
+    }
+
     
-    
-    
-    override func update(currentTime: NSTimeInterval) {
+    override func update(currentTime: CFTimeInterval) {
         scrollCielo()
-        scrollMar()
+        scrollMar()    }
+    
+    
+    
+    // MARK: AnalogStickProtocol
+    func moveAnalogStick(analogStick: AnalogStick, velocity: CGPoint, angularVelocity: Float) {
+        if contadorImpactos > 0 {
+            
+            if analogStick.isEqual(moveAnalogStick) {
+                submarino.position = CGPointMake(submarino.position.x, submarino.position.y + (velocity.y * 0.12))
+            }
+            
+            if submarino.position.y >= self.frame.height - 75 {
+                submarino.position.y = self.frame.height - 75
+            }
+            
+            if submarino.position.y <= 0 + 40 {
+                submarino.position.y = 0 + 40
+            }
+            
+        }
     }
-    
-        
-    
-    
-    
-    func didBeginContact(contact: SKPhysicsContact) {
-        
-        if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino && enemigo.physicsBody?.dynamic == true {
-            
-        
-            misil.physicsBody?.dynamic = false
-            enemigo.physicsBody?.dynamic = false
-            submarino.physicsBody?.dynamic = false
-            
-            var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
-            var retardo = SKAction.waitForDuration(0.5)
-            var enemigoDesaparece = SKAction.removeFromParent()
-            var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
-            enemigo.runAction(controlEnemigo)
-            
-            var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarinoDamage()})
-            
-            runAction(explotarSubmarino)
-            
-            contadorImpactos--
-            contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
-            puntuacion++
-            contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
-        
-            
-           
-        }
-        
-        if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
-            
-            enemigo.physicsBody?.dynamic = false
-            
-            misil.removeFromParent()
-            var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
-            var retardo = SKAction.waitForDuration(0.5)
-            var enemigoDesaparece = SKAction.removeFromParent()
-            var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
-            enemigo.runAction(controlEnemigo)
-            reproducirEfectoAudioExplosionImpacto()
-            
-            puntuacion++
-            contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
-        }
 
-        if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
-            
-            enemigo.physicsBody?.dynamic = false
-            
-            disparo.removeFromParent()
-            var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
-            var retardo = SKAction.waitForDuration(0.5)
-            var enemigoDesaparece = SKAction.removeFromParent()
-            var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
-            enemigo.runAction(controlEnemigo)
-            
-            puntuacion++
-            contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
-            
-            
-            
-        }
 
-        
-        
-        if contadorImpactos == 0{
-                
-            var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarino()})
-            var retardo = SKAction.waitForDuration(3)
-            var controlEscena = SKAction.speedBy(0, duration: 1)
-            var controlSubmarino = SKAction.sequence([retardo,  controlEscena])
-            runAction(controlSubmarino)
-            submarino.runAction(explotarSubmarino)
-            sonidoOceano.stop()
-            
-            volverMenu()
-        }
-        
-        
-        
-    }
+func didBeginContact(contact: SKPhysicsContact) {
     
-    func destruirBarco(){
-        
-        var atlasExplosionEnemigo = SKTextureAtlas(named: "enemigoExplota")
-        
-        var b1 = atlasExplosionEnemigo.textureNamed("enemigoExplota1")
-        var b2 = atlasExplosionEnemigo.textureNamed("enemigoExplota2")
-        var b3 = atlasExplosionEnemigo.textureNamed("enemigoExplota3")
-        var b4 = atlasExplosionEnemigo.textureNamed("enemigoExplota4")
-        
-        var arrayEnemigo = [b1,b2,b3,b4,b3,b4]
-        
-        var enemigoExplota = SKAction.animateWithTextures(arrayEnemigo, timePerFrame: 0.2)
-        enemigoExplota = SKAction.repeatAction(enemigoExplota, count: 1)
-        enemigo.runAction(enemigoExplota)
-        
-    }
-    
-
-    func destruirSubmarinoDamage(){
+    if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino && enemigo.physicsBody?.dynamic == true {
         
         
-        let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
-        explosionSubmarino.zPosition = 4
-        explosionSubmarino.setScale(0.4)
-        explosionSubmarino.position = CGPointMake(-40, 0)
-        submarino.addChild(explosionSubmarino)
-        
-    
-        // Cambiando el color del Submarino cuando colisiona 
-        
-        submarino.runAction(SKAction.repeatActionForever(
-            SKAction.sequence([
-                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
-                SKAction.waitForDuration(0.4),
-                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
-                ])
-            ))
-    }
-    
-    
-    func destruirSubmarino(){
-        
-        let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
-        explosionSubmarino.zPosition = 4
-        explosionSubmarino.setScale(0.9)
-        explosionSubmarino.position = CGPointMake(-50, -10)
-        submarino.addChild(explosionSubmarino)
-   
+        misil.physicsBody?.dynamic = false
+        enemigo.physicsBody?.dynamic = false
         submarino.physicsBody?.dynamic = false
-        var desplazarSubmarino = SKAction.moveTo(CGPointMake( self.frame.width / 2, self.frame.height / 2), duration:2.0)
-        submarino.runAction(desplazarSubmarino)
-        }
-    
+        
+        var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
+        var retardo = SKAction.waitForDuration(0.5)
+        var enemigoDesaparece = SKAction.removeFromParent()
+        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+        enemigo.runAction(controlEnemigo)
+        
+        var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarinoDamage()})
+        
+        runAction(explotarSubmarino)
+        reproducirEfectoAudioExplosionImpacto()
+        contadorImpactos--
+        contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
+        puntuacion++
+        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        
+        
+        
     }
+    
+    if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
+        
+        enemigo.physicsBody?.dynamic = false
+        
+        misil.removeFromParent()
+        var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
+        var retardo = SKAction.waitForDuration(0.5)
+        var enemigoDesaparece = SKAction.removeFromParent()
+        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+        enemigo.runAction(controlEnemigo)
+        reproducirEfectoAudioExplosionImpacto()
+        
+        puntuacion++
+        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+    }
+    
+    if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
+        
+        enemigo.physicsBody?.dynamic = false
+        
+        disparo.removeFromParent()
+        var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
+        var retardo = SKAction.waitForDuration(0.5)
+        var enemigoDesaparece = SKAction.removeFromParent()
+        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+        enemigo.runAction(controlEnemigo)
+        reproducirEfectoAudioExplosionImpacto()
+        
+        puntuacion++
+        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        
+        
+        
+    }
+    
+    
+    
+    if contadorImpactos == 0{
+        
+        var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarino()})
+        var retardo = SKAction.waitForDuration(3)
+        var controlEscena = SKAction.speedBy(0, duration: 1)
+        var controlSubmarino = SKAction.sequence([retardo,  controlEscena])
+        runAction(controlSubmarino)
+        submarino.runAction(explotarSubmarino)
+        sonidoOceano.stop()
+        
+        volverMenu()
+    }
+    
+    
+    
+}
+
+func destruirBarco(){
+    
+    var atlasExplosionEnemigo = SKTextureAtlas(named: "enemigoExplota")
+    
+    var b1 = atlasExplosionEnemigo.textureNamed("enemigoExplota1")
+    var b2 = atlasExplosionEnemigo.textureNamed("enemigoExplota2")
+    var b3 = atlasExplosionEnemigo.textureNamed("enemigoExplota3")
+    var b4 = atlasExplosionEnemigo.textureNamed("enemigoExplota4")
+    
+    var arrayEnemigo = [b1,b2,b3,b4,b3,b4]
+    
+    var enemigoExplota = SKAction.animateWithTextures(arrayEnemigo, timePerFrame: 0.2)
+    enemigoExplota = SKAction.repeatAction(enemigoExplota, count: 1)
+    enemigo.runAction(enemigoExplota)
+    
+}
+
+
+func destruirSubmarinoDamage(){
+    
+    
+    let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
+    explosionSubmarino.zPosition = 0
+    explosionSubmarino.setScale(0.4)
+    explosionSubmarino.position = CGPointMake(-40, 10)
+    submarino.addChild(explosionSubmarino)
+    
+    
+    // Cambiando el color del Submarino cuando colisiona
+    
+    submarino.runAction(SKAction.repeatActionForever(
+        SKAction.sequence([
+            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
+            SKAction.waitForDuration(0.4),
+            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
+            ])
+        ))
+}
+
+
+func destruirSubmarino(){
+    
+    let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
+    explosionSubmarino.zPosition = 4
+    explosionSubmarino.setScale(0.9)
+    explosionSubmarino.position = CGPointMake(-50, -10)
+    //submarino.addChild(explosionSubmarino)
+    
+    submarino.physicsBody?.dynamic = false
+    var desplazarSubmarino = SKAction.moveTo(CGPointMake( self.frame.width / 2, self.frame.height / 2), duration:2.0)
+    submarino.runAction(desplazarSubmarino)
+}
+
+}
+
 
 
 
