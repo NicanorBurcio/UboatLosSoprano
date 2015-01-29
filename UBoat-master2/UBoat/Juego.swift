@@ -79,12 +79,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         backgroundColor = UIColor.cyanColor()
        
         //Joistick
-        let bgDiametr: CGFloat = 40
-        let thumbDiametr: CGFloat = 20
+        let bgDiametr: CGFloat = 150
+        let thumbDiametr: CGFloat = 75
         let joysticksRadius = bgDiametr / 2
         moveAnalogStick.bgNodeDiametr = bgDiametr
         moveAnalogStick.thumbNodeDiametr = thumbDiametr
-        moveAnalogStick.position = CGPointMake(joysticksRadius + 10, joysticksRadius + 10)
+        moveAnalogStick.position = CGPointMake(joysticksRadius - 34, joysticksRadius - 20)
         moveAnalogStick.zPosition = 100
         moveAnalogStick.alpha = 1
         moveAnalogStick.delagate = self
@@ -128,7 +128,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoExploxionImpacto = AVAudioPlayer(contentsOfURL: efectoExplosionImpacto, error: nil)
         sonidoExploxionImpacto.prepareToPlay()
         sonidoExploxionImpacto.play()
-        sonidoExploxionImpacto.volume = 1
+        sonidoExploxionImpacto.volume = 0.7
     }
     
     
@@ -138,7 +138,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoSalidaTorpedo = AVAudioPlayer(contentsOfURL: efectoSalidaTorpedo, error: nil)
         sonidoSalidaTorpedo.prepareToPlay()
         sonidoSalidaTorpedo.play()
-        sonidoSalidaTorpedo.volume = 0.1
+        sonidoSalidaTorpedo.volume = 1
     }
     
     
@@ -211,6 +211,11 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         //SubmarinoEmergiendo
         
+        var texturaSubmarinoEmergeA = SKTexture(imageNamed: "Emerge-0002")
+        texturaSubmarinoEmergeA.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaSubmarinoEmerge0 = SKTexture(imageNamed: "Emerge-0001")
+        texturaSubmarinoEmerge0.filteringMode = SKTextureFilteringMode.Nearest
+        
         var texturaSubmarinoEmerge1 = SKTexture(imageNamed: "Emerge0000")
         texturaSubmarinoEmerge1.filteringMode = SKTextureFilteringMode.Nearest
         var texturaSubmarinoEmerge2 = SKTexture(imageNamed: "Emerge0001")
@@ -260,7 +265,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var texturaSubmarinoEmerge24 = SKTexture(imageNamed: "Emerge0023")
         texturaSubmarinoEmerge24.filteringMode = SKTextureFilteringMode.Nearest
         
-        var animacionSubmarinoEmerge = SKAction.animateWithTextures([texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9, texturaSubmarinoEmerge10, texturaSubmarinoEmerge11, texturaSubmarinoEmerge12, texturaSubmarinoEmerge13, texturaSubmarinoEmerge14, texturaSubmarinoEmerge15, texturaSubmarinoEmerge16, texturaSubmarinoEmerge17, texturaSubmarinoEmerge18, texturaSubmarinoEmerge19, texturaSubmarinoEmerge20, texturaSubmarinoEmerge21, texturaSubmarinoEmerge22, texturaSubmarinoEmerge23, texturaSubmarinoEmerge24], timePerFrame: 0.3)
+        var animacionSubmarinoEmerge = SKAction.animateWithTextures([texturaSubmarinoEmergeA, texturaSubmarinoEmergeA, texturaSubmarinoEmerge0, texturaSubmarinoEmerge0, texturaSubmarinoEmerge0, texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9, texturaSubmarinoEmerge10, texturaSubmarinoEmerge11, texturaSubmarinoEmerge12, texturaSubmarinoEmerge13, texturaSubmarinoEmerge14, texturaSubmarinoEmerge15, texturaSubmarinoEmerge16, texturaSubmarinoEmerge17, texturaSubmarinoEmerge18, texturaSubmarinoEmerge19, texturaSubmarinoEmerge20, texturaSubmarinoEmerge21, texturaSubmarinoEmerge22, texturaSubmarinoEmerge23, texturaSubmarinoEmerge24], timePerFrame: 0.14)
         var accionSubmarinoEmerge = SKAction.repeatAction(animacionSubmarinoEmerge, count: 1)
         
         //SubmarinoNavegando
@@ -300,7 +305,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var texturaSubmarinoNavegando17 = SKTexture(imageNamed: "Navegando0040")
         texturaSubmarinoEmerge17.filteringMode = SKTextureFilteringMode.Nearest
         
-        var animacionSubmarinoNavega = SKAction.animateWithTextures([texturaSubmarinoNavegando1, texturaSubmarinoNavegando2, texturaSubmarinoNavegando3, texturaSubmarinoNavegando4, texturaSubmarinoNavegando5, texturaSubmarinoNavegando6, texturaSubmarinoNavegando7, texturaSubmarinoNavegando8, texturaSubmarinoNavegando9, texturaSubmarinoNavegando10, texturaSubmarinoNavegando11, texturaSubmarinoNavegando12, texturaSubmarinoNavegando13, texturaSubmarinoNavegando14, texturaSubmarinoNavegando15, texturaSubmarinoNavegando16, texturaSubmarinoNavegando17], timePerFrame: 0.3)
+        var animacionSubmarinoNavega = SKAction.animateWithTextures([texturaSubmarinoNavegando1, texturaSubmarinoNavegando2, texturaSubmarinoNavegando3, texturaSubmarinoNavegando4, texturaSubmarinoNavegando5, texturaSubmarinoNavegando6, texturaSubmarinoNavegando7, texturaSubmarinoNavegando8, texturaSubmarinoNavegando9, texturaSubmarinoNavegando10, texturaSubmarinoNavegando11, texturaSubmarinoNavegando12, texturaSubmarinoNavegando13, texturaSubmarinoNavegando14, texturaSubmarinoNavegando15, texturaSubmarinoNavegando16, texturaSubmarinoNavegando17], timePerFrame: 0.09)
         var accionSubmarinoNavega = SKAction.repeatActionForever(animacionSubmarinoNavega)
         
         
@@ -311,31 +316,30 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         submarino.constraints = [constraint]
         submarino.name = "heroe"
         
+        //Emitters estela Submarino
         
-        let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
-        estelaSubmarino1.zPosition = 0
-        estelaSubmarino1.alpha = 1
-        estelaSubmarino1.setScale(0.24)
-        estelaSubmarino1.position = CGPointMake(23, -21)
-        submarino.addChild(estelaSubmarino1)
-        
-        let estelaSubmarino2 = SKEmitterNode(fileNamed: "estelaSubIzq.sks")
-        estelaSubmarino2.zPosition = -1
-        estelaSubmarino2.alpha = 1
-        estelaSubmarino2.setScale(0.22)
-        estelaSubmarino2.position = CGPointMake(23, -7)
-        submarino.addChild(estelaSubmarino2)
+//        let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
+//        estelaSubmarino1.zPosition = 0
+//        estelaSubmarino1.alpha = 1
+//        estelaSubmarino1.setScale(0.24)
+//        estelaSubmarino1.position = CGPointMake(23, -21)
+//        submarino.addChild(estelaSubmarino1)
+//        
+//        let estelaSubmarino2 = SKEmitterNode(fileNamed: "estelaSubIzq.sks")
+//        estelaSubmarino2.zPosition = -1
+//        estelaSubmarino2.alpha = 1
+//        estelaSubmarino2.setScale(0.22)
+//        estelaSubmarino2.position = CGPointMake(23, -7)
+//        submarino.addChild(estelaSubmarino2)
         
         
         //Agrupación de acciones submarino emergiendo y navegando
         
-        
         var controlSubmarinoEmergiendoNavegando = SKAction.sequence([accionSubmarinoEmerge, accionSubmarinoNavega])
         submarino.runAction(controlSubmarinoEmergiendoNavegando)
         
+        
         //submarino.runAction(submarinoNavega)
-        
-        
         
         submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 15))
         submarino.physicsBody?.dynamic = true
@@ -457,10 +461,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func disparar(){
         disparo = SKSpriteNode(imageNamed: "Disparo")
-        disparo.setScale(0.3)
+        disparo.setScale(0.4)
         disparo.zPosition = 3
-        disparo.position = CGPointMake(submarino.position.x + 150, submarino.position.y + 10)
-        disparo.alpha = 0.8
+        disparo.position = CGPointMake(submarino.position.x + 54, submarino.position.y + 16)
+        disparo.alpha = 1
         disparo.constraints = [constraint]
         disparo.name = "disparo"
         
@@ -474,13 +478,14 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         var lanzarDisparo = SKAction.moveTo(CGPointMake( self.frame.width + disparo.size.width * 2, submarino.position.y + 7), duration:1.0)
         disparo.runAction(lanzarDisparo)
+        reproducirEfectoAudioExplosionImpacto()
     }
     
     
     func prismaticos() {
         
         prisma = SKSpriteNode(imageNamed: "prismatic")
-        prisma.setScale(0.66)
+        prisma.setScale(1)
         prisma.zPosition = 5
         prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         
