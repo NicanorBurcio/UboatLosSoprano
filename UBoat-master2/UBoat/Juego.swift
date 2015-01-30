@@ -27,6 +27,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var sonidoOceano = AVAudioPlayer()
     
     //OBJETOS
+    var contadorImpactosEnEnemigo = 0
     var contadorImpactos = NSInteger()
     var contadorImpactosLabel = SKLabelNode()
     
@@ -48,9 +49,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     //MOVIMIENTOS
     
-    var moverArriba = SKAction()
-    var moverAbajo = SKAction()
-    var contadorEscala: CGFloat = 0.5
     
     let velocidadMar: CGFloat = 2
     let velocidadCielo: CGFloat = 1
@@ -346,16 +344,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
         submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
-        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
+        
         submarino.physicsBody?.collisionBitMask = categoriaMina
         submarino.physicsBody?.contactTestBitMask  = categoriaMina
         
         escena.addChild(submarino)
         
-        //submarinoNavega()
-        
-        moverArriba = SKAction.moveByX(0, y: 10, duration: 0.1)
-        moverAbajo = SKAction.moveByX(0, y: -10, duration: 0.1)
         
     }
     
@@ -366,8 +360,8 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var alturaRandom = UInt (arc4random()) % altura
         
         enemigo = SKSpriteNode(imageNamed: "enemigo")
-        enemigo.setScale(0.3)
-        enemigo.position = CGPointMake(self.frame.size.width - enemigo.size.width + enemigo.size.width * 2, CGFloat(25 + alturaRandom))
+        enemigo.setScale(0.4)
+        enemigo.position = CGPointMake(self.frame.size.width + enemigo.size.width / 2, CGFloat(25 + alturaRandom))
         //enemigo.zPosition = CGFloat()
         if submarino.position.y > enemigo.position.y {
             enemigo.zPosition = submarino.zPosition + 1
@@ -389,6 +383,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
         enemigo.physicsBody?.collisionBitMask = categoriaSubmarino
         enemigo.physicsBody?.contactTestBitMask  = categoriaSubmarino
+        enemigo.physicsBody?.collisionBitMask = categoriaMisil
+        enemigo.physicsBody?.contactTestBitMask  = categoriaMisil
+        enemigo.physicsBody?.collisionBitMask = categoriaDisparo
+        enemigo.physicsBody?.contactTestBitMask  = categoriaDisparo
         escena.addChild(enemigo)
         
         
@@ -420,6 +418,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mina.physicsBody?.categoryBitMask = categoriaMina
         mina.physicsBody?.collisionBitMask = categoriaSubmarino
         mina.physicsBody?.contactTestBitMask  = categoriaSubmarino
+        mina.physicsBody?.collisionBitMask = categoriaMisil
+        mina.physicsBody?.contactTestBitMask  = categoriaMisil
+        mina.physicsBody?.collisionBitMask = categoriaDisparo
+        mina.physicsBody?.contactTestBitMask  = categoriaDisparo
+
+
         escena.addChild(mina)
         
         
@@ -457,6 +461,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         var lanzarMisil = SKAction.moveTo(CGPointMake( self.frame.size.width + misil.size.width * 2 , submarino.position.y - 30), duration:2.0)
         misil.runAction(lanzarMisil)
+        reproducirEfectoAudioSalidaTorpedo()
     }
     
     func disparar(){
@@ -473,7 +478,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         disparo.physicsBody?.dynamic = true
         disparo.physicsBody?.categoryBitMask = categoriaDisparo
         disparo.physicsBody?.collisionBitMask = categoriaEnemigo
-        disparo.physicsBody?.contactTestBitMask  = categoriaEnemigo
+        
         escena.addChild(disparo)
         
         var lanzarDisparo = SKAction.moveTo(CGPointMake( self.frame.width + disparo.size.width * 2, submarino.position.y + 7), duration:1.0)
@@ -518,7 +523,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
             
             lanzarMisil()
-            reproducirEfectoAudioSalidaTorpedo()
+            
         }
         let tocarBotonDisparar: AnyObject = touches.anyObject()!
         
@@ -661,11 +666,11 @@ func didBeginContact(contact: SKPhysicsContact) {
         puntuacion++
         contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
         
-        
+       
         
     }
     
-    if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
+    if (contact.bodyA.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
         
         enemigo.physicsBody?.dynamic = false
         
@@ -683,9 +688,13 @@ func didBeginContact(contact: SKPhysicsContact) {
     
     if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
         
+        disparo.removeFromParent()
+        contadorImpactosEnEnemigo = contadorImpactosEnEnemigo + 1
+        if contadorImpactosEnEnemigo == 3 {
+        
         enemigo.physicsBody?.dynamic = false
         
-        disparo.removeFromParent()
+        
         var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
         var retardo = SKAction.waitForDuration(0.5)
         var enemigoDesaparece = SKAction.removeFromParent()
@@ -693,9 +702,10 @@ func didBeginContact(contact: SKPhysicsContact) {
         enemigo.runAction(controlEnemigo)
         reproducirEfectoAudioExplosionImpacto()
         
+        contadorImpactosEnEnemigo = 0
         puntuacion++
         contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
-        
+        }
         
         
     }

@@ -17,7 +17,6 @@
 		88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D681A52A39300802E87 /* explosionSubmarino.sks */; };
 		88130D701A52A39300802E87 /* estelaSubmarino.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D691A52A39300802E87 /* estelaSubmarino.sks */; };
 		88130D711A52A39300802E87 /* estelaEnemigo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 88130D6A1A52A39300802E87 /* estelaEnemigo.sks */; };
-		88130D721A52A39300802E87 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 88130D6B1A52A39300802E87 /* spark.png */; };
 		88130D741A52A3A700802E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88130D731A52A3A700802E87 /* Main.storyboard */; };
 		88130D761A52A3B700802E87 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88130D751A52A3B700802E87 /* Images.xcassets */; };
 		88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88130D771A52A3CE00802E87 /* LaunchScreen.xib */; };
@@ -118,7 +117,6 @@
 		88130D681A52A39300802E87 /* explosionSubmarino.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosionSubmarino.sks; sourceTree = "<group>"; };
 		88130D691A52A39300802E87 /* estelaSubmarino.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubmarino.sks; sourceTree = "<group>"; };
 		88130D6A1A52A39300802E87 /* estelaEnemigo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaEnemigo.sks; sourceTree = "<group>"; };
-		88130D6B1A52A39300802E87 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		88130D731A52A3A700802E87 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		88130D751A52A3B700802E87 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88130D771A52A3CE00802E87 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				88130D6A1A52A39300802E87 /* estelaEnemigo.sks */,
 				9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */,
 				9A6873621A6573B900CC4BF7 /* estelaSubIzq.sks */,
-				88130D6B1A52A39300802E87 /* spark.png */,
 				88130D631A52A38100802E87 /* ViewController.swift */,
 				88130D731A52A3A700802E87 /* Main.storyboard */,
 				88130D751A52A3B700802E87 /* Images.xcassets */,
@@ -513,7 +510,6 @@
 				88BDD0711A78F135005F2EBC /* Emerge0005@2x.png in Resources */,
 				88BDD07D1A78F135005F2EBC /* Emerge0017@2x.png in Resources */,
 				88BDD0541A78F135005F2EBC /* Navegando0029.png in Resources */,
-				88130D721A52A39300802E87 /* spark.png in Resources */,
 				88BDD0631A78F135005F2EBC /* Navegando0036@2x.png in Resources */,
 				88BDD04A1A78F135005F2EBC /* Navegando0024.png in Resources */,
 				88BDD0501A78F135005F2EBC /* Navegando0027.png in Resources */,
