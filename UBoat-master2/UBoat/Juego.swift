@@ -206,149 +206,25 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func heroe(){
         
-        //SubmarinoEmergiendo
+        var objsubmarino = Submarino()
         
-        var texturaSubmarinoEmergeA = SKTexture(imageNamed: "Emerge-0002")
-        texturaSubmarinoEmergeA.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge0 = SKTexture(imageNamed: "Emerge-0001")
-        texturaSubmarinoEmerge0.filteringMode = SKTextureFilteringMode.Nearest
-        
-        var texturaSubmarinoEmerge1 = SKTexture(imageNamed: "Emerge0000")
-        texturaSubmarinoEmerge1.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge2 = SKTexture(imageNamed: "Emerge0001")
-        texturaSubmarinoEmerge2.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge3 = SKTexture(imageNamed: "Emerge0002")
-        texturaSubmarinoEmerge3.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge4 = SKTexture(imageNamed: "Emerge0003")
-        texturaSubmarinoEmerge4.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge5 = SKTexture(imageNamed: "Emerge0004")
-        texturaSubmarinoEmerge5.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge6 = SKTexture(imageNamed: "Emerge0005")
-        texturaSubmarinoEmerge6.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge7 = SKTexture(imageNamed: "Emerge0006")
-        texturaSubmarinoEmerge7.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge8 = SKTexture(imageNamed: "Emerge0007")
-        texturaSubmarinoEmerge8.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge9 = SKTexture(imageNamed: "Emerge0008")
-        texturaSubmarinoEmerge9.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge10 = SKTexture(imageNamed: "Emerge0009")
-        texturaSubmarinoEmerge10.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge11 = SKTexture(imageNamed: "Emerge0010")
-        texturaSubmarinoEmerge11.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge12 = SKTexture(imageNamed: "Emerge0011")
-        texturaSubmarinoEmerge12.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge13 = SKTexture(imageNamed: "Emerge0012")
-        texturaSubmarinoEmerge13.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge14 = SKTexture(imageNamed: "Emerge0013")
-        texturaSubmarinoEmerge14.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge15 = SKTexture(imageNamed: "Emerge0014")
-        texturaSubmarinoEmerge15.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge16 = SKTexture(imageNamed: "Emerge0015")
-        texturaSubmarinoEmerge16.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge17 = SKTexture(imageNamed: "Emerge0016")
-        texturaSubmarinoEmerge17.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge18 = SKTexture(imageNamed: "Emerge0017")
-        texturaSubmarinoEmerge18.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge19 = SKTexture(imageNamed: "Emerge0018")
-        texturaSubmarinoEmerge19.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge20 = SKTexture(imageNamed: "Emerge0019")
-        texturaSubmarinoEmerge20.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge21 = SKTexture(imageNamed: "Emerge0020")
-        texturaSubmarinoEmerge21.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge22 = SKTexture(imageNamed: "Emerge0021")
-        texturaSubmarinoEmerge22.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge23 = SKTexture(imageNamed: "Emerge0022")
-        texturaSubmarinoEmerge23.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge24 = SKTexture(imageNamed: "Emerge0023")
-        texturaSubmarinoEmerge24.filteringMode = SKTextureFilteringMode.Nearest
-        
-        var animacionSubmarinoEmerge = SKAction.animateWithTextures([texturaSubmarinoEmergeA, texturaSubmarinoEmergeA, texturaSubmarinoEmerge0, texturaSubmarinoEmerge0, texturaSubmarinoEmerge0, texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9, texturaSubmarinoEmerge10, texturaSubmarinoEmerge11, texturaSubmarinoEmerge12, texturaSubmarinoEmerge13, texturaSubmarinoEmerge14, texturaSubmarinoEmerge15, texturaSubmarinoEmerge16, texturaSubmarinoEmerge17, texturaSubmarinoEmerge18, texturaSubmarinoEmerge19, texturaSubmarinoEmerge20, texturaSubmarinoEmerge21, texturaSubmarinoEmerge22, texturaSubmarinoEmerge23, texturaSubmarinoEmerge24], timePerFrame: 0.14)
-        var accionSubmarinoEmerge = SKAction.repeatAction(animacionSubmarinoEmerge, count: 1)
-        
-        //SubmarinoNavegando
-        
-        var texturaSubmarinoNavegando1 = SKTexture(imageNamed: "Navegando0024")
-        texturaSubmarinoEmerge1.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando2 = SKTexture(imageNamed: "Navegando0025")
-        texturaSubmarinoEmerge2.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando3 = SKTexture(imageNamed: "Navegando0026")
-        texturaSubmarinoEmerge3.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando4 = SKTexture(imageNamed: "Navegando0027")
-        texturaSubmarinoEmerge4.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando5 = SKTexture(imageNamed: "Navegando0028")
-        texturaSubmarinoEmerge5.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando6 = SKTexture(imageNamed: "Navegando0029")
-        texturaSubmarinoEmerge6.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando7 = SKTexture(imageNamed: "Navegando0030")
-        texturaSubmarinoEmerge7.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando8 = SKTexture(imageNamed: "Navegando0031")
-        texturaSubmarinoEmerge8.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando9 = SKTexture(imageNamed: "Navegando0032")
-        texturaSubmarinoEmerge9.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando10 = SKTexture(imageNamed: "Navegando0033")
-        texturaSubmarinoEmerge10.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando11 = SKTexture(imageNamed: "Navegando0034")
-        texturaSubmarinoEmerge11.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando12 = SKTexture(imageNamed: "Navegando0035")
-        texturaSubmarinoEmerge12.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando13 = SKTexture(imageNamed: "Navegando0036")
-        texturaSubmarinoEmerge13.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando14 = SKTexture(imageNamed: "Navegando0037")
-        texturaSubmarinoEmerge14.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando15 = SKTexture(imageNamed: "Navegando0038")
-        texturaSubmarinoEmerge15.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando16 = SKTexture(imageNamed: "Navegando0039")
-        texturaSubmarinoEmerge16.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoNavegando17 = SKTexture(imageNamed: "Navegando0040")
-        texturaSubmarinoEmerge17.filteringMode = SKTextureFilteringMode.Nearest
-        
-        var animacionSubmarinoNavega = SKAction.animateWithTextures([texturaSubmarinoNavegando1, texturaSubmarinoNavegando2, texturaSubmarinoNavegando3, texturaSubmarinoNavegando4, texturaSubmarinoNavegando5, texturaSubmarinoNavegando6, texturaSubmarinoNavegando7, texturaSubmarinoNavegando8, texturaSubmarinoNavegando9, texturaSubmarinoNavegando10, texturaSubmarinoNavegando11, texturaSubmarinoNavegando12, texturaSubmarinoNavegando13, texturaSubmarinoNavegando14, texturaSubmarinoNavegando15, texturaSubmarinoNavegando16, texturaSubmarinoNavegando17], timePerFrame: 0.09)
-        var accionSubmarinoNavega = SKAction.repeatActionForever(animacionSubmarinoNavega)
-        
-        
-        submarino = SKSpriteNode(texture: texturaSubmarinoEmerge1)
-        submarino.setScale(0.7)
-        submarino.zPosition = 4
-        submarino.position = CGPointMake((submarino.size.width - 80), self.frame.height / 2)
-        submarino.constraints = [constraint]
-        submarino.name = "heroe"
-        
-        //Emitters estela Submarino
-        
-//        let estelaSubmarino1 = SKEmitterNode(fileNamed: "estelaSubDer.sks")
-//        estelaSubmarino1.zPosition = 0
-//        estelaSubmarino1.alpha = 1
-//        estelaSubmarino1.setScale(0.24)
-//        estelaSubmarino1.position = CGPointMake(23, -21)
-//        submarino.addChild(estelaSubmarino1)
-//        
-//        let estelaSubmarino2 = SKEmitterNode(fileNamed: "estelaSubIzq.sks")
-//        estelaSubmarino2.zPosition = -1
-//        estelaSubmarino2.alpha = 1
-//        estelaSubmarino2.setScale(0.22)
-//        estelaSubmarino2.position = CGPointMake(23, -7)
-//        submarino.addChild(estelaSubmarino2)
-        
+        // Creamos el submarino
+        submarino = objsubmarino.crearSubmarino()
         
         //Agrupación de acciones submarino emergiendo y navegando
         
-        var controlSubmarinoEmergiendoNavegando = SKAction.sequence([accionSubmarinoEmerge, accionSubmarinoNavega])
-        submarino.runAction(controlSubmarinoEmergiendoNavegando)
-        
-        
-        //submarino.runAction(submarinoNavega)
+        submarino.runAction(objsubmarino.getAtlas())
         
         submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 15))
         submarino.physicsBody?.dynamic = true
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
         submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
-        
+        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaMina
         submarino.physicsBody?.contactTestBitMask  = categoriaMina
         
         escena.addChild(submarino)
-        
         
     }
     

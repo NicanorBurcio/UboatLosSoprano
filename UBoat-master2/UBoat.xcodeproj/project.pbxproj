@@ -86,6 +86,7 @@
 		88BDD0811A78F135005F2EBC /* Emerge0021@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD0471A78F135005F2EBC /* Emerge0021@2x.png */; };
 		88BDD0821A78F135005F2EBC /* Emerge0022@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD0481A78F135005F2EBC /* Emerge0022@2x.png */; };
 		88BDD0831A78F135005F2EBC /* Emerge0023@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */; };
+		984025BC1A7D53EF00376E54 /* submarino.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984025BB1A7D53EF00376E54 /* submarino.swift */; };
 		9A0B57991A7A3FAD00354160 /* Emerge-0001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B57971A7A3FAD00354160 /* Emerge-0001@2x.png */; };
 		9A0B579A1A7A3FAD00354160 /* Emerge-0002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B57981A7A3FAD00354160 /* Emerge-0002@2x.png */; };
 		9A6873611A6565BF00CC4BF7 /* estelaSubDer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */; };
@@ -187,6 +188,7 @@
 		88BDD0471A78F135005F2EBC /* Emerge0021@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge0021@2x.png"; sourceTree = "<group>"; };
 		88BDD0481A78F135005F2EBC /* Emerge0022@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge0022@2x.png"; sourceTree = "<group>"; };
 		88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge0023@2x.png"; sourceTree = "<group>"; };
+		984025BB1A7D53EF00376E54 /* submarino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = submarino.swift; sourceTree = "<group>"; };
 		9A0B57971A7A3FAD00354160 /* Emerge-0001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge-0001@2x.png"; sourceTree = "<group>"; };
 		9A0B57981A7A3FAD00354160 /* Emerge-0002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge-0002@2x.png"; sourceTree = "<group>"; };
 		9A6873601A6565BF00CC4BF7 /* estelaSubDer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = estelaSubDer.sks; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		88130D3E1A52A2C300802E87 /* UBoat */ = {
 			isa = PBXGroup;
 			children = (
+				984025BA1A7D535400376E54 /* Classes */,
 				8851AB101A795E69001EDD63 /* AnalogStick */,
 				88130D611A52A37300802E87 /* AppDelegate.swift */,
 				88130D651A52A39300802E87 /* Menu.swift */,
@@ -377,6 +380,14 @@
 				88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */,
 			);
 			path = submarinoEmerge;
+			sourceTree = "<group>";
+		};
+		984025BA1A7D535400376E54 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				984025BB1A7D53EF00376E54 /* submarino.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984025BC1A7D53EF00376E54 /* submarino.swift in Sources */,
 				88130D6D1A52A39300802E87 /* Juego.swift in Sources */,
 				8851AB181A7966C0001EDD63 /* AnalogStick.swift in Sources */,
 				88130D6C1A52A39300802E87 /* Menu.swift in Sources */,
