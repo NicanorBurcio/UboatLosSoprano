@@ -20,11 +20,12 @@
 		88130D741A52A3A700802E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88130D731A52A3A700802E87 /* Main.storyboard */; };
 		88130D761A52A3B700802E87 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88130D751A52A3B700802E87 /* Images.xcassets */; };
 		88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88130D771A52A3CE00802E87 /* LaunchScreen.xib */; };
+		883A26DF1A7D4EBF008EAA34 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 883A26DE1A7D4EBF008EAA34 /* aSThumbImg.png */; };
+		883A26E11A7D4EC5008EAA34 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 883A26E01A7D4EC5008EAA34 /* joystick.png */; };
 		884BFE101A710B8B00B8C94A /* salidaTorpedo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */; };
 		884BFE121A710C9200B8C94A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884BFE111A710C9200B8C94A /* AVFoundation.framework */; };
 		884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE161A7118A800B8C94A /* explosionImpacto.wav */; };
 		8851AB151A795E9C001EDD63 /* aSBgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8851AB131A795E9C001EDD63 /* aSBgImg.png */; };
-		8851AB161A795E9C001EDD63 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8851AB141A795E9C001EDD63 /* aSThumbImg.png */; };
 		8851AB181A7966C0001EDD63 /* AnalogStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8851AB171A7966C0001EDD63 /* AnalogStick.swift */; };
 		889A0B831A5D2D55000BF2C3 /* enemigoExplota.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */; };
 		88BDD04A1A78F135005F2EBC /* Navegando0024.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD00F1A78F135005F2EBC /* Navegando0024.png */; };
@@ -120,11 +121,12 @@
 		88130D731A52A3A700802E87 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		88130D751A52A3B700802E87 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88130D771A52A3CE00802E87 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		883A26DE1A7D4EBF008EAA34 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
+		883A26E01A7D4EC5008EAA34 /* joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystick.png; sourceTree = "<group>"; };
 		884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = salidaTorpedo.wav; sourceTree = "<group>"; };
 		884BFE111A710C9200B8C94A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		884BFE161A7118A800B8C94A /* explosionImpacto.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosionImpacto.wav; sourceTree = "<group>"; };
 		8851AB131A795E9C001EDD63 /* aSBgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSBgImg.png; sourceTree = "<group>"; };
-		8851AB141A795E9C001EDD63 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		8851AB171A7966C0001EDD63 /* AnalogStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogStick.swift; sourceTree = "<group>"; };
 		889A0B811A5D2D55000BF2C3 /* enemigoExplota.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = enemigoExplota.atlas; sourceTree = "<group>"; };
 		88BDD00F1A78F135005F2EBC /* Navegando0024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navegando0024.png; sourceTree = "<group>"; };
@@ -296,8 +298,9 @@
 			isa = PBXGroup;
 			children = (
 				8851AB171A7966C0001EDD63 /* AnalogStick.swift */,
+				883A26DE1A7D4EBF008EAA34 /* aSThumbImg.png */,
+				883A26E01A7D4EC5008EAA34 /* joystick.png */,
 				8851AB131A795E9C001EDD63 /* aSBgImg.png */,
-				8851AB141A795E9C001EDD63 /* aSThumbImg.png */,
 			);
 			name = AnalogStick;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				88BDD07A1A78F135005F2EBC /* Emerge0014@2x.png in Resources */,
 				88BDD0771A78F135005F2EBC /* Emerge0011@2x.png in Resources */,
 				88130D761A52A3B700802E87 /* Images.xcassets in Resources */,
+				883A26E11A7D4EC5008EAA34 /* joystick.png in Resources */,
 				88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */,
 				88BDD04F1A78F135005F2EBC /* Navegando0026@2x.png in Resources */,
 				9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */,
@@ -490,6 +494,7 @@
 				88BDD0591A78F135005F2EBC /* Navegando0031@2x.png in Resources */,
 				88130D741A52A3A700802E87 /* Main.storyboard in Resources */,
 				88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */,
+				883A26DF1A7D4EBF008EAA34 /* aSThumbImg.png in Resources */,
 				880FB6D31A726A360043E53B /* oceano.mp3 in Resources */,
 				88BDD0621A78F135005F2EBC /* Navegando0036.png in Resources */,
 				88BDD0731A78F135005F2EBC /* Emerge0007@2x.png in Resources */,
@@ -516,7 +521,6 @@
 				88BDD0681A78F135005F2EBC /* Navegando0039.png in Resources */,
 				88BDD05E1A78F135005F2EBC /* Navegando0034.png in Resources */,
 				884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */,
-				8851AB161A795E9C001EDD63 /* aSThumbImg.png in Resources */,
 				88BDD05A1A78F135005F2EBC /* Navegando0032.png in Resources */,
 				88BDD06F1A78F135005F2EBC /* Emerge0003@2x.png in Resources */,
 				88BDD0781A78F135005F2EBC /* Emerge0012@2x.png in Resources */,

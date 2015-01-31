@@ -18,23 +18,29 @@ class AnalogStick: SKNode {
     func setThumbImage(image: UIImage?, sizeToFit: Bool) {
         var tImage: UIImage = UIImage(named: "aSThumbImg")!
         self.thumbNode.texture = SKTexture(image: tImage)
-        //        if sizeToFit {
-        //            self.thumbNodeDiametr = min(tImage.size.width, tImage.size.height)
-        //        }
+        var joystick = SKSpriteNode(imageNamed: "joystick")
+        joystick.alpha = 1
+        joystick.zPosition = -1
+        joystick.setScale(0.5)
+        self.thumbNode.addChild(joystick)
+        if sizeToFit {
+                    self.thumbNodeDiametr = min(tImage.size.width, tImage.size.height)
+                }
     }
     func setBgImage(image: UIImage?, sizeToFit: Bool) {
         var tImage: UIImage = UIImage(named: "aSBgImg")!
         self.bgNode.texture = SKTexture(image: tImage)
-        //        if sizeToFit {
-        //            self.bgNodeDiametr = min(tImage.size.width, tImage.size.height)
-        //        }
+        self.bgNode.alpha = 0
+                if sizeToFit {
+                    self.bgNodeDiametr = min(tImage.size.width, tImage.size.height)
+                }
     }
     var bgNodeDiametr: CGFloat {
-        get { return self.bgNode.size.width }
+        get { return self.bgNode.size.width * 2 }
         set { self.bgNode.size = CGSizeMake(newValue, newValue) }
     }
     var thumbNodeDiametr: CGFloat {
-        get { return self.bgNode.size.width }
+        get { return self.bgNode.size.width * 2 }
         set { self.thumbNode.size = CGSizeMake(newValue, newValue) }
     }
     var delagate: AnalogStickProtocol? {

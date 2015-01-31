@@ -30,7 +30,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var contadorImpactosEnEnemigo = 0
     var contadorImpactos = NSInteger()
     var contadorImpactosLabel = SKLabelNode()
-    
     var puntuacion = NSInteger()
     var contadorPuntuacionLabel = SKLabelNode()
     
@@ -76,13 +75,13 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         self.physicsWorld.contactDelegate  = self
         backgroundColor = UIColor.cyanColor()
        
-        //Joistick
-        let bgDiametr: CGFloat = 150
-        let thumbDiametr: CGFloat = 75
-        let joysticksRadius = bgDiametr / 2
+        //Joystick
+        let bgDiametr: CGFloat = 85
+        let thumbDiametr: CGFloat = 45
+        let joysticksRadius = bgDiametr
         moveAnalogStick.bgNodeDiametr = bgDiametr
         moveAnalogStick.thumbNodeDiametr = thumbDiametr
-        moveAnalogStick.position = CGPointMake(joysticksRadius - 34, joysticksRadius - 20)
+        moveAnalogStick.position = CGPointMake(joysticksRadius - 34, joysticksRadius - 29)
         moveAnalogStick.zPosition = 100
         moveAnalogStick.alpha = 1
         moveAnalogStick.delagate = self
@@ -383,10 +382,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
         enemigo.physicsBody?.collisionBitMask = categoriaSubmarino
         enemigo.physicsBody?.contactTestBitMask  = categoriaSubmarino
-        enemigo.physicsBody?.collisionBitMask = categoriaMisil
-        enemigo.physicsBody?.contactTestBitMask  = categoriaMisil
-        enemigo.physicsBody?.collisionBitMask = categoriaDisparo
-        enemigo.physicsBody?.contactTestBitMask  = categoriaDisparo
+        
         escena.addChild(enemigo)
         
         
