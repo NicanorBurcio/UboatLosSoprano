@@ -32,6 +32,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var contadorImpactosLabel = SKLabelNode()
     var puntuacion = NSInteger()
     var contadorPuntuacionLabel = SKLabelNode()
+    var fondoPapel = SKSpriteNode()
     
     var submarino = SKSpriteNode()
     
@@ -98,6 +99,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
         reproducirEfectoAudioOceano()
+        mostrarFondoPapel()
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
@@ -143,10 +145,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func motrarBotonDisparoMisil() {
         
-        botonDisparoMisil = SKSpriteNode(imageNamed: "botonMisil")
-        botonDisparoMisil.setScale(0.1)
+        botonDisparoMisil = SKSpriteNode(imageNamed: "botonTorpedo")
+        botonDisparoMisil.setScale(0.54)
         botonDisparoMisil.zPosition = 6
-        botonDisparoMisil.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 6)
+        botonDisparoMisil.position = CGPointMake(self.frame.width - 64, self.frame.height / 16.8)
         botonDisparoMisil.name = "botonDisparoMisil"
         escena.addChild(botonDisparoMisil)
         
@@ -157,15 +159,25 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         botonDisparoAmetralladora = SKSpriteNode(imageNamed: "botonAmetralladora")
         botonDisparoAmetralladora.setScale(0.1)
-        botonDisparoAmetralladora.zPosition = 6
-        botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 15)
+        botonDisparoAmetralladora.zPosition = 7
+        botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 6)
         botonDisparoAmetralladora.name = "botonDisparoMisil"
         escena.addChild(botonDisparoAmetralladora)
         
         
     }
     
-    
+    func mostrarFondoPapel() {
+        
+        fondoPapel = SKSpriteNode(imageNamed: "papel")
+        fondoPapel.setScale(1)
+        fondoPapel.zPosition = 5
+        fondoPapel.position = CGPointMake(self.frame.width / 2, self.frame.height / 14)
+        
+        escena.addChild(fondoPapel)
+        
+    }
+
     
     func volverMenu(){
         menuLabel.fontName = "Avenir"
@@ -182,12 +194,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func mostrarPuntuacion(){
         puntuacion = 0
         contadorPuntuacionLabel.fontName = "Avenir"
-        contadorPuntuacionLabel.fontSize  = 20
-        contadorPuntuacionLabel.fontColor = UIColor.greenColor()
-        contadorPuntuacionLabel.alpha = 1
+        contadorPuntuacionLabel.fontSize  = 25
+        contadorPuntuacionLabel.fontColor = UIColor.whiteColor()
+        contadorPuntuacionLabel.alpha = 0.8
         contadorPuntuacionLabel.zPosition = 6
-        contadorPuntuacionLabel.position = CGPointMake(120, self.frame.height - 25)
-        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        contadorPuntuacionLabel.position = CGPointMake(self.frame.width / 2 + 17, self.frame.height / 20)
+        contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
         escena.addChild(contadorPuntuacionLabel)
     }
     
@@ -195,12 +207,13 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func mostrarColisiones(){
         contadorImpactos = 5
         contadorImpactosLabel.fontName = "Avenir"
-        contadorImpactosLabel.fontSize  = 20
+        contadorImpactosLabel.fontSize  = 25
         contadorImpactosLabel.fontColor = UIColor.redColor()
-        contadorImpactosLabel.alpha = 1
+        contadorImpactosLabel.alpha = 0.8
         contadorImpactosLabel.zPosition = 6
-        contadorImpactosLabel.position = CGPointMake(self.frame.width - 120, self.frame.height - 25)
-        contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
+        contadorImpactosLabel.position = CGPointMake(self.frame.width / 2 - 19, self.frame.height / 20)
+
+        contadorImpactosLabel.text = "0" + "\(contadorImpactos)"
         escena.addChild(contadorImpactosLabel)
     }
     
@@ -244,13 +257,14 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         else if submarino.position.y < enemigo.position.y {
             enemigo.zPosition = submarino.zPosition - 1
         }
-        
+        enemigo.constraints = [constraint]
         enemigo.name = "enemigo"
         
         let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
         estelaEnemigo.zPosition = 0
         estelaEnemigo.setScale(0.5)
         estelaEnemigo.position = CGPointMake(20, -45)
+        
         enemigo.addChild(estelaEnemigo)
         
         enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
@@ -264,7 +278,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
-        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 15)
+        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 30)
         enemigo.runAction(desplazarEnemigo)
     }
     
@@ -350,6 +364,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         disparo.physicsBody?.dynamic = true
         disparo.physicsBody?.categoryBitMask = categoriaDisparo
         disparo.physicsBody?.collisionBitMask = categoriaEnemigo
+        disparo.physicsBody?.contactTestBitMask  = categoriaEnemigo
         
         escena.addChild(disparo)
         
@@ -361,16 +376,15 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func prismaticos() {
         
-        prisma = SKSpriteNode(imageNamed: "prismatic")
+        prisma = SKSpriteNode(imageNamed: "binocular")
         prisma.setScale(1)
-        prisma.zPosition = 5
+        prisma.zPosition = 6
         prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         
-        addChild(prisma)
+        escena.addChild(prisma)
         
     }
 
-    
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         let tocarMenuLabel: AnyObject = touches.anyObject()!
@@ -516,7 +530,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 
 func didBeginContact(contact: SKPhysicsContact) {
     
-    if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino && enemigo.physicsBody?.dynamic == true {
+    if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino {
         
         
         misil.physicsBody?.dynamic = false
@@ -534,15 +548,15 @@ func didBeginContact(contact: SKPhysicsContact) {
         runAction(explotarSubmarino)
         reproducirEfectoAudioExplosionImpacto()
         contadorImpactos--
-        contadorImpactosLabel.text = "Impactos restantes: " + "\(contadorImpactos)"
+        contadorImpactosLabel.text = "0" + "\(contadorImpactos)"
         puntuacion++
-        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
         
        
         
     }
     
-    if (contact.bodyA.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
+    if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
         
         enemigo.physicsBody?.dynamic = false
         
@@ -555,7 +569,7 @@ func didBeginContact(contact: SKPhysicsContact) {
         reproducirEfectoAudioExplosionImpacto()
         
         puntuacion++
-        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
     }
     
     if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
@@ -576,7 +590,7 @@ func didBeginContact(contact: SKPhysicsContact) {
         
         contadorImpactosEnEnemigo = 0
         puntuacion++
-        contadorPuntuacionLabel.text = "\(puntuacion): " + "Enemigos abatidos"
+        contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
         }
         
         
@@ -623,6 +637,7 @@ func destruirSubmarinoDamage(){
     
     
     let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
+    explosionSubmarino.particleBirthRate = 17
     explosionSubmarino.zPosition = 0
     explosionSubmarino.setScale(0.4)
     explosionSubmarino.position = CGPointMake(-40, 10)
@@ -631,13 +646,13 @@ func destruirSubmarinoDamage(){
     
     // Cambiando el color del Submarino cuando colisiona
     
-    submarino.runAction(SKAction.repeatActionForever(
-        SKAction.sequence([
-            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
-            SKAction.waitForDuration(0.4),
-            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
-            ])
-        ))
+//    submarino.runAction(SKAction.repeatActionForever(
+//        SKAction.sequence([
+//            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
+//            SKAction.waitForDuration(0.4),
+//            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
+//            ])
+//        ))
 }
 
 

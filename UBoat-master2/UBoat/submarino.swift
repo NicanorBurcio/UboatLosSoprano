@@ -33,7 +33,7 @@ class Submarino : SKNode {
     func crearSubmarino()->SKSpriteNode{
         var submarino = SKSpriteNode(texture: submarinoAtlas.textureNamed("Navegando0032"))
         submarino.setScale(1)
-        submarino.zPosition        = 4
+        submarino.zPosition        = 3
         submarino.position 		= CGPointMake(submarino.size.width - 100, 200)
         submarino.constraints      = [constraint]
         submarino.name 			= nombreSubmarino
