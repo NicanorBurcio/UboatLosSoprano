@@ -21,7 +21,7 @@ class AnalogStick: SKNode {
         var joystick = SKSpriteNode(imageNamed: "joystick")
         joystick.alpha = 1
         joystick.zPosition = -1
-        joystick.setScale(0.5)
+        joystick.setScale(1)
         self.thumbNode.addChild(joystick)
         if sizeToFit {
                     self.thumbNodeDiametr = min(tImage.size.width, tImage.size.height)

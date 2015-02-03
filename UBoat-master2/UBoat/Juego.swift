@@ -77,12 +77,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         backgroundColor = UIColor.cyanColor()
        
         //Joystick
-        let bgDiametr: CGFloat = 85
-        let thumbDiametr: CGFloat = 45
+        let bgDiametr: CGFloat = 80
+        let thumbDiametr: CGFloat = 40
         let joysticksRadius = bgDiametr
         moveAnalogStick.bgNodeDiametr = bgDiametr
         moveAnalogStick.thumbNodeDiametr = thumbDiametr
-        moveAnalogStick.position = CGPointMake(joysticksRadius - 34, joysticksRadius - 29)
+        moveAnalogStick.position = CGPointMake(joysticksRadius - 28, joysticksRadius - 22)
         moveAnalogStick.zPosition = 100
         moveAnalogStick.alpha = 1
         moveAnalogStick.delagate = self
@@ -146,9 +146,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func motrarBotonDisparoMisil() {
         
         botonDisparoMisil = SKSpriteNode(imageNamed: "botonTorpedo")
-        botonDisparoMisil.setScale(0.54)
-        botonDisparoMisil.zPosition = 6
-        botonDisparoMisil.position = CGPointMake(self.frame.width - 64, self.frame.height / 16.8)
+        botonDisparoMisil.setScale(1)
+        botonDisparoMisil.zPosition = 9
+        botonDisparoMisil.position = CGPointMake(self.frame.width / 1.104, self.frame.height / 20)
         botonDisparoMisil.name = "botonDisparoMisil"
         escena.addChild(botonDisparoMisil)
         
@@ -158,9 +158,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func motrarBotonDisparoAmetralladoral() {
         
         botonDisparoAmetralladora = SKSpriteNode(imageNamed: "botonAmetralladora")
-        botonDisparoAmetralladora.setScale(0.1)
-        botonDisparoAmetralladora.zPosition = 7
-        botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.03, self.frame.height / 6)
+        botonDisparoAmetralladora.setScale(1)
+        botonDisparoAmetralladora.zPosition = 8
+        botonDisparoAmetralladora.position = CGPointMake(self.frame.width / 1.046, self.frame.height / 6.49)
         botonDisparoAmetralladora.name = "botonDisparoMisil"
         escena.addChild(botonDisparoAmetralladora)
         
@@ -171,7 +171,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         fondoPapel = SKSpriteNode(imageNamed: "papel")
         fondoPapel.setScale(1)
-        fondoPapel.zPosition = 5
+        fondoPapel.zPosition = 6
         fondoPapel.position = CGPointMake(self.frame.width / 2, self.frame.height / 14)
         
         escena.addChild(fondoPapel)
@@ -193,12 +193,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func mostrarPuntuacion(){
         puntuacion = 0
-        contadorPuntuacionLabel.fontName = "Avenir"
-        contadorPuntuacionLabel.fontSize  = 25
-        contadorPuntuacionLabel.fontColor = UIColor.whiteColor()
-        contadorPuntuacionLabel.alpha = 0.8
-        contadorPuntuacionLabel.zPosition = 6
-        contadorPuntuacionLabel.position = CGPointMake(self.frame.width / 2 + 17, self.frame.height / 20)
+        contadorPuntuacionLabel.fontName = "HelveticaNeue-CondensedBlack"
+        contadorPuntuacionLabel.fontSize  = 27
+        contadorPuntuacionLabel.fontColor = UIColor.redColor()
+        contadorPuntuacionLabel.alpha = 0.75
+        contadorPuntuacionLabel.zPosition = 7
+        contadorPuntuacionLabel.position = CGPointMake(self.frame.width / 2 + 18.5, self.frame.height / 24)
         contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
         escena.addChild(contadorPuntuacionLabel)
     }
@@ -206,12 +206,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func mostrarColisiones(){
         contadorImpactos = 5
-        contadorImpactosLabel.fontName = "Avenir"
-        contadorImpactosLabel.fontSize  = 25
-        contadorImpactosLabel.fontColor = UIColor.redColor()
-        contadorImpactosLabel.alpha = 0.8
-        contadorImpactosLabel.zPosition = 6
-        contadorImpactosLabel.position = CGPointMake(self.frame.width / 2 - 19, self.frame.height / 20)
+        contadorImpactosLabel.fontName = "HelveticaNeue-CondensedBlack"
+        contadorImpactosLabel.fontSize  = 27
+        contadorImpactosLabel.fontColor = UIColor.blackColor()
+        contadorImpactosLabel.alpha = 0.75
+        contadorImpactosLabel.zPosition = 7
+        contadorImpactosLabel.position = CGPointMake(self.frame.width / 2 - 18.5, self.frame.height / 24)
 
         contadorImpactosLabel.text = "0" + "\(contadorImpactos)"
         escena.addChild(contadorImpactosLabel)
@@ -354,7 +354,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         disparo = SKSpriteNode(imageNamed: "Disparo")
         disparo.setScale(0.4)
         disparo.zPosition = 3
-        disparo.position = CGPointMake(submarino.position.x + 54, submarino.position.y + 16)
+        disparo.position = CGPointMake(submarino.position.x + 60, submarino.position.y + 18)
         disparo.alpha = 1
         disparo.constraints = [constraint]
         disparo.name = "disparo"
@@ -377,10 +377,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func prismaticos() {
         
         prisma = SKSpriteNode(imageNamed: "binocular")
+//        prisma.size = self.size
         prisma.setScale(1)
-        prisma.zPosition = 6
+        prisma.zPosition = 8
         prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        
+        prisma.constraints      = [constraint]
+
         escena.addChild(prisma)
         
     }
@@ -430,7 +432,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         for var indice = 0; indice < 2; ++indice {
             
             let fdcielo = SKSpriteNode(imageNamed: "Cielo")
-            fdcielo.position = CGPoint(x: (indice * Int(fdcielo.size.width)) + Int(fdcielo.size.width)/2, y: Int(fdcielo.size.height)/2)
+            fdcielo.position = CGPoint(x: (indice * Int(fdcielo.size.width)) + Int(fdcielo.size.width)/2, y: Int(fdcielo.size.height)/2 + 1)
             fdcielo.name = "fdcielo"
             fdcielo.zPosition = 1
             
