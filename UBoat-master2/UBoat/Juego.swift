@@ -677,7 +677,18 @@ func destruirSubmarinoDamage(){
     
     
     let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
+    
+//    var countDown = 17
+//    NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("cuentaAtras"), userInfo: nil, repeats: true)
+//    
+//    func cuentaAtras(timer: NSTimer){
+//        countDown--
+//    }
+
+//    explosionSubmarino.particleBirthRate = CGFloat(countDown)
+    
     explosionSubmarino.particleBirthRate = 17
+
     explosionSubmarino.zPosition = 0
     explosionSubmarino.setScale(0.4)
     explosionSubmarino.position = CGPointMake(-40, 10)
@@ -686,13 +697,13 @@ func destruirSubmarinoDamage(){
     
     // Cambiando el color del Submarino cuando colisiona
     
-//    submarino.runAction(SKAction.repeatActionForever(
-//        SKAction.sequence([
-//            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
-//            SKAction.waitForDuration(0.4),
-//            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
-//            ])
-//        ))
+    submarino.runAction(SKAction.repeatActionForever(
+        SKAction.sequence([
+            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0.4),
+            SKAction.waitForDuration(0.4),
+            SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
+            ])
+        ))
 }
 
 
