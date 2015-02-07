@@ -278,7 +278,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
-        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 30)
+        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 15)
         enemigo.runAction(desplazarEnemigo)
     }
     
@@ -286,7 +286,21 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func aparecerMina(){
         
         
+        var altura = UInt (self.frame.size.height - 100 )
+        var alturaRandom = UInt (arc4random()) % altura
         
+        mina = SKSpriteNode(imageNamed: "Anima_Mina0024")
+        mina.setScale(0.8)
+        mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
+        if mina.position.y > submarino.position.y {
+            mina.zPosition = submarino.zPosition - 1
+        }
+        else if mina.position.y < submarino.position.y {
+            mina.zPosition = submarino.zPosition + 1
+        }
+        mina.constraints = [constraint]
+        mina.name = "mina"
+
         
         //Mina Flotando
         
@@ -321,53 +335,27 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var animacionMinaFlotando = SKAction.animateWithTextures([texturaMinaFlotando1, texturaMinaFlotando2, texturaMinaFlotando3, texturaMinaFlotando4, texturaMinaFlotando5, texturaMinaFlotando6, texturaMinaFlotando7, texturaMinaFlotando8, texturaMinaFlotando9, texturaMinaFlotando10, texturaMinaFlotando11, texturaMinaFlotando12, texturaMinaFlotando13], timePerFrame: 0.09)
         var accionMinaFlotando = SKAction.repeatActionForever(animacionMinaFlotando)
         
+        mina.runAction(accionMinaFlotando)
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        var altura = UInt (self.frame.size.height - 100 )
-        var alturaRandom = UInt (arc4random()) % altura
-        
-        mina = SKSpriteNode(texture: texturaMinaFlotando1)
-        mina.setScale(0.8)
-        mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
-        if mina.position.y > submarino.position.y {
-            mina.zPosition = submarino.zPosition - 1
-        }
-        else if mina.position.y < submarino.position.y {
-            mina.zPosition = submarino.zPosition + 1
-        }
-        mina.constraints = [constraint]
-        mina.name = "mina"
-        
-        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
-        mina.physicsBody?.dynamic = true
-        mina.physicsBody?.categoryBitMask = categoriaMina
-        mina.physicsBody?.collisionBitMask = categoriaSubmarino
-        mina.physicsBody?.contactTestBitMask  = categoriaSubmarino
-        mina.physicsBody?.collisionBitMask = categoriaMisil
-        mina.physicsBody?.contactTestBitMask  = categoriaMisil
-        mina.physicsBody?.collisionBitMask = categoriaDisparo
-        mina.physicsBody?.contactTestBitMask  = categoriaDisparo
-        
-        
-
-
-
-        escena.addChild(mina)
-        
+        //Mina Desplazándose
         
         var alturaMina = UInt (self.frame.size.height - 100 )
         var alturaMinaRandom = UInt (arc4random()) % altura
         var desplazarMina = SKAction.moveTo(CGPointMake( -mina.size.width * 2 , CGFloat(mina.position.y)), duration: 40)
         mina.runAction(desplazarMina)
+        
+        
+        //Propiedades físicas de la mina
+        
+        
+        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(mina.size.width, mina.size.height))
+        mina.physicsBody?.dynamic = true
+        mina.physicsBody?.categoryBitMask = categoriaMina
+        mina.physicsBody?.collisionBitMask = categoriaSubmarino
+        mina.physicsBody?.contactTestBitMask  = categoriaSubmarino
+        
+   
+        escena.addChild(mina)
     }
     
     
@@ -584,17 +572,15 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 func didBeginContact(contact: SKPhysicsContact) {
     
     if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino {
-        
-        
-        misil.physicsBody?.dynamic = false
-        enemigo.physicsBody?.dynamic = false
+
         submarino.physicsBody?.dynamic = false
         
-        var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
-        var retardo = SKAction.waitForDuration(0.5)
-        var enemigoDesaparece = SKAction.removeFromParent()
-        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
-        enemigo.runAction(controlEnemigo)
+        
+//        var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
+//        var retardo = SKAction.waitForDuration(0.5)
+//        var enemigoDesaparece = SKAction.removeFromParent()
+//        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+//        enemigo.runAction(controlEnemigo)
         
         var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarinoDamage()})
         
