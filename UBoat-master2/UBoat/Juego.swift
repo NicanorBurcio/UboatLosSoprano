@@ -284,11 +284,59 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     
     func aparecerMina(){
+        
+        
+        
+        
+        //Mina Flotando
+        
+        var texturaMinaFlotando1 = SKTexture(imageNamed: "Anima_Mina0024")
+        texturaMinaFlotando1.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando2 = SKTexture(imageNamed: "Anima_Mina0025")
+        texturaMinaFlotando2.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando3 = SKTexture(imageNamed: "Anima_Mina0026")
+        texturaMinaFlotando3.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando4 = SKTexture(imageNamed: "Anima_Mina0027")
+        texturaMinaFlotando4.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando5 = SKTexture(imageNamed: "Anima_Mina0028")
+        texturaMinaFlotando5.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando6 = SKTexture(imageNamed: "Anima_Mina0029")
+        texturaMinaFlotando6.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando7 = SKTexture(imageNamed: "Anima_Mina0030")
+        texturaMinaFlotando7.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando8 = SKTexture(imageNamed: "Anima_Mina0031")
+        texturaMinaFlotando8.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando9 = SKTexture(imageNamed: "Anima_Mina0032")
+        texturaMinaFlotando9.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando10 = SKTexture(imageNamed: "Anima_Mina0033")
+        texturaMinaFlotando10.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando11 = SKTexture(imageNamed: "Anima_Mina0034")
+        texturaMinaFlotando11.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando12 = SKTexture(imageNamed: "Anima_Mina0035")
+        texturaMinaFlotando12.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaMinaFlotando13 = SKTexture(imageNamed: "Anima_Mina0036")
+        texturaMinaFlotando13.filteringMode = SKTextureFilteringMode.Nearest
+      
+        
+        var animacionMinaFlotando = SKAction.animateWithTextures([texturaMinaFlotando1, texturaMinaFlotando2, texturaMinaFlotando3, texturaMinaFlotando4, texturaMinaFlotando5, texturaMinaFlotando6, texturaMinaFlotando7, texturaMinaFlotando8, texturaMinaFlotando9, texturaMinaFlotando10, texturaMinaFlotando11, texturaMinaFlotando12, texturaMinaFlotando13], timePerFrame: 0.09)
+        var accionMinaFlotando = SKAction.repeatActionForever(animacionMinaFlotando)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         var altura = UInt (self.frame.size.height - 100 )
         var alturaRandom = UInt (arc4random()) % altura
         
-        mina = SKSpriteNode(imageNamed: "Mina")
-        mina.setScale(0.11)
+        mina = SKSpriteNode(texture: texturaMinaFlotando1)
+        mina.setScale(0.8)
         mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
         if mina.position.y > submarino.position.y {
             mina.zPosition = submarino.zPosition - 1
@@ -308,6 +356,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mina.physicsBody?.contactTestBitMask  = categoriaMisil
         mina.physicsBody?.collisionBitMask = categoriaDisparo
         mina.physicsBody?.contactTestBitMask  = categoriaDisparo
+        
+        
+
 
 
         escena.addChild(mina)
@@ -377,7 +428,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func prismaticos() {
         
         prisma = SKSpriteNode(imageNamed: "binocular")
-//        prisma.size = self.size
+        prisma.size = self.size
         prisma.setScale(1)
         prisma.zPosition = 8
         prisma.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
