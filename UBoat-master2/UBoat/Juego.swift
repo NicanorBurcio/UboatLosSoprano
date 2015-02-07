@@ -50,8 +50,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     //MOVIMIENTOS
     
     
-    let velocidadMar: CGFloat = 2
-    let velocidadCielo: CGFloat = 1
+    let velocidadMar: CGFloat = 1.0
+    
+    let velocidadCielo: CGFloat = 0.5
     
     //CATEGORIAS
     
@@ -332,7 +333,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         texturaMinaFlotando13.filteringMode = SKTextureFilteringMode.Nearest
       
         
-        var animacionMinaFlotando = SKAction.animateWithTextures([texturaMinaFlotando1, texturaMinaFlotando2, texturaMinaFlotando3, texturaMinaFlotando4, texturaMinaFlotando5, texturaMinaFlotando6, texturaMinaFlotando7, texturaMinaFlotando8, texturaMinaFlotando9, texturaMinaFlotando10, texturaMinaFlotando11, texturaMinaFlotando12, texturaMinaFlotando13], timePerFrame: 0.09)
+        var animacionMinaFlotando = SKAction.animateWithTextures([texturaMinaFlotando1, texturaMinaFlotando2, texturaMinaFlotando3, texturaMinaFlotando4, texturaMinaFlotando5, texturaMinaFlotando6, texturaMinaFlotando7, texturaMinaFlotando8, texturaMinaFlotando9, texturaMinaFlotando10, texturaMinaFlotando11, texturaMinaFlotando12, texturaMinaFlotando13], timePerFrame: 0.2)
         var accionMinaFlotando = SKAction.repeatActionForever(animacionMinaFlotando)
         
         mina.runAction(accionMinaFlotando)
