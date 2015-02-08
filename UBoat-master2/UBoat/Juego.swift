@@ -16,7 +16,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var tiempoDePartida : Int! = 0
     var tiempoDePartidaLabel = SKLabelNode()
     
-    var contadorDeParticulas: Int! = 17
+    var contadorDeParticulas: Int! = 4
     var contadorDeParticulasLabel = SKLabelNode()
     
     //Movimiento del Joistick
@@ -115,12 +115,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var aSelector = "tiempo"
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector (aSelector), userInfo: nil, repeats: true)
         
-        // Cuenta atrás
-        
-        var aParticles = "cuentaAtras"
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
 
-        
         // Mostrar enenmigo indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
@@ -145,23 +140,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         tiempoDePartidaLabel.removeFromParent()
         addChild(tiempoDePartidaLabel)
     }
+
+
     
-    func cuentaAtras() {
-        contadorDeParticulas = contadorDeParticulas - 1
-        if contadorDeParticulas < 0{
-            contadorDeParticulas < 0
-            contadorDeParticulas = 0
-        }
-        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
-        contadorDeParticulasLabel.fontName = "Avenir"
-        contadorDeParticulasLabel.fontSize  = 25
-        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
-        contadorDeParticulasLabel.position = CGPointMake(650, 340)
-        contadorDeParticulasLabel.zPosition = 120
-        contadorDeParticulasLabel.removeFromParent()
-        
-        addChild(contadorDeParticulasLabel)
-    }
+
 
     
     
@@ -620,26 +602,49 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             
         }
     }
+    
+
+
+var contacto = true
+
+
+
 
 
 func didBeginContact(contact: SKPhysicsContact) {
+
+    
     
     if (contact.bodyA.categoryBitMask & categoriaSubmarino) == categoriaSubmarino {
 
-    submarinoTocado()
-        
+
+        // Cuenta atrás
         
         submarino.physicsBody?.dynamic = false
+
+
+        // Solo se dispara el evento al primer contacto
+
+        if contacto == true {
+            var aParticles = "cuentaAtras"
+            NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
+            contacto = false
+            
+        }
+
+
+        
+
         reproducirEfectoAudioExplosionImpacto()
         contadorImpactos--
         contadorImpactosLabel.text = "0" + "\(contadorImpactos)"
         puntuacion++
         contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
-        
-       
+               
         
     }
     
+
     if (contact.bodyB.categoryBitMask & categoriaMisil) == categoriaMisil && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width  {
         
         enemigo.physicsBody?.dynamic = false
@@ -699,6 +704,8 @@ func didBeginContact(contact: SKPhysicsContact) {
     
 }
 
+
+
 func destruirBarco(){
     
     var atlasExplosionEnemigo = SKTextureAtlas(named: "enemigoExplota")
@@ -717,7 +724,9 @@ func destruirBarco(){
 }
 
 
-    func submarinoTocado() {
+
+    func cuentaAtras() {
+
         
         let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
         explosionSubmarino.particleBirthRate = CGFloat(contadorDeParticulas)
@@ -730,14 +739,65 @@ func destruirBarco(){
             SKAction.sequence([
                 SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0),
                 SKAction.waitForDuration(0.4),
-               SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
+                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
                 ])
             ))
-
+        
         
         submarino.addChild(explosionSubmarino)
-
+        
+        
+        
+        contadorDeParticulas = contadorDeParticulas - 1
+        
+        if contadorDeParticulas <= 0{
+            contadorDeParticulas = 0
+            submarino.removeFromParent(explosionSubmarino)
+        }
+        
+        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
+        contadorDeParticulasLabel.fontName = "Avenir"
+        contadorDeParticulasLabel.fontSize  = 25
+        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
+        contadorDeParticulasLabel.position = CGPointMake(650, 340)
+        contadorDeParticulasLabel.zPosition = 120
+        contadorDeParticulasLabel.removeFromParent()
+        
+        addChild(contadorDeParticulasLabel)
     }
+
+
+
+
+
+
+
+//
+//    func submarinoTocado() {
+//        
+//        let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
+//        explosionSubmarino.particleBirthRate = CGFloat(contadorDeParticulas)
+//        explosionSubmarino.zPosition = 0
+//        explosionSubmarino.setScale(0.4)
+//        explosionSubmarino.position = CGPointMake(-40, 10)
+//        
+//        // Cambiando el color del Submarino cuando colisiona
+//        submarino.runAction(SKAction.repeatActionForever(
+//            SKAction.sequence([
+//                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0),
+//                SKAction.waitForDuration(0.4),
+//               SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
+//                ])
+//            ))
+//
+//        
+//        submarino.addChild(explosionSubmarino)
+//
+//    }
+
+
+
+
 
     func destruirSubmarino(){
         
