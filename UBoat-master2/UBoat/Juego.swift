@@ -16,7 +16,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var tiempoDePartida : Int! = 0
     var tiempoDePartidaLabel = SKLabelNode()
     
-    var contadorDeParticulas: Int! = 100
+    var contadorDeParticulas: Int! = 17
     var contadorDeParticulasLabel = SKLabelNode()
     
     //Movimiento del Joistick
@@ -121,10 +121,11 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
 
         
+        // Mostrar enenmigo indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
                 SKAction.waitForDuration(12)])))
-        
+        // Mostrar mina indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerMina),
                 SKAction.waitForDuration(35)])))
