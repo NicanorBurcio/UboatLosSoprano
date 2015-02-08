@@ -32,6 +32,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var sonidoSalidaTorpedo  = AVAudioPlayer()
     var sonidoExploxionImpacto = AVAudioPlayer()
     var sonidoOceano = AVAudioPlayer()
+    var sonidoSubmarinoAlarm = AVAudioPlayer()
     
     //OBJETOS
     var contadorImpactosEnEnemigo = 0
@@ -155,6 +156,18 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoOceano.play()
         sonidoOceano.volume = 0.2
     }
+    
+    
+    func reproducirEfectoAudioSubmarinoAlarm(){
+        let ubicacionAudioAudioSubmarinoAlarm = NSBundle.mainBundle().pathForResource("SubmarineAlarm", ofType: "mp3")
+        var efectoSubmarinoAlarm = NSURL(fileURLWithPath: ubicacionAudioAudioSubmarinoAlarm!)
+        sonidoSubmarinoAlarm = AVAudioPlayer(contentsOfURL: efectoSubmarinoAlarm, error: nil)
+        sonidoSubmarinoAlarm.prepareToPlay()
+        sonidoSubmarinoAlarm.numberOfLoops = 20
+        sonidoSubmarinoAlarm.play()
+        sonidoSubmarinoAlarm.volume = 0.3
+    }
+    
     
     func reproducirEfectoAudioExplosionImpacto(){
         let ubicacionAudioExplosionImpacto = NSBundle.mainBundle().pathForResource("explosionImpacto", ofType: "wav")
@@ -626,8 +639,25 @@ func didBeginContact(contact: SKPhysicsContact) {
         // Solo se dispara el evento al primer contacto
 
         if contacto == true {
+            
+         
+            // Cambiando el color del Submarino a rojo cuando colisiona
+            
+            let controlDamageSequence = SKAction.sequence([
+                SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.3),
+                SKAction.waitForDuration(0.3),
+                SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0, duration: 0.3),
+                ])
+            
+            var controlDamage = SKAction.repeatAction(controlDamageSequence, count: contadorDeParticulas - 2)
+            submarino.runAction(controlDamage, withKey: "tocado")
+            
+            reproducirEfectoAudioSubmarinoAlarm()
+            
+            
+            // Iniciando el contador de tiempo
             var aParticles = "cuentaAtras"
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
             contacto = false
             
         }
@@ -745,27 +775,45 @@ func destruirBarco(){
         explosionSubmarino.zPosition = 0
         explosionSubmarino.setScale(0.4)
         explosionSubmarino.position = CGPointMake(-40, 10)
-        
-        // Cambiando el color del Submarino cuando colisiona
-        submarino.runAction(SKAction.repeatActionForever(
-            SKAction.sequence([
-                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0.3, duration: 0),
-                SKAction.waitForDuration(0.4),
-                SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: 0, duration: 0.4),
-                ])
-            ))
-        
-        
         submarino.addChild(explosionSubmarino)
         
         
         contadorDeParticulas = contadorDeParticulas - 1
         
         if contadorDeParticulas <= 0{
+
             
-            timer.invalidate()
+            // Agregando dos destelllos al final para indicar que se termino el daño
+            
+            let controlDamageSequence2 = SKAction.sequence([
+                SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 1, duration: 0.2),
+                SKAction.waitForDuration(0.1),
+                SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 0, duration: 0.1),
+                ])
+            
+            let controlDamage2 = SKAction.repeatAction(controlDamageSequence2, count: 2)
+            
+            submarino.runAction(controlDamage2, withKey: "tocadofinal")
+            
+            
+            
+            // Parando el sonido de alarma
+            
+            sonidoSubmarinoAlarm.stop()
+            
+            
+            
+            
+//            submarino.removeActionForKey("tocado")
+            
+//            let controlDamage2 = SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0)
+//            submarino.runAction(controlDamage2, withKey: "damage")
+//            submarino.removeActionForKey("damage")
+           
+            // Parando el contador de tiempo y reiniciando contadores
             contadorDeParticulas = 40
             contacto = true
+            timer.invalidate()
         }
         
         
