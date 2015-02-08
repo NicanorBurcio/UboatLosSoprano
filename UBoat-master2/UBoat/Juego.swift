@@ -16,7 +16,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var tiempoDePartida : Int! = 0
     var tiempoDePartidaLabel = SKLabelNode()
     
-    var contadorDeParticulas: Int! = 4
+    var contadorDeParticulas: Int! = 40
     var contadorDeParticulasLabel = SKLabelNode()
     
     //Movimiento del Joistick
@@ -607,7 +607,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 
 var contacto = true
 
-
+var timer:NSTimer = NSTimer()
 
 
 
@@ -627,7 +627,7 @@ func didBeginContact(contact: SKPhysicsContact) {
 
         if contacto == true {
             var aParticles = "cuentaAtras"
-            NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector (aParticles), userInfo: nil, repeats: true)
             contacto = false
             
         }
@@ -728,8 +728,20 @@ func destruirBarco(){
     func cuentaAtras() {
 
         
+        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
+        contadorDeParticulasLabel.fontName = "Avenir"
+        contadorDeParticulasLabel.fontSize  = 25
+        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
+        contadorDeParticulasLabel.position = CGPointMake(650, 340)
+        contadorDeParticulasLabel.zPosition = 120
+        contadorDeParticulasLabel.removeFromParent()
+        
+        addChild(contadorDeParticulasLabel)
+        
+        
         let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
-        explosionSubmarino.particleBirthRate = CGFloat(contadorDeParticulas)
+        explosionSubmarino.particleBirthRate = 20
+        explosionSubmarino.numParticlesToEmit = contadorDeParticulas
         explosionSubmarino.zPosition = 0
         explosionSubmarino.setScale(0.4)
         explosionSubmarino.position = CGPointMake(-40, 10)
@@ -747,23 +759,17 @@ func destruirBarco(){
         submarino.addChild(explosionSubmarino)
         
         
-        
         contadorDeParticulas = contadorDeParticulas - 1
         
         if contadorDeParticulas <= 0{
-            contadorDeParticulas = 0
-            submarino.removeFromParent(explosionSubmarino)
+            
+            timer.invalidate()
+            contadorDeParticulas = 40
+            contacto = true
         }
         
-        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
-        contadorDeParticulasLabel.fontName = "Avenir"
-        contadorDeParticulasLabel.fontSize  = 25
-        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
-        contadorDeParticulasLabel.position = CGPointMake(650, 340)
-        contadorDeParticulasLabel.zPosition = 120
-        contadorDeParticulasLabel.removeFromParent()
         
-        addChild(contadorDeParticulasLabel)
+
     }
 
 
