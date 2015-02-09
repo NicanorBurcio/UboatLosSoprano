@@ -154,7 +154,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoOceano = AVAudioPlayer(contentsOfURL: efectoOceano, error: nil)
         sonidoOceano.prepareToPlay()
         sonidoOceano.play()
-        sonidoOceano.volume = 0.2
+        sonidoOceano.volume = 0
     }
     
     
@@ -277,7 +277,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         submarino.runAction(objsubmarino.getAtlas())
         
         submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 30))
-        submarino.physicsBody?.dynamic = true
+        submarino.physicsBody?.dynamic = false
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
         submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
@@ -396,7 +396,8 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         //Propiedades físicas de la mina
         
         
-        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(mina.size.width, mina.size.height))
+//        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(mina.size.width, mina.size.height))
+        mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 3)
         mina.physicsBody?.dynamic = true
         mina.physicsBody?.categoryBitMask = categoriaMina
         mina.physicsBody?.collisionBitMask = categoriaSubmarino
@@ -627,6 +628,7 @@ var contadorchoque = 0
 var timer:NSTimer = NSTimer()
 
 
+    
 
 func didBeginContact(contact: SKPhysicsContact) {
 
@@ -636,17 +638,10 @@ func didBeginContact(contact: SKPhysicsContact) {
 
         reproducirEfectoAudioExplosionImpacto()
         
-        submarino.physicsBody?.dynamic = false
+//        submarino.physicsBody?.dynamic = false
         
         contadorchoque++
-        
-        
-        
-        if uci == true && contadorchoque > 2 {
-            destruirSubmarino()
-            
-        }
-        
+
         
         // Solo se dispara el evento al primer contacto
             
@@ -680,6 +675,28 @@ func didBeginContact(contact: SKPhysicsContact) {
             }
         
         }
+    
+    if uci == true && contadorchoque > 2 {
+        
+        timer.invalidate()
+        
+        let controlDamageSequence2 = SKAction.sequence([
+            SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2),
+            SKAction.waitForDuration(0.1),
+            SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 0, duration: 0.1),
+            ])
+        
+        let controlDamage2 = SKAction.repeatAction(controlDamageSequence2, count: 1)
+        
+        submarino.runAction(controlDamage2, withKey: "tocado")
+        
+
+//        submarino.removeActionForKey("tocado")
+        destruirSubmarino()
+        
+        
+    }
+    
 
 
 
@@ -765,11 +782,8 @@ func destruirBarco(){
 
 
     func cuentaAtras() {
-
-
         
         contadorDeParticulas = contadorDeParticulas - 1
-        
         
         contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
         contadorDeParticulasLabel.fontName = "Avenir"
@@ -784,11 +798,13 @@ func destruirBarco(){
         
         let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
         explosionSubmarino.particleBirthRate = 20
-        explosionSubmarino.numParticlesToEmit = contadorDeParticulas
+        explosionSubmarino.numParticlesToEmit = contadorDeParticulas + 1
         explosionSubmarino.zPosition = 0
         explosionSubmarino.setScale(0.4)
         explosionSubmarino.position = CGPointMake(-40, 10)
         submarino.addChild(explosionSubmarino)
+        
+ 
         
         
         if contadorDeParticulas <= 0{
@@ -798,16 +814,16 @@ func destruirBarco(){
             
             
             let controlDamageSequence2 = SKAction.sequence([
-                SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 1, duration: 0.2),
+                SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2),
                 SKAction.waitForDuration(0.1),
-                SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 0, duration: 0.1),
+                SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 0, duration: 0.1),
                 ])
             
             let controlDamage2 = SKAction.repeatAction(controlDamageSequence2, count: 2)
             
             submarino.runAction(controlDamage2, withKey: "tocado")
             
-            submarino.removeActionForKey("tocado")
+//            submarino.removeActionForKey("tocado")
             
             
             
@@ -870,6 +886,7 @@ func destruirBarco(){
 
 
 
+    
 
     func destruirSubmarino(){
         
