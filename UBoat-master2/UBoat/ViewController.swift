@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         skView.showsFPS = true
         skView.showsNodeCount = true
         
+        skView.showsPhysics = true
+        
         escena = Menu(size: vista.bounds.size)
         escena.scaleMode = .AspectFill
         
