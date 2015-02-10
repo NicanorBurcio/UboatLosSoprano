@@ -128,15 +128,24 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 }
   
-    
+    var minutos = Int()
+    var horas = Int()
     func tiempo() {
     
         tiempoDePartida = tiempoDePartida + 1
-        tiempoDePartidaLabel.text = "\(tiempoDePartida)"
+            if tiempoDePartida == 60 {
+                minutos++
+                tiempoDePartida = 0
+            }
+            if minutos == 60 {
+                horas++
+                minutos = 0
+            }
+        tiempoDePartidaLabel.text = "\(horas) " + "º " + "\(minutos) " + "´ " + "\(tiempoDePartida) " + "´´"
         tiempoDePartidaLabel.fontName = "Avenir"
-        tiempoDePartidaLabel.fontSize  = 25
+        tiempoDePartidaLabel.fontSize  = 15
         tiempoDePartidaLabel.fontColor = UIColor.whiteColor()
-        tiempoDePartidaLabel.position = CGPointMake(25, 340)
+        tiempoDePartidaLabel.position = CGPointMake(50, 355)
         tiempoDePartidaLabel.zPosition = 120
         tiempoDePartidaLabel.removeFromParent()
         addChild(tiempoDePartidaLabel)
@@ -154,7 +163,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoOceano = AVAudioPlayer(contentsOfURL: efectoOceano, error: nil)
         sonidoOceano.prepareToPlay()
         sonidoOceano.play()
-        sonidoOceano.volume = 0
+        sonidoOceano.volume = 0.05
     }
     
     
@@ -165,7 +174,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoSubmarinoAlarm.prepareToPlay()
         sonidoSubmarinoAlarm.numberOfLoops = 20
         sonidoSubmarinoAlarm.play()
-        sonidoSubmarinoAlarm.volume = 0.3
+        sonidoSubmarinoAlarm.volume = 0.01
     }
     
     
@@ -175,7 +184,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoExploxionImpacto = AVAudioPlayer(contentsOfURL: efectoExplosionImpacto, error: nil)
         sonidoExploxionImpacto.prepareToPlay()
         sonidoExploxionImpacto.play()
-        sonidoExploxionImpacto.volume = 0.7
+        sonidoExploxionImpacto.volume = 0.08
     }
     
     
@@ -397,7 +406,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         
 //        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(mina.size.width, mina.size.height))
-        mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 3)
+        mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 4)
         mina.physicsBody?.dynamic = true
         mina.physicsBody?.categoryBitMask = categoriaMina
         mina.physicsBody?.collisionBitMask = categoriaSubmarino
@@ -663,7 +672,7 @@ func didBeginContact(contact: SKPhysicsContact) {
                 var controlDamage = SKAction.repeatAction(controlDamageSequence, count: contadorDeParticulas - 2)
                 submarino.runAction(controlDamage, withKey: "tocado")
                 
-                //            reproducirEfectoAudioSubmarinoAlarm()
+                reproducirEfectoAudioSubmarinoAlarm()
                 
                 
                 // Iniciando el contador de tiempo
@@ -829,7 +838,7 @@ func destruirBarco(){
             
             // Parando el sonido de alarma
             
-//            sonidoSubmarinoAlarm.stop()
+            sonidoSubmarinoAlarm.stop()
             
             
             
