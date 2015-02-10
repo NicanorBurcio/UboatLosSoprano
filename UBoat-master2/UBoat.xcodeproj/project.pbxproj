@@ -22,6 +22,7 @@
 		88130D781A52A3CE00802E87 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88130D771A52A3CE00802E87 /* LaunchScreen.xib */; };
 		883A26DF1A7D4EBF008EAA34 /* aSThumbImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 883A26DE1A7D4EBF008EAA34 /* aSThumbImg.png */; };
 		883A26E11A7D4EC5008EAA34 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = 883A26E01A7D4EC5008EAA34 /* joystick.png */; };
+		883C63E91A8A1E4000E5EC27 /* SonarSubmarino1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 883C63E81A8A1E4000E5EC27 /* SonarSubmarino1.wav */; };
 		884BFE101A710B8B00B8C94A /* salidaTorpedo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */; };
 		884BFE121A710C9200B8C94A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884BFE111A710C9200B8C94A /* AVFoundation.framework */; };
 		884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */ = {isa = PBXBuildFile; fileRef = 884BFE161A7118A800B8C94A /* explosionImpacto.wav */; };
@@ -139,6 +140,7 @@
 		88130D771A52A3CE00802E87 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		883A26DE1A7D4EBF008EAA34 /* aSThumbImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aSThumbImg.png; sourceTree = "<group>"; };
 		883A26E01A7D4EC5008EAA34 /* joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystick.png; sourceTree = "<group>"; };
+		883C63E81A8A1E4000E5EC27 /* SonarSubmarino1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SonarSubmarino1.wav; sourceTree = "<group>"; };
 		884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = salidaTorpedo.wav; sourceTree = "<group>"; };
 		884BFE111A710C9200B8C94A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		884BFE161A7118A800B8C94A /* explosionImpacto.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosionImpacto.wav; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				9A87EFA31A8828C00001903E /* SubmarineAlarm.mp3 */,
+				883C63E81A8A1E4000E5EC27 /* SonarSubmarino1.wav */,
 				884BFE161A7118A800B8C94A /* explosionImpacto.wav */,
 				880FB6D21A726A360043E53B /* oceano.mp3 */,
 				884BFE0F1A710B8B00B8C94A /* salidaTorpedo.wav */,
@@ -547,6 +550,7 @@
 				9AFF44F81A8622A1000687B2 /* Anima_Mina0024@2x.png in Resources */,
 				9A0B57991A7A3FAD00354160 /* Emerge-0001@2x.png in Resources */,
 				8851AB151A795E9C001EDD63 /* aSBgImg.png in Resources */,
+				883C63E91A8A1E4000E5EC27 /* SonarSubmarino1.wav in Resources */,
 				88BDD07E1A78F135005F2EBC /* Emerge0018@2x.png in Resources */,
 				88BDD0611A78F135005F2EBC /* Navegando0035@2x.png in Resources */,
 				88BDD0571A78F135005F2EBC /* Navegando0030@2x.png in Resources */,

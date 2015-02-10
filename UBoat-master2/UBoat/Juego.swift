@@ -33,6 +33,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var sonidoExploxionImpacto = AVAudioPlayer()
     var sonidoOceano = AVAudioPlayer()
     var sonidoSubmarinoAlarm = AVAudioPlayer()
+    var sonarSubmarino = AVAudioPlayer()
     
     //OBJETOS
     var contadorImpactosEnEnemigo = 0
@@ -49,8 +50,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var misil = SKSpriteNode()
     var disparo = SKSpriteNode()
     var menuLabel = SKLabelNode()
-    var botonMoverArriba = SKSpriteNode()
-    var botonMoverAbajo = SKSpriteNode()
     var botonDisparoMisil = SKSpriteNode()
     var botonDisparoAmetralladora = SKSpriteNode()
     var mina = SKSpriteNode()
@@ -109,6 +108,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
         reproducirEfectoAudioOceano()
+        reproducirEfectoAudioSonarSubmarino()
         mostrarFondoPapel()
         
         // Cronómetro
@@ -174,10 +174,19 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoSubmarinoAlarm.prepareToPlay()
         sonidoSubmarinoAlarm.numberOfLoops = 20
         sonidoSubmarinoAlarm.play()
-        sonidoSubmarinoAlarm.volume = 0.01
+        sonidoSubmarinoAlarm.volume = 0.02
     }
     
-    
+    func reproducirEfectoAudioSonarSubmarino(){
+        let ubicacionAudioAudioSonarSubamarino = NSBundle.mainBundle().pathForResource("SonarSubmarino1", ofType: "wav")
+        var efectoSonarSubmarino = NSURL(fileURLWithPath: ubicacionAudioAudioSonarSubamarino!)
+        sonarSubmarino = AVAudioPlayer(contentsOfURL: efectoSonarSubmarino, error: nil)
+        sonarSubmarino.prepareToPlay()
+        sonarSubmarino.numberOfLoops = -1
+        sonarSubmarino.play()
+        sonarSubmarino.volume = 0.02
+    }
+        
     func reproducirEfectoAudioExplosionImpacto(){
         let ubicacionAudioExplosionImpacto = NSBundle.mainBundle().pathForResource("explosionImpacto", ofType: "wav")
         var efectoExplosionImpacto = NSURL(fileURLWithPath: ubicacionAudioExplosionImpacto!)
@@ -280,7 +289,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         // Creamos el submarino
         submarino = objsubmarino.crearSubmarino()
-        
+
         //Agrupación de acciones submarino emergiendo y navegando
         
         submarino.runAction(objsubmarino.getAtlas())
@@ -673,6 +682,8 @@ func didBeginContact(contact: SKPhysicsContact) {
                 submarino.runAction(controlDamage, withKey: "tocado")
                 
                 reproducirEfectoAudioSubmarinoAlarm()
+                sonarSubmarino.stop()
+
                 
                 
                 // Iniciando el contador de tiempo
@@ -791,7 +802,7 @@ func destruirBarco(){
 
 
     func cuentaAtras() {
-        
+
         contadorDeParticulas = contadorDeParticulas - 1
         
         contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
@@ -839,7 +850,10 @@ func destruirBarco(){
             // Parando el sonido de alarma
             
             sonidoSubmarinoAlarm.stop()
-            
+            sonarSubmarino.prepareToPlay()
+            sonarSubmarino.numberOfLoops = -1
+            sonarSubmarino.play()
+            sonarSubmarino.volume = 0.02
             
             
             
@@ -908,6 +922,7 @@ func destruirBarco(){
         submarino.physicsBody?.dynamic = false
         var desplazarSubmarino = SKAction.moveTo(CGPointMake( self.frame.width / 2, self.frame.height / 2), duration:2.0)
         submarino.runAction(desplazarSubmarino)
+        sonarSubmarino.stop()
     }
 
     
