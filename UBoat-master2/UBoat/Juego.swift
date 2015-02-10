@@ -306,6 +306,8 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         submarino.physicsBody?.collisionBitMask = categoriaMina
         submarino.physicsBody?.contactTestBitMask  = categoriaMina
         
+  
+        
         escena.addChild(submarino)
         
     }
@@ -572,21 +574,24 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     }
     
     
-    
+//    var altofondo: CGFloat = CGFloat ()
     
     
     func crearOceano() {
         
         for var indice = 0; indice < 2; ++indice {
             
-            let fondo = SKSpriteNode(imageNamed: "mar4")
+            fondo = SKSpriteNode(imageNamed: "mar4")
             fondo.position = CGPoint(x: (indice * Int(fondo.size.width)) + Int(fondo.size.width)/2, y: Int(fondo.size.height)/2)
             
             fondo.name = "fondo"
             fondo.zPosition = 2
             
-            addChild(fondo)
+//            altofondo = fondo.size.height
+//            
+//            println("\(altofondo)")
             
+            addChild(fondo)
         }
         
     }
@@ -625,6 +630,18 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             
             if analogStick.isEqual(moveAnalogStick) {
                 submarino.position = CGPointMake(submarino.position.x, submarino.position.y + (velocity.y * 0.12))
+                var posicion = submarino.position.y
+                
+                var posicionmar = fondo.size.height
+
+//                 println("\(altofondo)")
+                
+                if posicion <= posicionmar {
+                    submarino.setScale(1)
+                } else {
+                    submarino.setScale(0.2)
+                }
+
             }
             
             if submarino.position.y >= self.frame.height - 75 {
