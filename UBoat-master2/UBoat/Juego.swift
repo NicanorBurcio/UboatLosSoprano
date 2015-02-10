@@ -24,6 +24,8 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     //Para evitar la rotación en la colisión de elementos
     let constraint = SKConstraint.zRotation(SKRange(constantValue: 0))
+    
+    //fondo MAR y CIELO
     var fondo = SKSpriteNode()
     var fdcielo = SKSpriteNode()
     
@@ -116,7 +118,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var aSelector = "tiempo"
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector (aSelector), userInfo: nil, repeats: true)
         
-
+               
         // Mostrar enenmigo indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
@@ -130,6 +132,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
   
     var minutos = Int()
     var horas = Int()
+    
     func tiempo() {
     
         tiempoDePartida = tiempoDePartida + 1
@@ -149,7 +152,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         tiempoDePartidaLabel.zPosition = 120
         tiempoDePartidaLabel.removeFromParent()
         addChild(tiempoDePartidaLabel)
-    }
+        }
 
 
     
@@ -250,7 +253,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         menuLabel.fontSize  = 50
         menuLabel.fontColor = UIColor.whiteColor()
         menuLabel.alpha = 1
-        menuLabel.zPosition = 6
+        menuLabel.zPosition = 120
         menuLabel.position = CGPointMake(self.frame.width / 2, self.frame.height / 2 - 100)
         menuLabel.text = "Volver al Menú"
         escena.addChild(menuLabel)
@@ -326,12 +329,12 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         enemigo.constraints = [constraint]
         enemigo.name = "enemigo"
         
-        let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
-        estelaEnemigo.zPosition = 0
-        estelaEnemigo.setScale(0.5)
-        estelaEnemigo.position = CGPointMake(20, -45)
+//        let estelaEnemigo = SKEmitterNode(fileNamed: "estelaEnemigo.sks")
+//        estelaEnemigo.zPosition = 0
+//        estelaEnemigo.setScale(0.5)
+//        estelaEnemigo.position = CGPointMake(20, -45)
         
-        enemigo.addChild(estelaEnemigo)
+//        enemigo.addChild(estelaEnemigo)
         
         enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
         enemigo.physicsBody?.dynamic = true
@@ -656,7 +659,6 @@ func didBeginContact(contact: SKPhysicsContact) {
 
         reproducirEfectoAudioExplosionImpacto()
         
-//        submarino.physicsBody?.dynamic = false
         
         contadorchoque++
 
@@ -696,7 +698,7 @@ func didBeginContact(contact: SKPhysicsContact) {
         
         }
     
-    if uci == true && contadorchoque > 2 {
+    if uci == true && contadorchoque > 1 {
         
         timer.invalidate()
         
@@ -766,15 +768,7 @@ func didBeginContact(contact: SKPhysicsContact) {
     if contadorImpactos == 0{
         
         var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarino()})
-        var retardo = SKAction.waitForDuration(3)
-        var controlEscena = SKAction.speedBy(0, duration: 1)
-        var controlSubmarino = SKAction.sequence([retardo,  controlEscena])
-        runAction(controlSubmarino)
-        submarino.runAction(explotarSubmarino)
-        sonidoOceano.stop()
-        
-        volverMenu()
-    }
+            }
     
     
     
@@ -913,16 +907,30 @@ func destruirBarco(){
 
     func destruirSubmarino(){
         
+        var retardo = SKAction.waitForDuration(3)
+        var controlEscena = SKAction.speedBy(0, duration: 1)
+        var controlSubmarino = SKAction.sequence([retardo,  controlEscena])
+        runAction(controlSubmarino)
+        
         let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
-        explosionSubmarino.zPosition = 4
-        explosionSubmarino.setScale(0.9)
-        explosionSubmarino.position = CGPointMake(-50, -10)
-        //submarino.addChild(explosionSubmarino)
+        explosionSubmarino.particleBirthRate = 20
+        explosionSubmarino.numParticlesToEmit = 20
+        explosionSubmarino.zPosition = 0
+        explosionSubmarino.setScale(0.4)
+        explosionSubmarino.position = CGPointMake(-40, 10)
+        submarino.addChild(explosionSubmarino)
+        sonidoSubmarinoAlarm.stop()
+        volverMenu()
+        
         
         submarino.physicsBody?.dynamic = false
         var desplazarSubmarino = SKAction.moveTo(CGPointMake( self.frame.width / 2, self.frame.height / 2), duration:2.0)
         submarino.runAction(desplazarSubmarino)
         sonarSubmarino.stop()
+        sonidoOceano.stop()
+        enemigo.removeFromParent()
+        mina.removeFromParent()
+    
     }
 
     
