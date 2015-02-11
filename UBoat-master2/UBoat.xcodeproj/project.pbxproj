@@ -108,6 +108,8 @@
 		9AFF45021A8622A1000687B2 /* Anima_Mina0034@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44F51A8622A1000687B2 /* Anima_Mina0034@2x.png */; };
 		9AFF45031A8622A1000687B2 /* Anima_Mina0035@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44F61A8622A1000687B2 /* Anima_Mina0035@2x.png */; };
 		9AFF45041A8622A1000687B2 /* Anima_Mina0036@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44F71A8622A1000687B2 /* Anima_Mina0036@2x.png */; };
+		CF2685EF1A8B974800E351D2 /* Prologo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2685EE1A8B974800E351D2 /* Prologo.swift */; };
+		CF2685F11A8B975300E351D2 /* marca.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2685F01A8B975300E351D2 /* marca.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +228,8 @@
 		9AFF44F51A8622A1000687B2 /* Anima_Mina0034@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0034@2x.png"; sourceTree = "<group>"; };
 		9AFF44F61A8622A1000687B2 /* Anima_Mina0035@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0035@2x.png"; sourceTree = "<group>"; };
 		9AFF44F71A8622A1000687B2 /* Anima_Mina0036@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0036@2x.png"; sourceTree = "<group>"; };
+		CF2685EE1A8B974800E351D2 /* Prologo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prologo.swift; sourceTree = "<group>"; };
+		CF2685F01A8B975300E351D2 /* marca.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = marca.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +282,8 @@
 				88130D611A52A37300802E87 /* AppDelegate.swift */,
 				88130D651A52A39300802E87 /* Menu.swift */,
 				88130D661A52A39300802E87 /* Juego.swift */,
+				CF2685F01A8B975300E351D2 /* marca.swift */,
+				CF2685EE1A8B974800E351D2 /* Prologo.swift */,
 				88130D671A52A39300802E87 /* estelaMisil.sks */,
 				88130D681A52A39300802E87 /* explosionSubmarino.sks */,
 				9A6873681A65902A00CC4BF7 /* humoExplosion.sks */,
@@ -638,10 +644,12 @@
 			files = (
 				984025BC1A7D53EF00376E54 /* submarino.swift in Sources */,
 				88130D6D1A52A39300802E87 /* Juego.swift in Sources */,
+				CF2685F11A8B975300E351D2 /* marca.swift in Sources */,
 				8851AB181A7966C0001EDD63 /* AnalogStick.swift in Sources */,
 				88130D6C1A52A39300802E87 /* Menu.swift in Sources */,
 				88130D641A52A38100802E87 /* ViewController.swift in Sources */,
 				88130D621A52A37300802E87 /* AppDelegate.swift in Sources */,
+				CF2685EF1A8B974800E351D2 /* Prologo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

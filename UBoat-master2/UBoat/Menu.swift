@@ -64,7 +64,7 @@ import SpriteKit
             
             let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.5)
             
-            let  aparecerEscena = Juego(size: self.size)
+            let  aparecerEscena = Prologo(size: self.size)
             
             aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
             
