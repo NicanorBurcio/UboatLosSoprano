@@ -32,9 +32,9 @@ class Submarino : SKNode {
     
     func crearSubmarino()->SKSpriteNode{
         var submarino = SKSpriteNode(imageNamed: "Emerge-0002")
-        submarino.setScale(0.5)
+        submarino.setScale(0.60)
         submarino.zPosition        = 4
-        submarino.position 		= CGPointMake(submarino.size.width - 50, 200)
+        submarino.position 		= CGPointMake(submarino.size.width - 55, 200)
         submarino.constraints      = [constraint]
         submarino.name 			= nombreSubmarino
         

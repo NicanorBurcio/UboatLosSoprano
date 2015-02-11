@@ -308,7 +308,11 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         submarino.runAction(objsubmarino.getAtlas())
         
-        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 30))
+//        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 30))
+        
+        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 20, 15), center: CGPointMake(0.0, -3.0))
+
+        
         submarino.physicsBody?.dynamic = false
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
@@ -349,7 +353,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 //        enemigo.addChild(estelaEnemigo)
         
-        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
+//        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
+        
+        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 8, 16), center: CGPointMake(0.0, -11.0))
+        
         enemigo.physicsBody?.dynamic = true
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
         enemigo.physicsBody?.collisionBitMask = categoriaSubmarino
@@ -429,9 +436,10 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         //Propiedades físicas de la mina
         
-        
-//        mina.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(mina.size.width, mina.size.height))
-        mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 4)
+//      mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 4)
+        mina.physicsBody = SKPhysicsBody(circleOfRadius: mina.size.width / 3.4, center: CGPointMake(0.0, -7.0))
+
+
         mina.physicsBody?.dynamic = true
         mina.physicsBody?.categoryBitMask = categoriaMina
         mina.physicsBody?.collisionBitMask = categoriaSubmarino
@@ -641,16 +649,65 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             
             if analogStick.isEqual(moveAnalogStick) {
                 submarino.position = CGPointMake(submarino.position.x, submarino.position.y + (velocity.y * 0.12))
-                var posicion = submarino.position.y
+              
+                //Ajuste de escala dependiendo de la posición Y del submarino
+                var posicionSuby:Int = Int(submarino.position.y)
                 
-                var posicionmar = fondo.size.height
-
-//                 println("\(altofondo)")
-                
-                if posicion <= posicionmar {
-                    submarino.setScale(1)
-                } else {
-                    submarino.setScale(0.2)
+                switch (posicionSuby)
+                {
+                case 277...305:
+                    println("<----- tiene entre 304 y 277")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.45, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 249...276:
+                    println("<----- tiene entre 276 y 249")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.50, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 221...248:
+                    println("<----- tiene entre 248 y 221")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.55, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 193...220:
+                    println("<----- tiene entre 220 y 193")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.60, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 165...192:
+                    println("<----- tiene entre 192 y 165")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.65, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 137...164:
+                    println("<----- tiene entre 164 y 137")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.70, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 110...136:
+                    println("<----- tiene entre 136 y 110")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.75, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                case 81...109:
+                    println("<----- tiene entre 109 y 81")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.80, duration: 0.10)
+                    submarino.runAction(action)
+                    
+                default:
+                    println("<----- tiene entre 80 y 35")
+                    println ("\n")
+                    var action = SKAction.scaleTo(0.85, duration: 0.10)
+                    submarino.runAction(action)
                 }
 
             }
