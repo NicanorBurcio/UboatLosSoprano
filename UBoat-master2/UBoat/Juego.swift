@@ -249,14 +249,25 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 
     
     func volverMenu(){
-        menuLabel.fontName = "Avenir"
+        menuLabel.fontName = "HelveticaNeue-CondensedBlack"
         menuLabel.fontSize  = 50
         menuLabel.fontColor = UIColor.whiteColor()
         menuLabel.alpha = 1
         menuLabel.zPosition = 120
         menuLabel.position = CGPointMake(self.frame.width / 2, self.frame.height / 2 - 100)
-        menuLabel.text = "Volver al Menú"
+        menuLabel.text = "Game Over"
         escena.addChild(menuLabel)
+        runAction(SKAction.sequence([
+            SKAction.waitForDuration(3.0),
+            SKAction.runBlock() {
+                
+                let aparecer = SKTransition.flipHorizontalWithDuration(1)
+                let pantalla = marca(size: self.size)
+                self.view?.presentScene(pantalla, transition: aparecer)
+            }
+            
+            ]))
+        
     }
     
     

@@ -39,7 +39,7 @@ import SpriteKit
     
     func llamada() {
      
-        let label = SKLabelNode(fontNamed: "Avenir")
+        let label = SKLabelNode(fontNamed: "HelveticaNeue-CondensedBlack")
             label.text = "Jugar"
             label.fontColor = UIColor.blackColor()
             label.fontSize = 30
