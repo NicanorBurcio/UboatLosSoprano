@@ -317,7 +317,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaEnemigo
         submarino.physicsBody?.contactTestBitMask  = categoriaEnemigo
-        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
+//        submarino.physicsBody?.categoryBitMask = categoriaSubmarino
         submarino.physicsBody?.collisionBitMask = categoriaMina
         submarino.physicsBody?.contactTestBitMask  = categoriaMina
         
@@ -652,65 +652,80 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
               
                 //Ajuste de escala dependiendo de la posición Y del submarino
                 var posicionSuby:Int = Int(submarino.position.y)
+                var escala:CGFloat = 0.0
                 
                 switch (posicionSuby)
                 {
                 case 277...305:
                     println("<----- tiene entre 304 y 277")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.45, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.45
+                    
+//                    var action = SKAction.scaleTo(0.45, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 249...276:
                     println("<----- tiene entre 276 y 249")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.50, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.50
+//                    var action = SKAction.scaleTo(0.50, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 221...248:
                     println("<----- tiene entre 248 y 221")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.55, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.55
+//                    var action = SKAction.scaleTo(0.55, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 193...220:
                     println("<----- tiene entre 220 y 193")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.60, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.60
+//                    var action = SKAction.scaleTo(0.60, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 165...192:
                     println("<----- tiene entre 192 y 165")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.65, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.65
+//                    var action = SKAction.scaleTo(0.65, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 137...164:
                     println("<----- tiene entre 164 y 137")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.70, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.70
+//                    var action = SKAction.scaleTo(0.70, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 110...136:
                     println("<----- tiene entre 136 y 110")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.75, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.75
+//                    var action = SKAction.scaleTo(0.75, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 case 81...109:
                     println("<----- tiene entre 109 y 81")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.80, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.80
+//                    var action = SKAction.scaleTo(0.80, duration: 0.10)
+//                    submarino.runAction(action)
                     
                 default:
                     println("<----- tiene entre 80 y 35")
                     println ("\n")
-                    var action = SKAction.scaleTo(0.85, duration: 0.10)
-                    submarino.runAction(action)
+                    escala = 0.85
+//                    var action = SKAction.scaleTo(0.85, duration: 0.10)
+//                    submarino.runAction(action)
                 }
 
+                var action = SKAction.scaleTo(escala, duration: 0.10)
+                submarino.runAction(action)
+                
             }
+            
             
             if submarino.position.y >= self.frame.height - 75 {
                 submarino.position.y = self.frame.height - 75
