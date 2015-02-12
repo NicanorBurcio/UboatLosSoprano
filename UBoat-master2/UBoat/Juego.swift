@@ -122,7 +122,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         // Mostrar enenmigo indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
-                SKAction.waitForDuration(12)])))
+                SKAction.waitForDuration(22)])))
         // Mostrar mina indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerMina),
@@ -165,6 +165,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var efectoOceano = NSURL(fileURLWithPath: ubicacionAudioOceano!)
         sonidoOceano = AVAudioPlayer(contentsOfURL: efectoOceano, error: nil)
         sonidoOceano.prepareToPlay()
+        sonidoOceano.numberOfLoops = -1
         sonidoOceano.play()
         sonidoOceano.volume = 0.05
     }
@@ -334,8 +335,69 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var alturaRandom = UInt (arc4random()) % altura
         
         enemigo = SKSpriteNode(imageNamed: "enemigo")
-        enemigo.setScale(0.4)
+//        enemigo.setScale(0.4)
         enemigo.position = CGPointMake(self.frame.size.width + enemigo.size.width / 2, CGFloat(25 + alturaRandom))
+        
+        //Ajuste de escala dependiendo de la posición Y del enemigo
+        var posicionEnemigoy:Int = Int(enemigo.position.y)
+        
+        switch (posicionEnemigoy)
+        {
+        case 277...305:
+            println("<----- tiene entre 304 y 277")
+            println ("\n")
+            var action = SKAction.scaleTo(0.25, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 249...276:
+            println("<----- tiene entre 276 y 249")
+            println ("\n")
+            var action = SKAction.scaleTo(0.30, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 221...248:
+            println("<----- tiene entre 248 y 221")
+            println ("\n")
+            var action = SKAction.scaleTo(0.35, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 193...220:
+            println("<----- tiene entre 220 y 193")
+            println ("\n")
+            var action = SKAction.scaleTo(0.40, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 165...192:
+            println("<----- tiene entre 192 y 165")
+            println ("\n")
+            var action = SKAction.scaleTo(0.45, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 137...164:
+            println("<----- tiene entre 164 y 137")
+            println ("\n")
+            var action = SKAction.scaleTo(0.50, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 110...136:
+            println("<----- tiene entre 136 y 110")
+            println ("\n")
+            var action = SKAction.scaleTo(0.55, duration: 0.10)
+            enemigo.runAction(action)
+            
+        case 81...109:
+            println("<----- tiene entre 109 y 81")
+            println ("\n")
+            var action = SKAction.scaleTo(0.60, duration: 0.10)
+            enemigo.runAction(action)
+            
+        default:
+            println("<----- tiene entre 80 y 35")
+            println ("\n")
+            var action = SKAction.scaleTo(0.65, duration: 0.10)
+            enemigo.runAction(action)
+        }
+        
         //enemigo.zPosition = CGFloat()
         if submarino.position.y > enemigo.position.y {
             enemigo.zPosition = submarino.zPosition + 1
@@ -367,7 +429,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         var alturaEnemigo = UInt (self.frame.size.height - 100 )
         var alturaEnemigoRandom = UInt (arc4random()) % altura
-        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 15)
+        var desplazarEnemigo = SKAction.moveTo(CGPointMake( -enemigo.size.width * 2 , CGFloat(enemigo.position.y)), duration: 25)
         enemigo.runAction(desplazarEnemigo)
     }
     
@@ -379,8 +441,72 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var alturaRandom = UInt (arc4random()) % altura
         
         mina = SKSpriteNode(imageNamed: "Anima_Mina0024")
-        mina.setScale(0.8)
+//        mina.setScale(0.8)
         mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
+        
+        //Ajuste de escala dependiendo de la posición Y de la mina
+        var posicionMinay:Int = Int(mina.position.y)
+        
+        switch (posicionMinay)
+        {
+        case 277...305:
+            println("<----- tiene entre 304 y 277")
+            println ("\n")
+            var action = SKAction.scaleTo(0.35, duration: 0.10)
+            mina.runAction(action)
+            
+        case 249...276:
+            println("<----- tiene entre 276 y 249")
+            println ("\n")
+            var action = SKAction.scaleTo(0.40, duration: 0.10)
+            mina.runAction(action)
+            
+        case 221...248:
+            println("<----- tiene entre 248 y 221")
+            println ("\n")
+            var action = SKAction.scaleTo(0.45, duration: 0.10)
+            mina.runAction(action)
+            
+        case 193...220:
+            println("<----- tiene entre 220 y 193")
+            println ("\n")
+            var action = SKAction.scaleTo(0.50, duration: 0.10)
+            mina.runAction(action)
+            
+        case 165...192:
+            println("<----- tiene entre 192 y 165")
+            println ("\n")
+            var action = SKAction.scaleTo(0.55, duration: 0.10)
+            mina.runAction(action)
+            
+        case 137...164:
+            println("<----- tiene entre 164 y 137")
+            println ("\n")
+            var action = SKAction.scaleTo(0.60, duration: 0.10)
+            mina.runAction(action)
+            
+        case 110...136:
+            println("<----- tiene entre 136 y 110")
+            println ("\n")
+            var action = SKAction.scaleTo(0.65, duration: 0.10)
+            mina.runAction(action)
+            
+        case 81...109:
+            println("<----- tiene entre 109 y 81")
+            println ("\n")
+            var action = SKAction.scaleTo(0.70, duration: 0.10)
+            mina.runAction(action)
+            
+        default:
+            println("<----- tiene entre 80 y 35")
+            println ("\n")
+            var action = SKAction.scaleTo(0.75, duration: 0.10)
+            mina.runAction(action)
+        }
+        
+    
+
+    
         if mina.position.y > submarino.position.y {
             mina.zPosition = submarino.zPosition - 1
         }
@@ -390,7 +516,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mina.constraints = [constraint]
         mina.name = "mina"
 
-        
+    
         //Mina Flotando
         
         var texturaMinaFlotando1 = SKTexture(imageNamed: "Anima_Mina0024")
@@ -454,9 +580,75 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func lanzarMisil(){
         misil = SKSpriteNode(imageNamed: "misil")
-        misil.setScale(0.45)
-        misil.zPosition = 3
+//        misil.setScale(0.45)
+        
         misil.position = CGPointMake(submarino.position.x + 20 , submarino.position.y - 5)
+        
+        //Ajuste de escala dependiendo de la posición Y del torpedo
+        var posicionTorpedoy:Int = Int(misil.position.y)
+        
+        switch (posicionTorpedoy)
+        {
+        case 277...305:
+            println("<----- tiene entre 304 y 277")
+            println ("\n")
+            var action = SKAction.scaleTo(0.25, duration: 0.10)
+            misil.runAction(action)
+            
+        case 249...276:
+            println("<----- tiene entre 276 y 249")
+            println ("\n")
+            var action = SKAction.scaleTo(0.30, duration: 0.10)
+           misil.runAction(action)
+            
+        case 221...248:
+            println("<----- tiene entre 248 y 221")
+            println ("\n")
+            var action = SKAction.scaleTo(0.35, duration: 0.10)
+            misil.runAction(action)
+            
+        case 193...220:
+            println("<----- tiene entre 220 y 193")
+            println ("\n")
+            var action = SKAction.scaleTo(0.40, duration: 0.10)
+            misil.runAction(action)
+            
+        case 165...192:
+            println("<----- tiene entre 192 y 165")
+            println ("\n")
+            var action = SKAction.scaleTo(0.45, duration: 0.10)
+            misil.runAction(action)
+            
+        case 137...164:
+            println("<----- tiene entre 164 y 137")
+            println ("\n")
+            var action = SKAction.scaleTo(0.50, duration: 0.10)
+            misil.runAction(action)
+            
+        case 110...136:
+            println("<----- tiene entre 136 y 110")
+            println ("\n")
+            var action = SKAction.scaleTo(0.55, duration: 0.10)
+            misil.runAction(action)
+            
+        case 81...109:
+            println("<----- tiene entre 109 y 81")
+            println ("\n")
+            var action = SKAction.scaleTo(0.60, duration: 0.10)
+            misil.runAction(action)
+            
+        default:
+            println("<----- tiene entre 80 y 35")
+            println ("\n")
+            var action = SKAction.scaleTo(0.65, duration: 0.10)
+           misil.runAction(action)
+        }
+        
+        misil.zPosition = 3
+        
+        
+        
+        
         misil.alpha = 1
         misil.constraints = [constraint]
         misil.name = "misil"
