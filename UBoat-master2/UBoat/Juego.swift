@@ -55,6 +55,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var botonDisparoMisil = SKSpriteNode()
     var botonDisparoAmetralladora = SKSpriteNode()
     var mina = SKSpriteNode()
+    var botonDive = SKSpriteNode()
     
     //MOVIMIENTOS
     
@@ -109,6 +110,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mostrarPuntuacion()
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
+        motrarBotonDive()
         reproducirEfectoAudioOceano()
         reproducirEfectoAudioSonarSubmarino()
         mostrarFondoPapel()
@@ -123,6 +125,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerEnemigo),
                 SKAction.waitForDuration(22)])))
+
         // Mostrar mina indefinidadmente
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerMina),
@@ -211,7 +214,18 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     }
     
     
- 
+    
+    func motrarBotonDive() {
+        
+        botonDive = SKSpriteNode(imageNamed: "botonDive")
+        botonDive.setScale(1)
+        botonDive.zPosition = 9
+        botonDive.position = CGPointMake(self.frame.width / 4, self.frame.height / 19)
+        botonDive.name = "botonDisparoMisil"
+        escena.addChild(botonDive)
+        
+        
+    }
     
     func motrarBotonDisparoMisil() {
         
@@ -1023,12 +1037,14 @@ func didBeginContact(contact: SKPhysicsContact) {
         var explotarEnemigo = SKAction.runBlock({() in self.destruirBarco()})
         var retardo = SKAction.waitForDuration(0.5)
         var enemigoDesaparece = SKAction.removeFromParent()
-        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece])
+        var enemigoAparece = SKAction.runBlock({() in self.aparecerEnemigo()})
+        var controlEnemigo = SKAction.sequence([explotarEnemigo, retardo, enemigoDesaparece, retardo, enemigoAparece])
         enemigo.runAction(controlEnemigo)
         reproducirEfectoAudioExplosionImpacto()
         
         puntuacion++
         contadorPuntuacionLabel.text = "0" + "\(puntuacion)"
+       
     }
     
     if (contact.bodyB.categoryBitMask & categoriaDisparo) == categoriaDisparo && enemigo.physicsBody?.dynamic == true && enemigo.position.x < self.frame.width - enemigo.size.width {
