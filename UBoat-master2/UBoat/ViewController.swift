@@ -26,16 +26,13 @@ class ViewController: UIViewController {
         let skView = self.view as SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
-        
         skView.showsPhysics = true
+        skView.showsDrawCount = true
         
         escena = Menu(size: vista.bounds.size)
         escena.scaleMode = .AspectFill
         
         vista.presentScene(escena)
-        
-        
-        
     }
     
     

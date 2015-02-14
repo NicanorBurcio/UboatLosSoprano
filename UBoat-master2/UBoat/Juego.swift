@@ -16,7 +16,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var tiempoDePartida : Int! = 0
     var tiempoDePartidaLabel = SKLabelNode()
     
-    var contadorDeParticulas: Int! = 40
+    var contadorDeParticulas = 40
     var contadorDeParticulasLabel = SKLabelNode()
     
     //Movimiento del Joistick
@@ -55,6 +55,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var botonDisparoMisil = SKSpriteNode()
     var botonDisparoAmetralladora = SKSpriteNode()
     var mina = SKSpriteNode()
+    var iconDamage = SKSpriteNode()
     var botonDive = SKSpriteNode()
     
     //MOVIMIENTOS
@@ -431,7 +432,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 //        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
         
-        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 8, 16), center: CGPointMake(0.0, -11.0))
+        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 8, 36), center: CGPointMake(0.0, -30.0))
         
         enemigo.physicsBody?.dynamic = true
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
@@ -457,6 +458,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mina = SKSpriteNode(imageNamed: "Anima_Mina0024")
 //        mina.setScale(0.8)
         mina.position = CGPointMake(self.frame.size.width - mina.size.width + mina.size.width * 2, CGFloat(25 + alturaRandom))
+        
         
         //Ajuste de escala dependiendo de la posición Y de la mina
         var posicionMinay:Int = Int(mina.position.y)
@@ -588,6 +590,111 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
    
         escena.addChild(mina)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    func mostrarIconDamage(){
+        
+        iconDamage = SKSpriteNode(imageNamed: "iconDamage_01")
+        iconDamage.position = CGPointMake(self.frame.size.width - 30 , self.frame.size.height - 30)
+        iconDamage.zPosition = 8
+        iconDamage.setScale(0.0)
+        
+        //Crear Sprite IconDamage animado
+        
+        var texturaIconDamage1 = SKTexture(imageNamed: "iconDamage_01")
+        texturaIconDamage1.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage2 = SKTexture(imageNamed: "iconDamage_02")
+        texturaIconDamage2.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage3 = SKTexture(imageNamed: "iconDamage_03")
+        texturaIconDamage3.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage4 = SKTexture(imageNamed: "iconDamage_04")
+        texturaIconDamage4.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage5 = SKTexture(imageNamed: "iconDamage_05")
+        texturaIconDamage5.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage6 = SKTexture(imageNamed: "iconDamage_06")
+        texturaIconDamage6.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage7 = SKTexture(imageNamed: "iconDamage_07")
+        texturaIconDamage7.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage8 = SKTexture(imageNamed: "iconDamage_08")
+        texturaIconDamage8.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage9 = SKTexture(imageNamed: "iconDamage_09")
+        texturaIconDamage9.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage10 = SKTexture(imageNamed: "iconDamage_10")
+        texturaIconDamage10.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage11 = SKTexture(imageNamed: "iconDamage_11")
+        texturaIconDamage11.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage12 = SKTexture(imageNamed: "iconDamage_12")
+        texturaIconDamage12.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage13 = SKTexture(imageNamed: "iconDamage_13")
+        texturaIconDamage13.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage14 = SKTexture(imageNamed: "iconDamage_14")
+        texturaIconDamage14.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage15 = SKTexture(imageNamed: "iconDamage_15")
+        texturaIconDamage15.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage16 = SKTexture(imageNamed: "iconDamage_16")
+        texturaIconDamage16.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage17 = SKTexture(imageNamed: "iconDamage_17")
+        texturaIconDamage17.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage18 = SKTexture(imageNamed: "iconDamage_18")
+        texturaIconDamage18.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage19 = SKTexture(imageNamed: "iconDamage_19")
+        texturaIconDamage19.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage20 = SKTexture(imageNamed: "iconDamage_20")
+        texturaIconDamage20.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage21 = SKTexture(imageNamed: "iconDamage_21")
+        texturaIconDamage21.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage22 = SKTexture(imageNamed: "iconDamage_22")
+        texturaIconDamage22.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage23 = SKTexture(imageNamed: "iconDamage_23")
+        texturaIconDamage23.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage24 = SKTexture(imageNamed: "iconDamage_24")
+        texturaIconDamage24.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage25 = SKTexture(imageNamed: "iconDamage_25")
+        texturaIconDamage25.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage26 = SKTexture(imageNamed: "iconDamage_26")
+        texturaIconDamage26.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage27 = SKTexture(imageNamed: "iconDamage_27")
+        texturaIconDamage27.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage28 = SKTexture(imageNamed: "iconDamage_28")
+        texturaIconDamage28.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage29 = SKTexture(imageNamed: "iconDamage_29")
+        texturaIconDamage29.filteringMode = SKTextureFilteringMode.Nearest
+        var texturaIconDamage30 = SKTexture(imageNamed: "iconDamage_30")
+        texturaIconDamage30.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var animacionIconDamage = SKAction.animateWithTextures([texturaIconDamage1, texturaIconDamage2, texturaIconDamage3, texturaIconDamage4, texturaIconDamage5, texturaIconDamage6, texturaIconDamage7, texturaIconDamage8, texturaIconDamage9, texturaIconDamage10, texturaIconDamage11, texturaIconDamage12, texturaIconDamage13, texturaIconDamage14, texturaIconDamage15, texturaIconDamage16, texturaIconDamage17, texturaIconDamage18, texturaIconDamage19, texturaIconDamage20, texturaIconDamage21, texturaIconDamage22, texturaIconDamage23, texturaIconDamage24, texturaIconDamage25, texturaIconDamage26, texturaIconDamage27, texturaIconDamage28, texturaIconDamage29, texturaIconDamage30], timePerFrame: 1.20)
+        
+        let desapareceIconDamage = SKAction.fadeOutWithDuration(0.30)
+        
+        let secuenciaIconDamage = SKAction.sequence([
+            SKAction.group([
+                SKAction.fadeInWithDuration(0.30),
+                SKAction.scaleTo(1.4, duration: 0.30)
+                ]),
+            SKAction.scaleTo(0.8, duration: 0.20),
+            SKAction.scaleTo(1.0, duration: 0.10),
+            animacionIconDamage,
+            desapareceIconDamage,])
+        
+        
+        
+        
+        let accionIconDamage = SKAction.repeatAction(secuenciaIconDamage, count: 1)
+       
+        iconDamage.runAction(accionIconDamage, withKey: "iconDamage")
+
+        escena.addChild(iconDamage)
+        
+        
+    }
+    
+    
     
     
     
@@ -991,7 +1098,13 @@ func didBeginContact(contact: SKPhysicsContact) {
                 
                 reproducirEfectoAudioSubmarinoAlarm()
                 sonarSubmarino.stop()
+                
+                
+                mostrarIconDamage()
 
+                
+                
+                
                 
                 
                 // Iniciando el contador de tiempo
@@ -1107,15 +1220,15 @@ func destruirBarco(){
 
         contadorDeParticulas = contadorDeParticulas - 1
         
-        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
-        contadorDeParticulasLabel.fontName = "Avenir"
-        contadorDeParticulasLabel.fontSize  = 25
-        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
-        contadorDeParticulasLabel.position = CGPointMake(650, 340)
-        contadorDeParticulasLabel.zPosition = 120
-        contadorDeParticulasLabel.removeFromParent()
-        
-        addChild(contadorDeParticulasLabel)
+//        contadorDeParticulasLabel.text = "\(contadorDeParticulas)"
+//        contadorDeParticulasLabel.fontName = "Avenir"
+//        contadorDeParticulasLabel.fontSize  = 25
+//        contadorDeParticulasLabel.fontColor = UIColor.whiteColor()
+//        contadorDeParticulasLabel.position = CGPointMake(650, 340)
+//        contadorDeParticulasLabel.zPosition = 120
+//        contadorDeParticulasLabel.removeFromParent()
+//        
+//        addChild(contadorDeParticulasLabel)
         
         
         let explosionSubmarino = SKEmitterNode(fileNamed: "humoExplosion.sks")
@@ -1214,6 +1327,10 @@ func destruirBarco(){
     
 
     func destruirSubmarino(){
+        
+        let desapareceIconDamage = SKAction.fadeOutWithDuration(0.30)
+        iconDamage.runAction(desapareceIconDamage)
+        iconDamage.removeActionForKey("desapareceIconDamage")
         
         var retardo = SKAction.waitForDuration(3)
         var controlEscena = SKAction.speedBy(0, duration: 1)
