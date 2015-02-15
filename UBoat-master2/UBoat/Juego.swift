@@ -48,6 +48,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var submarino = SKSpriteNode()
     
     var prisma = SKSpriteNode()
+    var mando = SKSpriteNode()
     var enemigo = SKSpriteNode()
     var misil = SKSpriteNode()
     var disparo = SKSpriteNode()
@@ -105,6 +106,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         heroe()
         prismaticos()
+        mandos()
         crearCielo()
         crearOceano ()
         mostrarColisiones()
@@ -827,6 +829,19 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         prisma.constraints      = [constraint]
 
         escena.addChild(prisma)
+        
+    }
+    
+    func mandos() {
+        
+        mando = SKSpriteNode(imageNamed: "Mandos")
+        mando.size = self.size
+        mando.setScale(1)
+        mando.zPosition = 8
+        mando.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        mando.constraints      = [constraint]
+        
+        escena.addChild(mando)
         
     }
 
