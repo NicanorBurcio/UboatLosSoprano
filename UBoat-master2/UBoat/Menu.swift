@@ -50,7 +50,7 @@ import SpriteKit
             label1.fontColor = UIColor.blackColor()
             label1.fontSize = 30
             label1.position = CGPoint(x: size.width / 2 - 50, y:  self.size.height / 3)
-            label1.name = "ajustes"
+            label1.name = "ajustesjuego"
         let label2 =  SKLabelNode(fontNamed: "HelveticaNeue-CondensedBlack")
             label2.text = "Puntuaciones"
             label2.fontColor = UIColor.blackColor()
@@ -62,7 +62,7 @@ import SpriteKit
             label3.fontColor = UIColor.blackColor()
             label3.fontSize = 30
             label3.position = CGPoint(x: size.width / 2 - 50, y: size.height / 5)
-            label3.name = "Intruciones"
+            label3.name = "instrucionesjuego"
         
         
             addChild(label)
@@ -103,6 +103,27 @@ import SpriteKit
                 
                 self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
         }
+            else if loQueTocamos.name == "instrucionesjuego"  {
+                
+                let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.5)
+                
+                let  aparecerEscena = instruciones(size: self.size)
+                
+                aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
+                
+                self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
+            }
+            else if loQueTocamos.name == "ajustesjuego"  {
+                
+                let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.5)
+                
+                let  aparecerEscena = ajustes(size: self.size)
+                
+                aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
+                
+                self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
+        }
+
 
 
     }
