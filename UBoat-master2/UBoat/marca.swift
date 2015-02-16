@@ -55,14 +55,21 @@ class marca : Juego   {
         label.name = "Cambiar"
         label.zPosition = 1
         addChild(label)
-        var boton =  SKLabelNode(fontNamed: "Avenir")
+        var boton =  SKLabelNode(fontNamed: "HelveticaNeue-CondensedBlack")
         boton.fontColor = UIColor.blackColor()
         boton.text="Probar de Nuevo"
         boton.fontSize = 12
         boton.name = "reiniciar"
         boton.position = CGPoint(x: label.position.x / 2, y: label.position.y / 2)
-        //boton.position = CGPoint(x: size.width / 2  , y: size.height )
+        var btnmenu =  SKLabelNode(fontNamed: "HelveticaNeue-CondensedBlack")
+        btnmenu.fontColor = UIColor.blackColor()
+        btnmenu.text="Menu Principal"
+        btnmenu.fontSize = 12
+        btnmenu.name = "menu"
+        btnmenu.position = CGPoint(x: (label.position.x / 2 + 100), y: label.position.y / 2)
+
         addChild(boton)
+        addChild(btnmenu)
     }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
@@ -82,6 +89,17 @@ class marca : Juego   {
             
             self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
         }
+        else if loQueTocamos.name == "menu"  {
+            
+            let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 0.5)
+            
+            let  aparecerEscena = Menu(size: self.size)
+            
+            aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
+            
+            self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
+        }
+
         
     }
 
