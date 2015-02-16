@@ -113,7 +113,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mostrarPuntuacion()
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
-        motrarBotonDive()
+//        mostrarBotonDive()
         reproducirEfectoAudioOceano()
         reproducirEfectoAudioSonarSubmarino()
         mostrarFondoPapel()
@@ -218,17 +218,41 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     
     
-    func motrarBotonDive() {
+    func mostrarBotonDive() {
         
         botonDive = SKSpriteNode(imageNamed: "botonDive")
         botonDive.setScale(1)
         botonDive.zPosition = 9
-        botonDive.position = CGPointMake(self.frame.width / 4, self.frame.height / 19)
-        botonDive.name = "botonDisparoMisil"
+        botonDive.anchorPoint = CGPointMake(0.1,0.5);
+//        botonDive.alpha = 1
+        
+        let sequenceAnimaBotonDive = SKAction.sequence([
+            SKAction.group([
+                SKAction.fadeInWithDuration(0.10),
+                SKAction.scaleXTo(1.0, duration: 0.40),
+                ]),
+            SKAction.waitForDuration(5.0),
+            SKAction.group([
+                SKAction.fadeOutWithDuration(0.70),
+                SKAction.scaleXTo(0.0, duration: 0.40),
+                ]),
+            ])
+        
+        let AnimaBotonDive = SKAction.repeatAction(sequenceAnimaBotonDive, count: 1)
+
+//        botonDive.color = SKColor.redColor()
+//        botonDive.colorBlendFactor = 1
+
+        botonDive.xScale = 0.0
+        botonDive.position = CGPointMake(93, self.frame.height -  self.frame.height + 24)
+        botonDive.name = "botonDiveSubmarine"
         escena.addChild(botonDive)
         
-        
+        botonDive.runAction(AnimaBotonDive)
+
     }
+
+    
     
     func motrarBotonDisparoMisil() {
         
@@ -328,7 +352,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 //        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 30))
         
-        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 20, 15), center: CGPointMake(0.0, -3.0))
+        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 18, 15), center: CGPointMake(0.0, -3.0))
 
         
         submarino.physicsBody?.dynamic = false
@@ -434,7 +458,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 //        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 30, 30))
         
-        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 8, 36), center: CGPointMake(0.0, -30.0))
+        enemigo.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(enemigo.size.width - 8, 38), center: CGPointMake(0.0, -30.0))
         
         enemigo.physicsBody?.dynamic = true
         enemigo.physicsBody?.categoryBitMask = categoriaEnemigo
@@ -1116,6 +1140,7 @@ func didBeginContact(contact: SKPhysicsContact) {
                 
                 
                 mostrarIconDamage()
+                mostrarBotonDive()
 
                 
                 
@@ -1137,8 +1162,8 @@ func didBeginContact(contact: SKPhysicsContact) {
         timer.invalidate()
         
         let controlDamageSequence2 = SKAction.sequence([
-            SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2),
-            SKAction.waitForDuration(0.1),
+            SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.1),
+            SKAction.waitForDuration(0.3),
             SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 0, duration: 0.1),
             ])
         
