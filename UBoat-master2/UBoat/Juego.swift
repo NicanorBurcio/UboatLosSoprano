@@ -909,7 +909,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func lanzarMisil(){
         misil = SKSpriteNode(imageNamed: "misil")
-//        misil.setScale(0.45)
+//        misil.setScale(0.05)
         
         misil.position = CGPointMake(submarino.position.x + 20 , submarino.position.y - 5)
         
@@ -921,55 +921,55 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         case 277...305:
             println("<----- tiene entre 304 y 277")
             println ("\n")
-            var action = SKAction.scaleTo(0.25, duration: 0.10)
+            var action = SKAction.scaleTo(0.25, duration: 0.0)
             misil.runAction(action)
             
         case 249...276:
             println("<----- tiene entre 276 y 249")
             println ("\n")
-            var action = SKAction.scaleTo(0.30, duration: 0.10)
+            var action = SKAction.scaleTo(0.30, duration: 0.0)
            misil.runAction(action)
             
         case 221...248:
             println("<----- tiene entre 248 y 221")
             println ("\n")
-            var action = SKAction.scaleTo(0.35, duration: 0.10)
+            var action = SKAction.scaleTo(0.35, duration: 0.0)
             misil.runAction(action)
             
         case 193...220:
             println("<----- tiene entre 220 y 193")
             println ("\n")
-            var action = SKAction.scaleTo(0.40, duration: 0.10)
+            var action = SKAction.scaleTo(0.40, duration: 0.0)
             misil.runAction(action)
             
         case 165...192:
             println("<----- tiene entre 192 y 165")
             println ("\n")
-            var action = SKAction.scaleTo(0.45, duration: 0.10)
+            var action = SKAction.scaleTo(0.45, duration: 0.0)
             misil.runAction(action)
             
         case 137...164:
             println("<----- tiene entre 164 y 137")
             println ("\n")
-            var action = SKAction.scaleTo(0.50, duration: 0.10)
+            var action = SKAction.scaleTo(0.50, duration: 0.0)
             misil.runAction(action)
             
         case 110...136:
             println("<----- tiene entre 136 y 110")
             println ("\n")
-            var action = SKAction.scaleTo(0.55, duration: 0.10)
+            var action = SKAction.scaleTo(0.55, duration: 0.0)
             misil.runAction(action)
             
         case 81...109:
             println("<----- tiene entre 109 y 81")
             println ("\n")
-            var action = SKAction.scaleTo(0.60, duration: 0.10)
+            var action = SKAction.scaleTo(0.60, duration: 0.0)
             misil.runAction(action)
             
         default:
             println("<----- tiene entre 80 y 35")
             println ("\n")
-            var action = SKAction.scaleTo(0.65, duration: 0.10)
+            var action = SKAction.scaleTo(0.65, duration: 0.0)
            misil.runAction(action)
         }
         
