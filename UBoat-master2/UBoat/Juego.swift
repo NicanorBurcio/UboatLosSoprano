@@ -36,6 +36,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var sonidoOceano = AVAudioPlayer()
     var sonidoSubmarinoAlarm = AVAudioPlayer()
     var sonarSubmarino = AVAudioPlayer()
+    var sonidoInterruptor = AVAudioPlayer()
     
     //OBJETOS
     var contadorImpactosEnEnemigo = 0
@@ -188,9 +189,22 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         sonidoSubmarinoAlarm.volume = 0.02
     }
     
+    
+    
+    
+    func reproducirBotonInterruptor(){
+        let ubicacionAudioBotonInterruptor = NSBundle.mainBundle().pathForResource("BotonInterruptor", ofType: "mp3")
+        var efectoBotonInterruptor = NSURL(fileURLWithPath: ubicacionAudioBotonInterruptor!)
+        sonidoInterruptor = AVAudioPlayer(contentsOfURL: efectoBotonInterruptor, error: nil)
+        sonidoInterruptor.prepareToPlay()
+        sonidoInterruptor.numberOfLoops = 1
+        sonidoInterruptor.play()
+        sonidoInterruptor.volume = 0.10
+    }
+    
     func reproducirEfectoAudioSonarSubmarino(){
-        let ubicacionAudioAudioSonarSubamarino = NSBundle.mainBundle().pathForResource("SonarSubmarino1", ofType: "wav")
-        var efectoSonarSubmarino = NSURL(fileURLWithPath: ubicacionAudioAudioSonarSubamarino!)
+        let ubicacionAudioSonarSubamarino = NSBundle.mainBundle().pathForResource("SonarSubmarino1", ofType: "wav")
+        var efectoSonarSubmarino = NSURL(fileURLWithPath: ubicacionAudioSonarSubamarino!)
         sonarSubmarino = AVAudioPlayer(contentsOfURL: efectoSonarSubmarino, error: nil)
         sonarSubmarino.prepareToPlay()
         sonarSubmarino.numberOfLoops = -1
@@ -237,9 +251,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         botonDiveIntDW.anchorPoint = CGPointMake(0.0,0.5);
         botonDiveIntDW.position = CGPointMake(11, -4)
         botonDiveIntDW.name = "InterruptorDiveDW"
-        
-        
-        
         
         
         botonDive.addChild(botonDiveIntUP)
@@ -901,11 +912,13 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         if tocamosMenuLabel == botonDiveIntUP {
             botonDive.removeAllChildren()
             botonDive.addChild(botonDiveIntDW)
+            reproducirBotonInterruptor()
         }
         
         if tocamosMenuLabel == botonDiveIntDW {
             botonDive.removeAllChildren()
             botonDive.addChild(botonDiveIntUP)
+            reproducirBotonInterruptor()
         }
         
         

@@ -125,6 +125,7 @@
 		9A9C83871A8E9493007F38F1 /* iconDamage_28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C83691A8E9493007F38F1 /* iconDamage_28@2x.png */; };
 		9A9C83881A8E9493007F38F1 /* iconDamage_29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C836A1A8E9493007F38F1 /* iconDamage_29@2x.png */; };
 		9A9C83891A8E9493007F38F1 /* iconDamage_30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9C836B1A8E9493007F38F1 /* iconDamage_30@2x.png */; };
+		9AC500C91A9387A500C8C5F1 /* BotonInterruptor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9AC500C81A9387A500C8C5F1 /* BotonInterruptor.mp3 */; };
 		9AFF44F81A8622A1000687B2 /* Anima_Mina0024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44EB1A8622A1000687B2 /* Anima_Mina0024@2x.png */; };
 		9AFF44F91A8622A1000687B2 /* Anima_Mina0025@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44EC1A8622A1000687B2 /* Anima_Mina0025@2x.png */; };
 		9AFF44FA1A8622A1000687B2 /* Anima_Mina0026@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFF44ED1A8622A1000687B2 /* Anima_Mina0026@2x.png */; };
@@ -275,6 +276,7 @@
 		9A9C83691A8E9493007F38F1 /* iconDamage_28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconDamage_28@2x.png"; sourceTree = "<group>"; };
 		9A9C836A1A8E9493007F38F1 /* iconDamage_29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconDamage_29@2x.png"; sourceTree = "<group>"; };
 		9A9C836B1A8E9493007F38F1 /* iconDamage_30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconDamage_30@2x.png"; sourceTree = "<group>"; };
+		9AC500C81A9387A500C8C5F1 /* BotonInterruptor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BotonInterruptor.mp3; sourceTree = "<group>"; };
 		9AFF44EB1A8622A1000687B2 /* Anima_Mina0024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0024@2x.png"; sourceTree = "<group>"; };
 		9AFF44EC1A8622A1000687B2 /* Anima_Mina0025@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0025@2x.png"; sourceTree = "<group>"; };
 		9AFF44ED1A8622A1000687B2 /* Anima_Mina0026@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Anima_Mina0026@2x.png"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		884BFE131A71167300B8C94A /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				9AC500C81A9387A500C8C5F1 /* BotonInterruptor.mp3 */,
 				9A87EFA31A8828C00001903E /* SubmarineAlarm.mp3 */,
 				883C63E81A8A1E4000E5EC27 /* SonarSubmarino1.wav */,
 				884BFE161A7118A800B8C94A /* explosionImpacto.wav */,
@@ -680,6 +683,7 @@
 				9A9C83871A8E9493007F38F1 /* iconDamage_28@2x.png in Resources */,
 				889A0B831A5D2D55000BF2C3 /* enemigoExplota.atlas in Resources */,
 				9AFF45011A8622A1000687B2 /* Anima_Mina0033@2x.png in Resources */,
+				9AC500C91A9387A500C8C5F1 /* BotonInterruptor.mp3 in Resources */,
 				9A9C837B1A8E9493007F38F1 /* iconDamage_16@2x.png in Resources */,
 				9AFF45021A8622A1000687B2 /* Anima_Mina0034@2x.png in Resources */,
 				88BDD0551A78F135005F2EBC /* Navegando0029@2x.png in Resources */,
