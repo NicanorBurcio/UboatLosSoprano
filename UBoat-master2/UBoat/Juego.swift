@@ -58,6 +58,8 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var mina = SKSpriteNode()
     var iconDamage = SKSpriteNode()
     var botonDive = SKSpriteNode()
+    var botonDiveIntUP = SKSpriteNode()
+    var botonDiveIntDW = SKSpriteNode()
     
     //MOVIMIENTOS
     
@@ -113,7 +115,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mostrarPuntuacion()
         motrarBotonDisparoMisil()
         motrarBotonDisparoAmetralladoral()
-//        mostrarBotonDive()
         reproducirEfectoAudioOceano()
         reproducirEfectoAudioSonarSubmarino()
         mostrarFondoPapel()
@@ -224,21 +225,34 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         botonDive.setScale(1)
         botonDive.zPosition = 9
         botonDive.anchorPoint = CGPointMake(0.1,0.5);
-//        botonDive.alpha = 1
         
-        let sequenceAnimaBotonDive = SKAction.sequence([
+        
+        botonDiveIntUP = SKSpriteNode(imageNamed: "botonDiveIntUP")
+        botonDiveIntUP.anchorPoint = CGPointMake(0.0,0.5);
+        botonDiveIntUP.position = CGPointMake(11, 1)
+        botonDiveIntUP.name = "InterruptorDiveUP"
+        
+        
+        botonDiveIntDW = SKSpriteNode(imageNamed: "botonDiveIntDW")
+        botonDiveIntDW.anchorPoint = CGPointMake(0.0,0.5);
+        botonDiveIntDW.position = CGPointMake(11, -4)
+        botonDiveIntDW.name = "InterruptorDiveDW"
+        
+        
+        
+        
+        
+        botonDive.addChild(botonDiveIntUP)
+        
+        
+        let sequenceAnimaBotonDiveIN = SKAction.sequence([
             SKAction.group([
                 SKAction.fadeInWithDuration(0.10),
                 SKAction.scaleXTo(1.0, duration: 0.40),
                 ]),
-            SKAction.waitForDuration(5.0),
-            SKAction.group([
-                SKAction.fadeOutWithDuration(0.70),
-                SKAction.scaleXTo(0.0, duration: 0.40),
-                ]),
             ])
         
-        let AnimaBotonDive = SKAction.repeatAction(sequenceAnimaBotonDive, count: 1)
+        let AnimaBotonDiveIN = SKAction.repeatAction(sequenceAnimaBotonDiveIN, count: 1)
 
 //        botonDive.color = SKColor.redColor()
 //        botonDive.colorBlendFactor = 1
@@ -248,7 +262,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         botonDive.name = "botonDiveSubmarine"
         escena.addChild(botonDive)
         
-        botonDive.runAction(AnimaBotonDive)
+        botonDive.runAction(AnimaBotonDiveIN)
 
     }
 
@@ -352,7 +366,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
 //        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 30, 30))
         
-        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 18, 15), center: CGPointMake(0.0, -3.0))
+        submarino.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(submarino.size.width - 18, 16), center: CGPointMake(0.0, -3.0))
 
         
         submarino.physicsBody?.dynamic = false
@@ -884,6 +898,18 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         
         
+        if tocamosMenuLabel == botonDiveIntUP {
+            botonDive.removeAllChildren()
+            botonDive.addChild(botonDiveIntDW)
+        }
+        
+        if tocamosMenuLabel == botonDiveIntDW {
+            botonDive.removeAllChildren()
+            botonDive.addChild(botonDiveIntUP)
+        }
+        
+        
+        
         let tocarBotonLanzarMisil: AnyObject = touches.anyObject()!
         
         let posicionTocarBotonLanzarMisil = tocarBotonLanzarMisil.locationInNode(self)
@@ -895,6 +921,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             lanzarMisil()
             
         }
+        
         let tocarBotonDisparar: AnyObject = touches.anyObject()!
         
         let posicionTocarBotonDisparar = tocarBotonDisparar.locationInNode(self)
@@ -1166,9 +1193,7 @@ func didBeginContact(contact: SKPhysicsContact) {
             SKAction.waitForDuration(0.3),
             SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 0, duration: 0.1),
             ])
-        
         let controlDamage2 = SKAction.repeatAction(controlDamageSequence2, count: 1)
-        
         submarino.runAction(controlDamage2, withKey: "tocado")
         
 
@@ -1229,7 +1254,7 @@ func didBeginContact(contact: SKPhysicsContact) {
     if contadorImpactos == 0{
         
         var explotarSubmarino = SKAction.runBlock({() in self.destruirSubmarino()})
-            }
+    }
     
     
     
@@ -1290,15 +1315,28 @@ func destruirBarco(){
             
             let controlDamageSequence2 = SKAction.sequence([
                 SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2),
-                SKAction.waitForDuration(0.1),
+                SKAction.waitForDuration(0.2),
                 SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 0, duration: 0.1),
                 ])
-            
             let controlDamage2 = SKAction.repeatAction(controlDamageSequence2, count: 2)
-            
             submarino.runAction(controlDamage2, withKey: "tocado")
             
+            
 //            submarino.removeActionForKey("tocado")
+            
+            
+            
+            // Removiendo el Interruptor de sumerge submarino
+            let sequenceAnimaBotonDiveOUT = SKAction.sequence([
+                SKAction.group([
+                    SKAction.fadeOutWithDuration(0.70),
+                    SKAction.scaleXTo(0.0, duration: 0.40),
+                    ]),
+                ])
+            let AnimaBotonDiveOUT = SKAction.repeatAction(sequenceAnimaBotonDiveOUT, count: 1)
+            botonDive.runAction(AnimaBotonDiveOUT)
+            
+            
             
             
             
