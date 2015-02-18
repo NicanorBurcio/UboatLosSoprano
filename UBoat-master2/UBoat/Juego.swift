@@ -281,7 +281,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 
     
     
-    func mostrarIconoOxigeno() {
+    func mostrarOxigenoVaciandose() {
         
         iconoOxigeno = SKSpriteNode(imageNamed: "iconOxigeno_01")
         iconoOxigeno.position = CGPointMake(self.frame.size.width - 30 , self.frame.size.height - 30)
@@ -373,14 +373,14 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         texturaIconoOxigenoLlenandose27.filteringMode = SKTextureFilteringMode.Nearest
         
         
-        var animacionIconoOxigenoLlenandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose1, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose21, texturaIconoOxigenoLlenandose22, texturaIconoOxigenoLlenandose23, texturaIconoOxigenoLlenandose24, texturaIconoOxigenoLlenandose25, texturaIconoOxigenoLlenandose26, texturaIconoOxigenoLlenandose27], timePerFrame: 1.0)
+        var animacionIconoOxigenoAcabandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose1, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose21, texturaIconoOxigenoLlenandose22, texturaIconoOxigenoLlenandose23, texturaIconoOxigenoLlenandose24, texturaIconoOxigenoLlenandose25, texturaIconoOxigenoLlenandose26, texturaIconoOxigenoLlenandose27], timePerFrame: 1.0)
         
-        var accionIconoOxigenoLlenandose = SKAction.repeatAction(animacionIconoOxigenoLlenandose, count: 1)
+        var accionIconoOxigenoAcabandose = SKAction.repeatAction(animacionIconoOxigenoAcabandose, count: 1)
         
         let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
         //var retardoBotonInmersion = SKAction.waitForDuration(60)
-        var apareceBotonInmersion = SKAction.runBlock({() in self.mostrarBotonDive()})
-        var controlOxigenoConBotonInmersion = SKAction.sequence([animacionIconoOxigenoLlenandose, desapareceIconoOxigeno, apareceBotonInmersion])
+//        var apareceBotonInmersion = SKAction.runBlock({() in self.mostrarBotonDive()})
+        var controlOxigenoConBotonInmersion = SKAction.sequence([accionIconoOxigenoAcabandose, desapareceIconoOxigeno])
         
         iconoOxigeno.runAction(controlOxigenoConBotonInmersion)
         
@@ -392,7 +392,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     
     
-    func mostrarOxigenoVaciandose() {
+    func mostrarIconoOxigeno() {
         
         
         iconoOxigeno = SKSpriteNode(imageNamed: "Oxigeno 100")
@@ -444,23 +444,48 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         texturaIconoOxigenoLlenandose20.filteringMode = SKTextureFilteringMode.Nearest
         var texturaIconoOxigenoLlenandose21 = SKTexture(imageNamed: "Oxigeno 100")
         texturaIconoOxigenoLlenandose21.filteringMode = SKTextureFilteringMode.Nearest
-        
-        
-        var animacionIconoOxigenoAcabandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose21, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose1], timePerFrame: 0.5)
-        var accionIconoOxigenoAcabandose = SKAction.repeatAction(animacionIconoOxigenoAcabandose, count: 1)
-        
-        
-        let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
-        var controlOxigenoVaciandose = SKAction.sequence([animacionIconoOxigenoAcabandose, desapareceIconoOxigeno])
-        
-        iconoOxigeno.runAction(controlOxigenoVaciandose)
-        
+//
+//        
+        var animacionIconoOxigenoLlenandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose21, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose1], timePerFrame: 0.5)
     
-        escena.addChild(iconoOxigeno)
-        
-        
-        
-        
+    
+//        var accionIconoOxigenoAcabandose = SKAction.repeatAction(animacionIconoOxigenoAcabandose, count: 1)
+    
+    
+    //        let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
+    //        var controlOxigenoVaciandose = SKAction.sequence([animacionIconoOxigenoAcabandose, desapareceIconoOxigeno])
+    //
+    //        iconoOxigeno.runAction(controlOxigenoVaciandose)
+    //
+    //
+    //        escena.addChild(iconoOxigeno)
+    
+    
+    
+    
+    var accionIconoOxigenoLlenandose = SKAction.repeatAction(animacionIconoOxigenoLlenandose, count: 1)
+    
+    let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
+    //var retardoBotonInmersion = SKAction.waitForDuration(60)
+    var apareceBotonInmersion = SKAction.runBlock({() in self.mostrarBotonDive()})
+    var controlOxigenoConBotonInmersion = SKAction.sequence([animacionIconoOxigenoLlenandose, desapareceIconoOxigeno, apareceBotonInmersion])
+    
+    iconoOxigeno.runAction(controlOxigenoConBotonInmersion)
+    
+    escena.addChild(iconoOxigeno)
+    
+    
+    
+    
+//        let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
+//        var controlOxigenoVaciandose = SKAction.sequence([animacionIconoOxigenoAcabandose, desapareceIconoOxigeno])
+//        
+//        iconoOxigeno.runAction(controlOxigenoVaciandose)
+//        
+//    
+//        escena.addChild(iconoOxigeno)
+//        
+//        
     }
 
     
@@ -1099,6 +1124,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             submarino.runAction(objsubmarino.submarinoInmersion())
             
             let sequenceAnimaBotonDive = SKAction.sequence([
+                SKAction.waitForDuration(2.0),
                 SKAction.group([
                     SKAction.fadeOutWithDuration(0.70),
                     SKAction.scaleXTo(0.0, duration: 0.40),
@@ -1107,7 +1133,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             
             let AnimaBotonDive = SKAction.repeatAction(sequenceAnimaBotonDive, count: 1)
             botonDive.runAction(AnimaBotonDive)
-            
             
             
             var apareceBotonOxigenoVaciandose = SKAction.runBlock({() in self.mostrarOxigenoVaciandose()})
