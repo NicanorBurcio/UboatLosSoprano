@@ -1115,7 +1115,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         let posicionTocarBotonSumergir = tocarBotonSumergir.locationInNode(self)
         let tocamosBotonSumergir = self.nodeAtPoint(posicionTocarBotonSumergir)
         
-        if tocamosBotonSumergir == botonDiveIntUP {
+        if tocamosBotonSumergir == botonDiveIntUP && uci == false {
             
             botonDive.removeAllChildren()
             botonDive.addChild(botonDiveIntDW)
@@ -1181,7 +1181,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         let loQueTocamosBotonLanzarMisil = self.nodeAtPoint(posicionTocarBotonLanzarMisil)
         
-        if loQueTocamosBotonLanzarMisil == botonDisparoMisil {
+        if loQueTocamosBotonLanzarMisil == botonDisparoMisil && uci == false {
             
             lanzarMisil()
             
@@ -1193,7 +1193,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         let loQueTocamosBotonDisparar = self.nodeAtPoint(posicionTocarBotonDisparar)
         
-        if loQueTocamosBotonDisparar == botonDisparoAmetralladora {
+        if loQueTocamosBotonDisparar == botonDisparoAmetralladora && uci == false {
             
             disparar()
             
