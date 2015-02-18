@@ -283,60 +283,98 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     func mostrarIconoOxigeno() {
         
-        //Tarda 1 min del juego en llenarse
-        
-        iconoOxigeno = SKSpriteNode(imageNamed: "Oxigeno 000")
-        iconoOxigeno.setScale(0.5)
-        iconoOxigeno.zPosition = 9
-        iconoOxigeno.position = CGPointMake(self.frame.width / 1.02, self.frame.height / 1.1)
+        iconoOxigeno = SKSpriteNode(imageNamed: "iconOxigeno_01")
+        iconoOxigeno.position = CGPointMake(self.frame.size.width - 30 , self.frame.size.height - 30)
+        iconoOxigeno.zPosition = 8
         iconoOxigeno.name = "botonOxigenoVacio"
         
         
-        var texturaIconoOxigenoLlenandose1 = SKTexture(imageNamed: "Oxigeno 000")
+        //Crear Sprite IconOxigeno animado
+        
+        var texturaIconoOxigenoLlenandose1 = SKTexture(imageNamed: "iconOxigeno_01")
         texturaIconoOxigenoLlenandose1.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose2 = SKTexture(imageNamed: "Oxigeno 005")
+        
+        var texturaIconoOxigenoLlenandose2 = SKTexture(imageNamed: "iconOxigeno_02")
         texturaIconoOxigenoLlenandose2.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose3 = SKTexture(imageNamed: "Oxigeno 010")
+        
+        var texturaIconoOxigenoLlenandose3 = SKTexture(imageNamed: "iconOxigeno_03")
         texturaIconoOxigenoLlenandose3.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose4 = SKTexture(imageNamed: "Oxigeno 015")
+        
+        var texturaIconoOxigenoLlenandose4 = SKTexture(imageNamed: "iconOxigeno_04")
         texturaIconoOxigenoLlenandose4.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose5 = SKTexture(imageNamed: "Oxigeno 020")
+        
+        var texturaIconoOxigenoLlenandose5 = SKTexture(imageNamed: "iconOxigeno_05")
         texturaIconoOxigenoLlenandose5.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose6 = SKTexture(imageNamed: "Oxigeno 025")
+        
+        var texturaIconoOxigenoLlenandose6 = SKTexture(imageNamed: "iconOxigeno_06")
         texturaIconoOxigenoLlenandose6.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose7 = SKTexture(imageNamed: "Oxigeno 030")
+        
+        var texturaIconoOxigenoLlenandose7 = SKTexture(imageNamed: "iconOxigeno_07")
         texturaIconoOxigenoLlenandose7.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose8 = SKTexture(imageNamed: "Oxigeno 035")
+        
+        var texturaIconoOxigenoLlenandose8 = SKTexture(imageNamed: "iconOxigeno_08")
         texturaIconoOxigenoLlenandose8.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose9 = SKTexture(imageNamed: "Oxigeno 040")
+        
+        var texturaIconoOxigenoLlenandose9 = SKTexture(imageNamed: "iconOxigeno_09")
         texturaIconoOxigenoLlenandose9.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose10 = SKTexture(imageNamed: "Oxigeno 045")
+        
+        var texturaIconoOxigenoLlenandose10 = SKTexture(imageNamed: "iconOxigeno_10")
         texturaIconoOxigenoLlenandose10.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose11 = SKTexture(imageNamed: "Oxigeno 050")
+        
+        var texturaIconoOxigenoLlenandose11 = SKTexture(imageNamed: "iconOxigeno_11")
         texturaIconoOxigenoLlenandose11.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose12 = SKTexture(imageNamed: "Oxigeno 055")
+        
+        var texturaIconoOxigenoLlenandose12 = SKTexture(imageNamed: "iconOxigeno_12")
         texturaIconoOxigenoLlenandose12.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose13 = SKTexture(imageNamed: "Oxigeno 060")
+        
+        var texturaIconoOxigenoLlenandose13 = SKTexture(imageNamed: "iconOxigeno_13")
         texturaIconoOxigenoLlenandose13.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose14 = SKTexture(imageNamed: "Oxigeno 065")
+        
+        var texturaIconoOxigenoLlenandose14 = SKTexture(imageNamed: "iconOxigeno_14")
         texturaIconoOxigenoLlenandose14.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose15 = SKTexture(imageNamed: "Oxigeno 070")
+        
+        var texturaIconoOxigenoLlenandose15 = SKTexture(imageNamed: "iconOxigeno_15")
         texturaIconoOxigenoLlenandose15.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose16 = SKTexture(imageNamed: "Oxigeno 075")
+        
+        var texturaIconoOxigenoLlenandose16 = SKTexture(imageNamed: "iconOxigeno_16")
         texturaIconoOxigenoLlenandose16.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose17 = SKTexture(imageNamed: "Oxigeno 080")
+        
+        var texturaIconoOxigenoLlenandose17 = SKTexture(imageNamed: "iconOxigeno_17")
         texturaIconoOxigenoLlenandose17.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose18 = SKTexture(imageNamed: "Oxigeno 085")
+        
+        var texturaIconoOxigenoLlenandose18 = SKTexture(imageNamed: "iconOxigeno_18")
         texturaIconoOxigenoLlenandose18.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose19 = SKTexture(imageNamed: "Oxigeno 090")
+        
+        var texturaIconoOxigenoLlenandose19 = SKTexture(imageNamed: "iconOxigeno_19")
         texturaIconoOxigenoLlenandose19.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose20 = SKTexture(imageNamed: "Oxigeno 095")
+        
+        var texturaIconoOxigenoLlenandose20 = SKTexture(imageNamed: "iconOxigeno_20")
         texturaIconoOxigenoLlenandose20.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaIconoOxigenoLlenandose21 = SKTexture(imageNamed: "Oxigeno 100")
+        
+        var texturaIconoOxigenoLlenandose21 = SKTexture(imageNamed: "iconOxigeno_21")
         texturaIconoOxigenoLlenandose21.filteringMode = SKTextureFilteringMode.Nearest
         
+        var texturaIconoOxigenoLlenandose22 = SKTexture(imageNamed: "iconOxigeno_22")
+        texturaIconoOxigenoLlenandose22.filteringMode = SKTextureFilteringMode.Nearest
         
-        var animacionIconoOxigenoLlenandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose1, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose21], timePerFrame: 2.73)
+        var texturaIconoOxigenoLlenandose23 = SKTexture(imageNamed: "iconOxigeno_23")
+        texturaIconoOxigenoLlenandose21.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var texturaIconoOxigenoLlenandose24 = SKTexture(imageNamed: "iconOxigeno_24")
+        texturaIconoOxigenoLlenandose24.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var texturaIconoOxigenoLlenandose25 = SKTexture(imageNamed: "iconOxigeno_25")
+        texturaIconoOxigenoLlenandose25.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var texturaIconoOxigenoLlenandose26 = SKTexture(imageNamed: "iconOxigeno_26")
+        texturaIconoOxigenoLlenandose26.filteringMode = SKTextureFilteringMode.Nearest
+        
+        var texturaIconoOxigenoLlenandose27 = SKTexture(imageNamed: "iconOxigeno_27")
+        texturaIconoOxigenoLlenandose27.filteringMode = SKTextureFilteringMode.Nearest
+        
+        
+        var animacionIconoOxigenoLlenandose = SKAction.animateWithTextures([texturaIconoOxigenoLlenandose1, texturaIconoOxigenoLlenandose2, texturaIconoOxigenoLlenandose3, texturaIconoOxigenoLlenandose4, texturaIconoOxigenoLlenandose5, texturaIconoOxigenoLlenandose6, texturaIconoOxigenoLlenandose7, texturaIconoOxigenoLlenandose8, texturaIconoOxigenoLlenandose9, texturaIconoOxigenoLlenandose10, texturaIconoOxigenoLlenandose11, texturaIconoOxigenoLlenandose12, texturaIconoOxigenoLlenandose13, texturaIconoOxigenoLlenandose14, texturaIconoOxigenoLlenandose15, texturaIconoOxigenoLlenandose16, texturaIconoOxigenoLlenandose17, texturaIconoOxigenoLlenandose18, texturaIconoOxigenoLlenandose19, texturaIconoOxigenoLlenandose20, texturaIconoOxigenoLlenandose21, texturaIconoOxigenoLlenandose22, texturaIconoOxigenoLlenandose23, texturaIconoOxigenoLlenandose24, texturaIconoOxigenoLlenandose25, texturaIconoOxigenoLlenandose26, texturaIconoOxigenoLlenandose27], timePerFrame: 1.0)
+        
         var accionIconoOxigenoLlenandose = SKAction.repeatAction(animacionIconoOxigenoLlenandose, count: 1)
         
         let desapareceIconoOxigeno = SKAction.fadeOutWithDuration(0.30)
@@ -344,14 +382,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         var apareceBotonInmersion = SKAction.runBlock({() in self.mostrarBotonDive()})
         var controlOxigenoConBotonInmersion = SKAction.sequence([animacionIconoOxigenoLlenandose, desapareceIconoOxigeno, apareceBotonInmersion])
         
-        
         iconoOxigeno.runAction(controlOxigenoConBotonInmersion)
         
-        
-        
-        
         escena.addChild(iconoOxigeno)
-        
         
         
         
@@ -422,8 +455,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         
         iconoOxigeno.runAction(controlOxigenoVaciandose)
         
-        
-        
+    
         escena.addChild(iconoOxigeno)
         
         
@@ -809,7 +841,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     func mostrarIconDamage(){
         
         iconDamage = SKSpriteNode(imageNamed: "iconDamage_01")
-        iconDamage.position = CGPointMake(self.frame.size.width - 45 , self.frame.size.height - 35)
+        iconDamage.position = CGPointMake(self.frame.size.width - 30 , self.frame.size.height - 30)
         iconDamage.zPosition = 8
         iconDamage.setScale(0.0)
         
@@ -889,8 +921,6 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
             SKAction.scaleTo(1.0, duration: 0.10),
             animacionIconDamage,
             desapareceIconDamage,])
-        
-        
         
         
         let accionIconDamage = SKAction.repeatAction(secuenciaIconDamage, count: 1)
