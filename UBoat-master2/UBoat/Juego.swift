@@ -62,6 +62,9 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     var botonDiveIntUP = SKSpriteNode()
     var botonDiveIntDW = SKSpriteNode()
     var iconoOxigeno = SKSpriteNode()
+    var oxigenoExtra = SKSpriteNode()
+    var torpedoExtra = SKSpriteNode()
+
     
     //MOVIMIENTOS
     
@@ -122,6 +125,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         mostrarFondoPapel()
         mostrarIconoOxigeno()
         
+        
         // Cronómetro
         
         var aSelector = "tiempo"
@@ -137,7 +141,15 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([SKAction.runBlock(aparecerMina),
                 SKAction.waitForDuration(35)])))
+        //Mostrar torpedoExtra
+        runAction(SKAction.repeatActionForever(
+            SKAction.sequence([SKAction.runBlock(mostrartorpedoExtra),
+                SKAction.waitForDuration(12)])))
         
+        //Mostrar oxigenoExtra
+        runAction(SKAction.repeatActionForever(
+            SKAction.sequence([SKAction.runBlock(mostraroxigenoExtra),
+                SKAction.waitForDuration(10)])))
 }
   
     var minutos = Int()
@@ -393,7 +405,7 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
     
     
     func mostrarIconoOxigeno() {
-        
+
         
         iconoOxigeno = SKSpriteNode(imageNamed: "Oxigeno 100")
         iconoOxigeno.setScale(0.5)
@@ -490,7 +502,40 @@ class Juego: SKScene, SKPhysicsContactDelegate, AnalogStickProtocol {
 
     
     
+    func mostrartorpedoExtra() {
+        
+        var altura = UInt (self.frame.size.height - 100 )
+        var alturaRandom = UInt (arc4random()) % altura
+        
+        torpedoExtra = SKSpriteNode(imageNamed: "torpedoExtra")
+        torpedoExtra.setScale(0.1)
+        torpedoExtra.zPosition = 3
+        torpedoExtra.position = CGPointMake(self.frame.size.width + enemigo.size.width / 2, CGFloat(25 + alturaRandom))
+        torpedoExtra.name = "torpedoExtra"
+        var alturatorpedoExtra = UInt (self.frame.size.height - 100 )
+        var alturatorpedoExtraRandom = UInt (arc4random()) % altura
+        var desplazartorpedoExtra = SKAction.moveTo(CGPointMake( -torpedoExtra.size.width * 2 , CGFloat(torpedoExtra.position.y)), duration: 10)
+        torpedoExtra.runAction(desplazartorpedoExtra)
+        escena.addChild(torpedoExtra)
+    }
     
+    func mostraroxigenoExtra() {
+        
+        var altura = UInt (self.frame.size.height - 100 )
+        var alturaRandom = UInt (arc4random()) % altura
+        
+        oxigenoExtra = SKSpriteNode(imageNamed: "oxigenoExtra")
+        oxigenoExtra.setScale(0.1)
+        oxigenoExtra.zPosition = 3
+        oxigenoExtra.position = CGPointMake(self.frame.size.width + enemigo.size.width / 2, CGFloat(25 + alturaRandom))
+        oxigenoExtra.name = "oxigenoExtra"
+        var alturaoxigenoExtra = UInt (self.frame.size.height - 100 )
+        var alturaoxigenoExtraRandom = UInt (arc4random()) % altura
+        var desplazaroxigenoExtra = SKAction.moveTo(CGPointMake( -oxigenoExtra.size.width * 2 , CGFloat(oxigenoExtra.position.y)), duration: 6)
+        oxigenoExtra.runAction(desplazaroxigenoExtra)
+        escena.addChild(oxigenoExtra)
+    }
+
     
     
     func motrarBotonDisparoMisil() {
