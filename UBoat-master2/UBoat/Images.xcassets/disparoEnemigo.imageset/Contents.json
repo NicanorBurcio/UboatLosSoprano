@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "playButon.png"
+      "filename" : "disparoEnemigo.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "disparoEnemigo@2x.png"
     },
     {
       "idiom" : "universal",

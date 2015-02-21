@@ -88,27 +88,6 @@
 		88BDD0821A78F135005F2EBC /* Emerge0022@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD0481A78F135005F2EBC /* Emerge0022@2x.png */; };
 		88BDD0831A78F135005F2EBC /* Emerge0023@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */; };
 		88CA80F01A93C9390091ED93 /* submarino.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80EF1A93C9390091ED93 /* submarino.swift */; };
-		88CA81071A93C9420091ED93 /* Oxigeno 000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F21A93C9420091ED93 /* Oxigeno 000@2x.png */; };
-		88CA81081A93C9420091ED93 /* Oxigeno 005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F31A93C9420091ED93 /* Oxigeno 005@2x.png */; };
-		88CA81091A93C9420091ED93 /* Oxigeno 010@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F41A93C9420091ED93 /* Oxigeno 010@2x.png */; };
-		88CA810A1A93C9420091ED93 /* Oxigeno 015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F51A93C9420091ED93 /* Oxigeno 015@2x.png */; };
-		88CA810B1A93C9420091ED93 /* Oxigeno 020@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F61A93C9420091ED93 /* Oxigeno 020@2x.png */; };
-		88CA810C1A93C9420091ED93 /* Oxigeno 025@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F71A93C9420091ED93 /* Oxigeno 025@2x.png */; };
-		88CA810D1A93C9420091ED93 /* Oxigeno 030@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F81A93C9420091ED93 /* Oxigeno 030@2x.png */; };
-		88CA810E1A93C9420091ED93 /* Oxigeno 035@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80F91A93C9420091ED93 /* Oxigeno 035@2x.png */; };
-		88CA810F1A93C9420091ED93 /* Oxigeno 040@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FA1A93C9420091ED93 /* Oxigeno 040@2x.png */; };
-		88CA81101A93C9420091ED93 /* Oxigeno 045@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FB1A93C9420091ED93 /* Oxigeno 045@2x.png */; };
-		88CA81111A93C9420091ED93 /* Oxigeno 050@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FC1A93C9420091ED93 /* Oxigeno 050@2x.png */; };
-		88CA81121A93C9420091ED93 /* Oxigeno 055@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FD1A93C9420091ED93 /* Oxigeno 055@2x.png */; };
-		88CA81131A93C9420091ED93 /* Oxigeno 060@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FE1A93C9420091ED93 /* Oxigeno 060@2x.png */; };
-		88CA81141A93C9420091ED93 /* Oxigeno 065@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80FF1A93C9420091ED93 /* Oxigeno 065@2x.png */; };
-		88CA81151A93C9420091ED93 /* Oxigeno 070@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81001A93C9420091ED93 /* Oxigeno 070@2x.png */; };
-		88CA81161A93C9420091ED93 /* Oxigeno 075@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81011A93C9420091ED93 /* Oxigeno 075@2x.png */; };
-		88CA81171A93C9420091ED93 /* Oxigeno 080@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81021A93C9420091ED93 /* Oxigeno 080@2x.png */; };
-		88CA81181A93C9420091ED93 /* Oxigeno 085@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81031A93C9420091ED93 /* Oxigeno 085@2x.png */; };
-		88CA81191A93C9420091ED93 /* Oxigeno 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81041A93C9420091ED93 /* Oxigeno 090@2x.png */; };
-		88CA811A1A93C9420091ED93 /* Oxigeno 095@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81051A93C9420091ED93 /* Oxigeno 095@2x.png */; };
-		88CA811B1A93C9420091ED93 /* Oxigeno 100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CA81061A93C9420091ED93 /* Oxigeno 100@2x.png */; };
 		9A0B57991A7A3FAD00354160 /* Emerge-0001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B57971A7A3FAD00354160 /* Emerge-0001@2x.png */; };
 		9A0B579A1A7A3FAD00354160 /* Emerge-0002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0B57981A7A3FAD00354160 /* Emerge-0002@2x.png */; };
 		9A5080781A94B25D009283A8 /* iconOxigeno_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A50805D1A94B25D009283A8 /* iconOxigeno_01@2x.png */; };
@@ -287,27 +266,6 @@
 		88BDD0481A78F135005F2EBC /* Emerge0022@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge0022@2x.png"; sourceTree = "<group>"; };
 		88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge0023@2x.png"; sourceTree = "<group>"; };
 		88CA80EF1A93C9390091ED93 /* submarino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = submarino.swift; sourceTree = "<group>"; };
-		88CA80F21A93C9420091ED93 /* Oxigeno 000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 000@2x.png"; sourceTree = "<group>"; };
-		88CA80F31A93C9420091ED93 /* Oxigeno 005@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 005@2x.png"; sourceTree = "<group>"; };
-		88CA80F41A93C9420091ED93 /* Oxigeno 010@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 010@2x.png"; sourceTree = "<group>"; };
-		88CA80F51A93C9420091ED93 /* Oxigeno 015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 015@2x.png"; sourceTree = "<group>"; };
-		88CA80F61A93C9420091ED93 /* Oxigeno 020@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 020@2x.png"; sourceTree = "<group>"; };
-		88CA80F71A93C9420091ED93 /* Oxigeno 025@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 025@2x.png"; sourceTree = "<group>"; };
-		88CA80F81A93C9420091ED93 /* Oxigeno 030@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 030@2x.png"; sourceTree = "<group>"; };
-		88CA80F91A93C9420091ED93 /* Oxigeno 035@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 035@2x.png"; sourceTree = "<group>"; };
-		88CA80FA1A93C9420091ED93 /* Oxigeno 040@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 040@2x.png"; sourceTree = "<group>"; };
-		88CA80FB1A93C9420091ED93 /* Oxigeno 045@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 045@2x.png"; sourceTree = "<group>"; };
-		88CA80FC1A93C9420091ED93 /* Oxigeno 050@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 050@2x.png"; sourceTree = "<group>"; };
-		88CA80FD1A93C9420091ED93 /* Oxigeno 055@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 055@2x.png"; sourceTree = "<group>"; };
-		88CA80FE1A93C9420091ED93 /* Oxigeno 060@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 060@2x.png"; sourceTree = "<group>"; };
-		88CA80FF1A93C9420091ED93 /* Oxigeno 065@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 065@2x.png"; sourceTree = "<group>"; };
-		88CA81001A93C9420091ED93 /* Oxigeno 070@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 070@2x.png"; sourceTree = "<group>"; };
-		88CA81011A93C9420091ED93 /* Oxigeno 075@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 075@2x.png"; sourceTree = "<group>"; };
-		88CA81021A93C9420091ED93 /* Oxigeno 080@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 080@2x.png"; sourceTree = "<group>"; };
-		88CA81031A93C9420091ED93 /* Oxigeno 085@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 085@2x.png"; sourceTree = "<group>"; };
-		88CA81041A93C9420091ED93 /* Oxigeno 090@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 090@2x.png"; sourceTree = "<group>"; };
-		88CA81051A93C9420091ED93 /* Oxigeno 095@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 095@2x.png"; sourceTree = "<group>"; };
-		88CA81061A93C9420091ED93 /* Oxigeno 100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oxigeno 100@2x.png"; sourceTree = "<group>"; };
 		9A0B57971A7A3FAD00354160 /* Emerge-0001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge-0001@2x.png"; sourceTree = "<group>"; };
 		9A0B57981A7A3FAD00354160 /* Emerge-0002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Emerge-0002@2x.png"; sourceTree = "<group>"; };
 		9A50805D1A94B25D009283A8 /* iconOxigeno_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconOxigeno_01@2x.png"; sourceTree = "<group>"; };
@@ -414,7 +372,6 @@
 			children = (
 				884BFE111A710C9200B8C94A /* AVFoundation.framework */,
 				9AFF44EA1A8622A1000687B2 /* mina */,
-				88CA80F11A93C9420091ED93 /* Oxigeno */,
 				9A9C834D1A8E9493007F38F1 /* iconDamage */,
 				9A50805C1A94B25D009283A8 /* iconOxigeno */,
 				88BDD0311A78F135005F2EBC /* submarinoEmerge */,
@@ -584,34 +541,6 @@
 				88BDD0491A78F135005F2EBC /* Emerge0023@2x.png */,
 			);
 			path = submarinoEmerge;
-			sourceTree = "<group>";
-		};
-		88CA80F11A93C9420091ED93 /* Oxigeno */ = {
-			isa = PBXGroup;
-			children = (
-				88CA80F21A93C9420091ED93 /* Oxigeno 000@2x.png */,
-				88CA80F31A93C9420091ED93 /* Oxigeno 005@2x.png */,
-				88CA80F41A93C9420091ED93 /* Oxigeno 010@2x.png */,
-				88CA80F51A93C9420091ED93 /* Oxigeno 015@2x.png */,
-				88CA80F61A93C9420091ED93 /* Oxigeno 020@2x.png */,
-				88CA80F71A93C9420091ED93 /* Oxigeno 025@2x.png */,
-				88CA80F81A93C9420091ED93 /* Oxigeno 030@2x.png */,
-				88CA80F91A93C9420091ED93 /* Oxigeno 035@2x.png */,
-				88CA80FA1A93C9420091ED93 /* Oxigeno 040@2x.png */,
-				88CA80FB1A93C9420091ED93 /* Oxigeno 045@2x.png */,
-				88CA80FC1A93C9420091ED93 /* Oxigeno 050@2x.png */,
-				88CA80FD1A93C9420091ED93 /* Oxigeno 055@2x.png */,
-				88CA80FE1A93C9420091ED93 /* Oxigeno 060@2x.png */,
-				88CA80FF1A93C9420091ED93 /* Oxigeno 065@2x.png */,
-				88CA81001A93C9420091ED93 /* Oxigeno 070@2x.png */,
-				88CA81011A93C9420091ED93 /* Oxigeno 075@2x.png */,
-				88CA81021A93C9420091ED93 /* Oxigeno 080@2x.png */,
-				88CA81031A93C9420091ED93 /* Oxigeno 085@2x.png */,
-				88CA81041A93C9420091ED93 /* Oxigeno 090@2x.png */,
-				88CA81051A93C9420091ED93 /* Oxigeno 095@2x.png */,
-				88CA81061A93C9420091ED93 /* Oxigeno 100@2x.png */,
-			);
-			path = Oxigeno;
 			sourceTree = "<group>";
 		};
 		984025BA1A7D535400376E54 /* Classes */ = {
@@ -795,7 +724,6 @@
 			files = (
 				9A9C83791A8E9493007F38F1 /* iconDamage_14@2x.png in Resources */,
 				9A9C83851A8E9493007F38F1 /* iconDamage_26@2x.png in Resources */,
-				88CA810B1A93C9420091ED93 /* Oxigeno 020@2x.png in Resources */,
 				88BDD04C1A78F135005F2EBC /* Navegando0025.png in Resources */,
 				9A9C837D1A8E9493007F38F1 /* iconDamage_18@2x.png in Resources */,
 				9A5080851A94B25D009283A8 /* iconOxigeno_14@2x.png in Resources */,
@@ -825,7 +753,6 @@
 				9AFF44FE1A8622A1000687B2 /* Anima_Mina0030@2x.png in Resources */,
 				88130D6F1A52A39300802E87 /* explosionSubmarino.sks in Resources */,
 				9A9C83781A8E9493007F38F1 /* iconDamage_13@2x.png in Resources */,
-				88CA81091A93C9420091ED93 /* Oxigeno 010@2x.png in Resources */,
 				88BDD04F1A78F135005F2EBC /* Navegando0026@2x.png in Resources */,
 				9A6873631A6573B900CC4BF7 /* estelaSubIzq.sks in Resources */,
 				88BDD0581A78F135005F2EBC /* Navegando0031.png in Resources */,
@@ -833,14 +760,12 @@
 				9AFF44F81A8622A1000687B2 /* Anima_Mina0024@2x.png in Resources */,
 				9A0B57991A7A3FAD00354160 /* Emerge-0001@2x.png in Resources */,
 				9A5080781A94B25D009283A8 /* iconOxigeno_01@2x.png in Resources */,
-				88CA811B1A93C9420091ED93 /* Oxigeno 100@2x.png in Resources */,
 				8851AB151A795E9C001EDD63 /* aSBgImg.png in Resources */,
 				9A9C83831A8E9493007F38F1 /* iconDamage_24@2x.png in Resources */,
 				883C63E91A8A1E4000E5EC27 /* SonarSubmarino1.wav in Resources */,
 				9A9C83801A8E9493007F38F1 /* iconDamage_21@2x.png in Resources */,
 				9A9C83821A8E9493007F38F1 /* iconDamage_23@2x.png in Resources */,
 				9A50808F1A94B25D009283A8 /* iconOxigeno_24@2x.png in Resources */,
-				88CA810D1A93C9420091ED93 /* Oxigeno 030@2x.png in Resources */,
 				88BDD07E1A78F135005F2EBC /* Emerge0018@2x.png in Resources */,
 				88BDD0611A78F135005F2EBC /* Navegando0035@2x.png in Resources */,
 				88BDD0571A78F135005F2EBC /* Navegando0030@2x.png in Resources */,
@@ -849,7 +774,6 @@
 				88BDD0521A78F135005F2EBC /* Navegando0028.png in Resources */,
 				9A50807B1A94B25D009283A8 /* iconOxigeno_04@2x.png in Resources */,
 				88BDD0601A78F135005F2EBC /* Navegando0035.png in Resources */,
-				88CA81151A93C9420091ED93 /* Oxigeno 070@2x.png in Resources */,
 				88BDD05F1A78F135005F2EBC /* Navegando0034@2x.png in Resources */,
 				9A9C83761A8E9493007F38F1 /* iconDamage_11@2x.png in Resources */,
 				9AFF44FA1A8622A1000687B2 /* Anima_Mina0026@2x.png in Resources */,
@@ -860,9 +784,7 @@
 				9A5080811A94B25D009283A8 /* iconOxigeno_10@2x.png in Resources */,
 				9AC500C91A9387A500C8C5F1 /* BotonInterruptor.mp3 in Resources */,
 				9A9C837B1A8E9493007F38F1 /* iconDamage_16@2x.png in Resources */,
-				88CA81161A93C9420091ED93 /* Oxigeno 075@2x.png in Resources */,
 				9AFF45021A8622A1000687B2 /* Anima_Mina0034@2x.png in Resources */,
-				88CA810C1A93C9420091ED93 /* Oxigeno 025@2x.png in Resources */,
 				88BDD0551A78F135005F2EBC /* Navegando0029@2x.png in Resources */,
 				88BDD05D1A78F135005F2EBC /* Navegando0033@2x.png in Resources */,
 				88BDD05C1A78F135005F2EBC /* Navegando0033.png in Resources */,
@@ -884,26 +806,21 @@
 				88BDD0651A78F135005F2EBC /* Navegando0037@2x.png in Resources */,
 				88BDD06A1A78F135005F2EBC /* Navegando0040.png in Resources */,
 				88BDD07C1A78F135005F2EBC /* Emerge0016@2x.png in Resources */,
-				88CA81131A93C9420091ED93 /* Oxigeno 060@2x.png in Resources */,
 				88BDD07F1A78F135005F2EBC /* Emerge0019@2x.png in Resources */,
 				88BDD0691A78F135005F2EBC /* Navegando0039@2x.png in Resources */,
 				88BDD0751A78F135005F2EBC /* Emerge0009@2x.png in Resources */,
 				9A9C83711A8E9493007F38F1 /* iconDamage_06@2x.png in Resources */,
 				9AFF44FC1A8622A1000687B2 /* Anima_Mina0028@2x.png in Resources */,
-				88CA810E1A93C9420091ED93 /* Oxigeno 035@2x.png in Resources */,
 				88BDD05B1A78F135005F2EBC /* Navegando0032@2x.png in Resources */,
 				88BDD06D1A78F135005F2EBC /* Emerge0001@2x.png in Resources */,
 				9A9C836F1A8E9493007F38F1 /* iconDamage_04@2x.png in Resources */,
-				88CA81181A93C9420091ED93 /* Oxigeno 085@2x.png in Resources */,
 				9A9C836E1A8E9493007F38F1 /* iconDamage_03@2x.png in Resources */,
 				9A9C837A1A8E9493007F38F1 /* iconDamage_15@2x.png in Resources */,
 				9A6873691A65902A00CC4BF7 /* humoExplosion.sks in Resources */,
 				88BDD04B1A78F135005F2EBC /* Navegando0024@2x.png in Resources */,
-				88CA81141A93C9420091ED93 /* Oxigeno 065@2x.png in Resources */,
 				88BDD0561A78F135005F2EBC /* Navegando0030.png in Resources */,
 				9A50807E1A94B25D009283A8 /* iconOxigeno_07@2x.png in Resources */,
 				9A5080901A94B25D009283A8 /* iconOxigeno_25@2x.png in Resources */,
-				88CA81171A93C9420091ED93 /* Oxigeno 080@2x.png in Resources */,
 				9A5080891A94B25D009283A8 /* iconOxigeno_18@2x.png in Resources */,
 				88BDD06B1A78F135005F2EBC /* Navegando0040@2x.png in Resources */,
 				88130D6E1A52A39300802E87 /* estelaMisil.sks in Resources */,
@@ -913,7 +830,6 @@
 				9A9C836C1A8E9493007F38F1 /* iconDamage_01@2x.png in Resources */,
 				88BDD0711A78F135005F2EBC /* Emerge0005@2x.png in Resources */,
 				88BDD07D1A78F135005F2EBC /* Emerge0017@2x.png in Resources */,
-				88CA811A1A93C9420091ED93 /* Oxigeno 095@2x.png in Resources */,
 				88BDD0541A78F135005F2EBC /* Navegando0029.png in Resources */,
 				88BDD0631A78F135005F2EBC /* Navegando0036@2x.png in Resources */,
 				88BDD04A1A78F135005F2EBC /* Navegando0024.png in Resources */,
@@ -921,23 +837,18 @@
 				88BDD0681A78F135005F2EBC /* Navegando0039.png in Resources */,
 				88BDD05E1A78F135005F2EBC /* Navegando0034.png in Resources */,
 				9A5080861A94B25D009283A8 /* iconOxigeno_15@2x.png in Resources */,
-				88CA81111A93C9420091ED93 /* Oxigeno 050@2x.png in Resources */,
 				9AFF44FF1A8622A1000687B2 /* Anima_Mina0031@2x.png in Resources */,
 				884BFE171A7118A800B8C94A /* explosionImpacto.wav in Resources */,
-				88CA810F1A93C9420091ED93 /* Oxigeno 040@2x.png in Resources */,
-				88CA81101A93C9420091ED93 /* Oxigeno 045@2x.png in Resources */,
 				88BDD05A1A78F135005F2EBC /* Navegando0032.png in Resources */,
 				88BDD06F1A78F135005F2EBC /* Emerge0003@2x.png in Resources */,
 				9A5080871A94B25D009283A8 /* iconOxigeno_16@2x.png in Resources */,
 				9A50807A1A94B25D009283A8 /* iconOxigeno_03@2x.png in Resources */,
-				88CA81071A93C9420091ED93 /* Oxigeno 000@2x.png in Resources */,
 				9A95B4821A800EB2000A899D /* joystick@2X.png in Resources */,
 				9A50808D1A94B25D009283A8 /* iconOxigeno_22@2x.png in Resources */,
 				9A9C83721A8E9493007F38F1 /* iconDamage_07@2x.png in Resources */,
 				9A50807D1A94B25D009283A8 /* iconOxigeno_06@2x.png in Resources */,
 				88BDD0781A78F135005F2EBC /* Emerge0012@2x.png in Resources */,
 				9A9C83741A8E9493007F38F1 /* iconDamage_09@2x.png in Resources */,
-				88CA81121A93C9420091ED93 /* Oxigeno 055@2x.png in Resources */,
 				9A5080911A94B25D009283A8 /* iconOxigeno_26@2x.png in Resources */,
 				9AFF44F91A8622A1000687B2 /* Anima_Mina0025@2x.png in Resources */,
 				88BDD07B1A78F135005F2EBC /* Emerge0015@2x.png in Resources */,
@@ -949,7 +860,6 @@
 				88BDD0801A78F135005F2EBC /* Emerge0020@2x.png in Resources */,
 				9A50808B1A94B25D009283A8 /* iconOxigeno_20@2x.png in Resources */,
 				88BDD0641A78F135005F2EBC /* Navegando0037.png in Resources */,
-				88CA81081A93C9420091ED93 /* Oxigeno 005@2x.png in Resources */,
 				88BDD06E1A78F135005F2EBC /* Emerge0002@2x.png in Resources */,
 				88BDD0761A78F135005F2EBC /* Emerge0010@2x.png in Resources */,
 				9AFF44FD1A8622A1000687B2 /* Anima_Mina0029@2x.png in Resources */,
@@ -961,9 +871,7 @@
 				88BDD04E1A78F135005F2EBC /* Navegando0026.png in Resources */,
 				9A50808C1A94B25D009283A8 /* iconOxigeno_21@2x.png in Resources */,
 				88BDD0821A78F135005F2EBC /* Emerge0022@2x.png in Resources */,
-				88CA81191A93C9420091ED93 /* Oxigeno 090@2x.png in Resources */,
 				9A5080791A94B25D009283A8 /* iconOxigeno_02@2x.png in Resources */,
-				88CA810A1A93C9420091ED93 /* Oxigeno 015@2x.png in Resources */,
 				9A9C836D1A8E9493007F38F1 /* iconDamage_02@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

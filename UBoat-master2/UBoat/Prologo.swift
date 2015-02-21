@@ -7,11 +7,13 @@
 //
 
 import SpriteKit
+import AVFoundation
+
 
 
 
 class Prologo: SKScene, SKPhysicsContactDelegate {
-    
+    var sonidoSubmarinoAlarm = AVAudioPlayer()
     var fondo = SKSpriteNode()
     var credito = SKSpriteNode()
     let prologo = "Alerta Alerta nos quedamos sin oxigeno.\n Emergemos en zona hostil,preparados para el enfrentamiento."
@@ -24,8 +26,8 @@ class Prologo: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
-        imagenPeriscopio()
-        
+        cargarfondoPrologo()
+        reproducirEfectoAudioSubmarinoAlarm()
         
         /*    if   enemigo=1
         {
@@ -36,18 +38,39 @@ class Prologo: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
-    func imagenPeriscopio() {
+    func reproducirEfectoAudioSubmarinoAlarm(){
+        let ubicacionAudioAudioSubmarinoAlarm = NSBundle.mainBundle().pathForResource("SubmarineAlarm", ofType: "mp3")
+        var efectoSubmarinoAlarm = NSURL(fileURLWithPath: ubicacionAudioAudioSubmarinoAlarm!)
+        sonidoSubmarinoAlarm = AVAudioPlayer(contentsOfURL: efectoSubmarinoAlarm, error: nil)
+        sonidoSubmarinoAlarm.prepareToPlay()
+        sonidoSubmarinoAlarm.numberOfLoops = 1
+        sonidoSubmarinoAlarm.play()
+        sonidoSubmarinoAlarm.volume = 0.02
+    }
+
+    func cargarfondoPrologo() {
         
-        fondo = SKSpriteNode(imageNamed: "periscopio")
+        fondo = SKSpriteNode(imageNamed: "FondoPrologo")
         fondo.position = CGPoint(x: size.width / 2 , y: size.height / 2)
         fondo.size = self.size
         addChild(fondo)
         
+        let controlDamageSequence2 = SKAction.sequence([
+            SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.5),
+            SKAction.waitForDuration(0.5),
+            SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0, duration: 0.5),
+            ])
+        let controlDamage2 = SKAction.repeatActionForever(controlDamageSequence2)
+     
+        fondo.runAction(controlDamage2, withKey: "tocado")
         
-        credito = SKSpriteNode(imageNamed: "prologo")
+        
+        credito = SKSpriteNode(imageNamed: "presentacionPrologo")
+        credito.setScale(0.9)
         credito.anchorPoint = CGPointMake(0, 0)
-        credito.position = CGPointMake(0 ,  fondo.size.height / 2 - 225)
+        credito.position = CGPointMake(70, 40)
+        
+        credito.runAction(controlDamage2, withKey: "tocado")
         
         //   credito.setScale(0.9)
         credito.zPosition = 1
@@ -88,10 +111,11 @@ class Prologo: SKScene, SKPhysicsContactDelegate {
         
         //llamamos ejecutamos la secuencia para que cambie solo a la pantalla de juego
         runAction(SKAction.sequence([
-            SKAction.waitForDuration(4.0),
+            SKAction.waitForDuration(5.0),
             SKAction.runBlock() {
                 
-                let aparecer = SKTransition.flipHorizontalWithDuration(2.5)
+                let aparecer = SKTransition.crossFadeWithDuration(1.5)
+        
                 let pantalla = Juego(size: self.size)
                 self.view?.presentScene(pantalla, transition: aparecer)
             }

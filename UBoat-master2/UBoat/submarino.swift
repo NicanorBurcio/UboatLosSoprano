@@ -174,10 +174,11 @@ class Submarino : SKNode {
     
     
     func submarinoInmersion()->SKAction{
-        var texturaSubmarinoEmergeA = SKTexture(imageNamed: "Emerge-0002")
-        texturaSubmarinoEmergeA.filteringMode = SKTextureFilteringMode.Nearest
-        var texturaSubmarinoEmerge0 = SKTexture(imageNamed: "Emerge-0001")
-        texturaSubmarinoEmerge0.filteringMode = SKTextureFilteringMode.Nearest
+        
+//        var texturaSubmarinoEmergeA = SKTexture(imageNamed: "Emerge-0002")
+//        texturaSubmarinoEmergeA.filteringMode = SKTextureFilteringMode.Nearest
+//        var texturaSubmarinoEmerge0 = SKTexture(imageNamed: "Emerge-0001")
+//        texturaSubmarinoEmerge0.filteringMode = SKTextureFilteringMode.Nearest
         
         
         var texturaSubmarinoEmerge1 = SKTexture(imageNamed: "Emerge0000")
@@ -204,7 +205,7 @@ class Submarino : SKNode {
         texturaSubmarinoEmerge11.filteringMode = SKTextureFilteringMode.Nearest
         
         
-        var animacionSubmarinoInmersion = SKAction.animateWithTextures([texturaSubmarinoEmerge6,texturaSubmarinoEmerge5, texturaSubmarinoEmerge4, texturaSubmarinoEmerge3, texturaSubmarinoEmerge2, texturaSubmarinoEmerge1, texturaSubmarinoEmergeA,texturaSubmarinoEmergeA,texturaSubmarinoEmergeA, texturaSubmarinoEmergeA, texturaSubmarinoEmergeA, texturaSubmarinoEmergeA,texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9], timePerFrame: 0.5)
+        var animacionSubmarinoInmersion = SKAction.animateWithTextures([texturaSubmarinoEmerge6,texturaSubmarinoEmerge5, texturaSubmarinoEmerge4, texturaSubmarinoEmerge3, texturaSubmarinoEmerge2, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1,texturaSubmarinoEmerge1,texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge1, texturaSubmarinoEmerge2, texturaSubmarinoEmerge3, texturaSubmarinoEmerge4, texturaSubmarinoEmerge5, texturaSubmarinoEmerge6, texturaSubmarinoEmerge7, texturaSubmarinoEmerge8, texturaSubmarinoEmerge9], timePerFrame: 0.5)
         var accionSubmarinoInmersion = SKAction.repeatAction(animacionSubmarinoInmersion, count: 1)
         
         //SubmarinoNavegando
