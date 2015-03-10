@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "disparoEnemigo.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "botonDive@2x.png"
+      "filename" : "disparoEnemigo@2x.png"
     },
     {
       "idiom" : "universal",
